@@ -4,6 +4,7 @@ import player
 import playScreen
 import blobScreen
 import levels
+import optionsScreen
 import cPickle as pickle
 from helpers import *
 
@@ -22,6 +23,11 @@ def main():
             transitionScreen = blobScreen.blobScreen(done, screen, clock)
         elif transitionScreen == "playScreen":
             transitionScreen = playScreen.playGame(done, screen, clock)
+        elif transitionScreen == "titleScreen":
+            transitionScreen == titleScreen.titleScreen(done, screen, clock)
+        elif transitionScreen == "optionsScreen":
+            transitionScreen == optionsScreen.options(done, screen, clock)
+        
         elif transitionScreen == "done":
             done = True
             

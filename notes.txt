@@ -1,11 +1,9 @@
 Notes & Reminders: **USE STANDARD PYTHON
-- Title Screen -> finish up (Kara)
 - Make ground for him to stand on (Josh)
-- Figure out collision (Emily)
+- Figure out side collision (Emily)
 - Add in blob functionality
 - Player save data -> unlocked blobs, unlocked levels
-- Functionality in title screen
-- Move Globals to helpers.py
+- Functionality in title screen (Kara)
 
 Stretch Goals:
 - Images

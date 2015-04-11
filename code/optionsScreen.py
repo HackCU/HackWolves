@@ -1,11 +1,10 @@
 import pygame
 from helpers import *
-#from blobScreen import *
 
-def titleScreen(done, screen, clock):
+def options(done, screen, clock):
+    transitionScreen = None
     while not done:
         (mouseX, mouseY) = (0, 0)
-        transitionScreen = None
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
@@ -14,29 +13,28 @@ def titleScreen(done, screen, clock):
                 print "Mousex:", mouseX, "MouseY:", mouseY
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
-                        transitionScreen = StartButton.update("blobScreen")
+                        print "2"
                     elif mouseY > 500 and mouseY < 625:
-                        print "Load Save Button"
+                        print "3"
                 elif mouseX > 425 and mouseX < 675:
                     if mouseY > 400 and mouseY < 475:
-                        print "Options Button"
-                        transitionScreen = "optionsScreen"
+                        print "4"
                     elif mouseY > 500 and mouseY < 625:
-                        transitionScreen = "done"
+                        transitionScreen = "titleScreen"
         if transitionScreen == None:
             screen.fill(WHITE)
-            StartButton = TransitionButton(100, 400, "Start Game", screen)
-            LoadButton = TransitionButton(100, 500, "Load Save", screen)
-            OptionsButton = TransitionButton(425, 400, "Options", screen)
-            ExitButton = TransitionButton(425, 500, "Exit", screen)
+            StartButton = TransitionButton(100, 400, "BUTTON1", screen)
+            LoadButton = TransitionButton(100, 500, "BUTTON2", screen)
+            OptionsButton = TransitionButton(425, 400, "BUTTON3", screen)
+            ExitButton = TransitionButton(425, 500, "Exit Game", screen)
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
-            TitleText = TitleFont.render("HACK_WOLVES", True, BLACK)
-            SubtitleText = TitleFont.render("Title TBD", True, BLACK)
+            TitleText = TitleFont.render("Options", True, BLACK)
             screen.blit(TitleText, [(150),(100)])
-            screen.blit(SubtitleText, [(150),(200)])
+            
         if transitionScreen != None:
             return transitionScreen
         
         clock.tick(60)
         pygame.display.flip()
+
