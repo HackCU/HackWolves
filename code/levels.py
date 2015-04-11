@@ -18,7 +18,7 @@ class Level():
         self.enemy_list.update()
         
     def draw(self, screen):
-        screem.fill(BLUE)
+        screen.fill(main.BLUE)
         
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
@@ -36,7 +36,7 @@ class Platform(pygame.sprite.Sprite):
     
     def __init__(self, width, height):
         
-        # super().__init__()
+        super(Platform,self).__init__()
         
         self.image = pygame.Surface([width, height])
         self.image.fill(main.GREEN)
@@ -63,3 +63,21 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
             
+class Level_02(Level):
+    
+    def __init__(self,player):
+        Level.__init__(self, player)
+        
+        self.level_limit = -1000
+        
+        level = [[210, 30, 500, 500],
+                 [210, 30, 800, 400],
+                 [210, 30, 1000, 500],
+                 [210, 30, 1120, 280]]
+                 
+        for platform in level:
+            block = Platform(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block)

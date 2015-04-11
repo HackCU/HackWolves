@@ -34,7 +34,7 @@ def main():
 	
 	mainPlayer.rect.x = 340
 	mainPlayer.rect.y = SCREEN_HEIGHT - mainPlayer.rect.height
-	active_sprite_list.add(player)
+	active_sprite_list.add(mainPlayer)
 	
 	done = False
 	
@@ -59,7 +59,7 @@ def main():
 				if event.key == pygame.K_RIGHT and player.change_x > 0:
 					mainPlayer.stop()
 					
-		active_sprite_list_update()
+		active_sprite_list.update()
 		
 		current_level.update()
 		
@@ -73,7 +73,7 @@ def main():
 			mainPlayer.rect.left = 120
 			current_level.shift_world(diff)
 		
-		current_position = mainPlayer.rect.x + current_level.wordl_shift
+		current_position = mainPlayer.rect.x + current_level.world_shift
 		if current_position < current_level.level_limit:
 			mainPlayer.rect.x = 120
 			if current_level_no < len(level_list)-1:
