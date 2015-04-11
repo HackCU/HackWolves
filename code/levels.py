@@ -55,7 +55,8 @@ class Level_01(Level):
         level = [[210, 70, 500, 500],
                  [210, 70, 800, 400],
                  [210, 70, 1000, 500],
-                 [210, 70, 1120, 280]]
+                 [210, 70, 1120, 280],
+                 [550, 0, 50, 800]]
                  
         for platform in level:
             block = Platform(platform[0], platform[1])
