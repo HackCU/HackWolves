@@ -12,6 +12,8 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         self.level = None
+        
+        self.blobs = []
     
     def update(self):
         # Gravity
@@ -19,6 +21,11 @@ class Player(pygame.sprite.Sprite):
  
         # Move left/right
         self.rect.x += self.change_x
+        
+        blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
+        for blob in blob_hit_list:
+            blob.collected = True
+            self.blobs.append(blob)
  
         # See if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
