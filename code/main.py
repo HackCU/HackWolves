@@ -25,7 +25,7 @@ def main():
     mainPlayer.level = current_level
     
     mainPlayer.rect.x = 340
-    mainPlayer.rect.y = SCREEN_HEIGHT - mainPlayer.rect.height
+    mainPlayer.rect.y = SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
     done = False
