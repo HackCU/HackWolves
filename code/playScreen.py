@@ -19,7 +19,7 @@ def playGame(done, screen, clock):
     active_sprite_list = pygame.sprite.Group()
     mainPlayer.level = current_level
     
-    mainPlayer.rect.x = 340
+    mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
     mainPlayer.rect.y = SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
@@ -98,6 +98,10 @@ def playGame(done, screen, clock):
         pygame.display.flip()
         
         if transitionScreen != None:
+            #save position
+            pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen"
-        
+    
+    # clear?
+    pickle.dump((340, 50, 0), open( "position.p", "wb" ) )
     return "done"
