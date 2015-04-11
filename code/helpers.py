@@ -28,7 +28,7 @@ class TransitionButton():
         self.locationX = valueX
         self.locationY = valueY
         self.form = pygame.draw.rect(screen, BLACK, [valueX,valueY,250,75], 2)
-        font = pygame.font.SysFont('Calibri', 50, True, False)
+        font = pygame.font.SysFont('Calibri', 40, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+25),(valueY+25)])
     

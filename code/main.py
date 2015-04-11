@@ -18,17 +18,20 @@ def main():
     clock = pygame.time.Clock()
 	
     transitionScreen = titleScreen.titleScreen(done, screen, clock)
+    
     while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
         if transitionScreen == "blobScreen":
             transitionScreen = blobScreen.blobScreen(done, screen, clock)
-        elif transitionScreen == "playScreen":
+        if transitionScreen == "playScreen":
             transitionScreen = playScreen.playGame(done, screen, clock)
-        elif transitionScreen == "titleScreen":
-            transitionScreen == titleScreen.titleScreen(done, screen, clock)
-        elif transitionScreen == "optionsScreen":
-            transitionScreen == optionsScreen.options(done, screen, clock)
-        
-        elif transitionScreen == "done":
+        if transitionScreen == "titleScreen":
+            transitionScreen = titleScreen.titleScreen(done, screen, clock)
+        if transitionScreen == "optionsScreen":
+            transitionScreen = optionsScreen.options(done, screen, clock)
+        if transitionScreen == "done":
             done = True
             
     pygame.quit()
