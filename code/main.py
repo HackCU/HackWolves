@@ -1,6 +1,7 @@
 import pygame
 import player
 import levels
+import cPickle as pickle
 from helpers import *
 
 def main():
@@ -18,7 +19,8 @@ def main():
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
     
-    current_level_no = 0
+    #current_level_no = 0
+    current_level_no = pickle.load(open("save.p", "rb"))
     current_level = level_list[current_level_no]
     
     active_sprite_list = pygame.sprite.Group()
@@ -35,6 +37,7 @@ def main():
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pickle.dump(current_level_no, open( "save.p", "wb" ) )
                 done = True
                 
             if event.type == pygame.KEYDOWN:
@@ -44,7 +47,16 @@ def main():
                     mainPlayer.go_right()
                 if event.key == pygame.K_UP:
                     mainPlayer.jump()
+                if event.key == pygame.K_1:
+                    current_level_no = 0
+                    current_level = level_list[current_level_no]
+                    mainPlayer.level = current_level
+                if event.key == pygame.K_2:
+                    current_level_no = 1
+                    current_level = level_list[current_level_no]
+                    mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
+                    pickle.dump(current_level_no, open("save.p", "wb" ))
                     done = True
             
             if event.type == pygame.KEYUP:
