@@ -38,11 +38,11 @@ class Player(pygame.sprite.Sprite):
             # self.rect.bottom =
             
             if self.change_x > 0:
-                self.rect.bottom = self.rect.y
+                #self.rect.bottom = self.rect.y
                 self.rect.right = block.rect.left
                 
             elif self.change_x < 0:
-                self.rect.bottom = self.rect.y
+                #self.rect.bottom = self.rect.y
                 self.rect.left = block.rect.right
                 
                 
