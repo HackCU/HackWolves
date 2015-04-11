@@ -82,6 +82,7 @@ def playGame(done, screen, clock):
                 currentString = "Level " + str((current_level_no)+1)
                 current_level = level_list[current_level_no]
                 mainPlayer.level = current_level
+                
         
         #drawing code should go here
         current_level.draw(screen)
