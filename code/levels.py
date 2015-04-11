@@ -1,11 +1,13 @@
 import pygame
 import main
 from helpers import *
+from blobObject import *
 
 class Level():
     platform_list = None
     enemy_list = None
     exit_list = None
+    blob_list = None
     
     #how far the world has been scrolled left/right
     world_shift = 0
@@ -14,12 +16,15 @@ class Level():
         self.platform_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.exit_list = pygame.sprite.Group()
+        self.blob_list = pygame.sprite.Group()
         self.player = player
+        
         
     def update(self):
         self.platform_list.update()
         self.enemy_list.update()
         self.exit_list.update()
+        self.blob_list.update()
         
     def draw(self, screen):
         screen.fill(BLUE)
@@ -27,6 +32,7 @@ class Level():
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
         self.exit_list.draw(screen)
+        self.blob_list.draw(screen)
     
     def shift_world(self, shift_x):
         self.world_shift += shift_x
@@ -39,6 +45,10 @@ class Level():
             
         for door in self.exit_list:
             door.rect.x += shift_x
+            
+        for blob in self.blob_list:
+            blob.rect.x += shift_x
+            
             
 class Platform(pygame.sprite.Sprite):
     
@@ -81,6 +91,12 @@ class Level_01(Level):
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
+            
+            
+        blob1 = blobObject()
+        blob1.rect.x = 1500
+        blob1.rect.y = 500
+        self.blob_list.add(blob1)
         
         door = exitDoor(40, 50)
         door.rect.x = 1900
