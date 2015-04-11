@@ -18,23 +18,41 @@ class Player(pygame.sprite.Sprite):
         
         self.rect.x += self.change_x
         self.rect.y += self.change_y
+        
+        
+        block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+        for block in block_hit_list:
+ 
+            # Reset our position based on the top/bottom of the object.
+            if self.change_y > 0:
+                self.rect.bottom = block.rect.top
+            elif self.change_y < 0:
+                self.rect.top = block.rect.bottom
+ 
+                # Stop our vertical movement
+            self.change_y = 0
          
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         for block in block_hit_list:
-            if self.change_x > 0 and self.rect.bottom == block.rect.top:
-                self.change_x = 0
-                # 
-            elif self.change_x < 0 and self.rect.bottom == block.rect.top:
-                self.change_x = 0
-                # self.rect.left = block.rect.right
-            if self.change_y > 0:
-                self.change_y = 0
-                self.rect.bottom = block.rect.top
-            elif self.change_y < 0:
-                self.change_y = 0
-                self.rect.top = block.rect.bottom
+            
+            # self.rect.bottom =
+            
+            if self.change_x > 0:
+                self.rect.bottom = self.rect.y
+                self.rect.right = block.rect.left
                 
-            self.change_y = 0
+            elif self.change_x < 0:
+                self.rect.bottom = self.rect.y
+                self.rect.left = block.rect.right
+                
+                
+                
+ 
+            # Move up/down
+        self.rect.y += self.change_y
+ 
+            # Check and see if we hit anything
+        
             
     def calc_grav(self):
         if self.change_y == 0:
