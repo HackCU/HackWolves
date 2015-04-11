@@ -2,10 +2,6 @@ import os, sys
 import pygame
 from pygame.locals import *
 
-#TEMP
-#import blobs
-# END TEMP
-
 #Globals
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -42,6 +38,7 @@ class Blob():
     #location
     locationX = None
     locationY = None
+    screen = None
     #rectangle/sprite
     form = None
     #text
@@ -49,14 +46,32 @@ class Blob():
     def __init__(self, valueX, valueY, string, screen):
         self.locationX = valueX
         self.locationY = valueY
-        self.form = pygame.draw.rect(screen, BLACK, [valueX,valueY,100,50], 2)
+        self.colorFill = BLACK
+        self.screen = screen
+        self.form = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
         self.text = font.render(string, True, BLACK)
-        screen.blit(self.text, [(valueX),(valueY)])
+        screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
         
-    def update(self):
+    def updateColor(self, clickValue):
+        if clickValue == True:
+            self.colorFill = RED
+        elif clickValue == False:
+            self.colorFill = BLACK
+            
+    def updatePosition(self, valueX, valueY):
         self.locationX = valueX
-        self.locationY = valueY			
+        self.locationY = valueY
+        self.form = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+        font = pygame.font.SysFont('Calibri', 25, True, False)
+        screen = self.screen
+        screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])	
+            
+    def refreshPosition(self):
+        self.form = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+        font = pygame.font.SysFont('Calibri', 25, True, False)
+        screen = self.screen
+        screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])		
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('resources', 'images')

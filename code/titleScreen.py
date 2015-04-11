@@ -1,6 +1,5 @@
 import pygame
 from helpers import *
-#from blobScreen import *
 
 def titleScreen(done, screen, clock):
     while not done:
