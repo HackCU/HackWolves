@@ -1,5 +1,6 @@
 import pygame
 from helpers import *
+import main
 
 class Player(pygame.sprite.Sprite):
     
@@ -18,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.change_x
         self.rect.y += self.change_y
          
-        block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list)
+        block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, True)
         for block in block_hit_list:
             if self.change_x > 0:
                 self.rect.right = block.rect.left
@@ -37,9 +38,9 @@ class Player(pygame.sprite.Sprite):
         else:
             self.change_y += .35
         
-        if self.rect.y >= SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
+        if self.rect.y >= main.SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
             self.change_y = 0
-            self.rect.y = SCREEN_HEIGHT - self.rect.height
+            self.rect.y = main.SCREEN_HEIGHT - self.rect.height
                 
        
     def go_left(self):
@@ -50,9 +51,9 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
     def jump(self):
         self.rect.y += 2
-        platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list)
+        platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, True)
         self.rect.y -= 2
         
-        if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
+        if len(platform_hit_list) > 0 or self.rect.bottom >= main.SCREEN_HEIGHT:
             self.change_y = -10
          
