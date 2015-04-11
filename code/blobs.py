@@ -17,7 +17,8 @@ from helpers import *
 #	selected_particle.x = mouseX
 #	selected_particle.y = mouseY
 
-pygame.init()
+pygame.display.init()
+pygame.font.init()
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Blobs")
