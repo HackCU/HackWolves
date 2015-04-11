@@ -1,4 +1,6 @@
 import pygame
+import player
+import levels
 
 #Globals
 BLACK = ( 0, 0, 0,)
@@ -14,24 +16,24 @@ def main():
 	pygame.init()
 	
 	size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-	screen = pygame.displau.set_mode(size)
+	screen = pygame.display.set_mode(size)
 	
 	pygame.display.set_caption("THIS GAME IS AWESOME!")
 	
-	player = Player()
+	mainPlayer = player.Player()
 	
 	level_list = []
-	level_list.append(Level_01(player))
-	level_list.append(Level_02(player))
+	level_list.append(levels.Level_01(mainPlayer))
+	level_list.append(levels.Level_02(mainPlayer))
 	
 	current_level_no = 0
 	current_level = level_list[current_level_no]
 	
 	active_sprite_list = pygame.sprite.Group()
-	player.level = current_level
+	mainPlayer.level = current_level
 	
-	player.rect.x = 340
-	player.rect.y = SCREEN_HEIGHT - player.rect.height
+	mainPlayer.rect.x = 340
+	mainPlayer.rect.y = SCREEN_HEIGHT - mainPlayer.rect.height
 	active_sprite_list.add(player)
 	
 	done = False
@@ -45,39 +47,39 @@ def main():
 				
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_LEFT:
-					player.go_left()
+					mainPlayer.go_left()
 				if event.key == pygame.K_RIGHT:
-					player.go_right()
+					mainPlayer.go_right()
 				if event.key == pygame.K_UP:
-					player.jump()
+					mainPlayer.jump()
 			
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT and player.change_x < 0:
-					player.stop()
+					mainPlayer.stop()
 				if event.key == pygame.K_RIGHT and player.change_x > 0:
-					player.stop()
+					mainPlayer.stop()
 					
 		active_sprite_list_update()
 		
 		current_level.update()
 		
-		if player.rect.right >= 500:
-			diff = player.rect.right - 500
-			player.rect.right = 500
+		if mainPlayer.rect.right >= 500:
+			diff = mainPlayer.rect.right - 500
+			mainPlayer.rect.right = 500
 			current_level.shift_world(-diff)
 		
-		if player.rect.left <= 120:
-			diff = 120 - player.rect.left
-			player.rect.left = 120
+		if mainPlayer.rect.left <= 120:
+			diff = 120 - mainPlayer.rect.left
+			mainPlayer.rect.left = 120
 			current_level.shift_world(diff)
 		
-		current_position = player.rect.x + current_level.wordl_shift
+		current_position = mainPlayer.rect.x + current_level.wordl_shift
 		if current_position < current_level.level_limit:
-			player.rect.x = 120
+			mainPlayer.rect.x = 120
 			if current_level_no < len(level_list)-1:
 				current_level_no += 1
 				current_level = level_list[current_level_no]
-				player.level = current_level
+				mainPlayer.level = current_level
 		
 		#drawing code should go here
 		current_level.draw(screen)

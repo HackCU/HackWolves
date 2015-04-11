@@ -1,4 +1,6 @@
-#level fns!
+import pygame
+import main
+
 class Level():
     platform_list = None
     enemy_list = None
@@ -29,6 +31,18 @@ class Level():
             
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
+            
+class Platform(pygame.sprite.Sprite):
+    
+    def __init__(self, width, height):
+        
+        # super().__init__()
+        
+        self.image = pygame.Surface([width, height])
+        self.image.fill(main.GREEN)
+        
+        self.rect = self.image.get_rect()
+        
 
 class Level_01(Level):
     
