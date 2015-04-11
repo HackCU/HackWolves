@@ -14,7 +14,7 @@ def titleScreen(done, screen, clock):
                 print "Mousex:", mouseX, "MouseY:", mouseY
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
-                        transitionScreen = StartButton.update("blobScreen")
+                        transitionScreen = "blobScreen"
                     elif mouseY > 500 and mouseY < 625:
                         print "Load Save Button"
                 elif mouseX > 425 and mouseX < 675:

@@ -31,7 +31,8 @@ class TransitionButton():
         font = pygame.font.SysFont('Calibri', 50, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+25),(valueY+25)])
-        
+    
+    #likely unnecessary
     def update(self, string):
 		print "Transition to:", string
 		if string == "blobs":
