@@ -4,7 +4,8 @@ import levels
 from helpers import *
 
 def main():
-    pygame.init()
+    pygame.display.init()
+    pygame.font.init()
     
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
