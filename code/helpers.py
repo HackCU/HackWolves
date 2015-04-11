@@ -2,10 +2,6 @@ import os, sys
 import pygame
 from pygame.locals import *
 
-#TEMP
-#import blobs
-# END TEMP
-
 #Globals
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
