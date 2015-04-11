@@ -1,4 +1,5 @@
 import pygame
+from helpers import *
 
 #Globals
 BLACK = (0, 0, 0)

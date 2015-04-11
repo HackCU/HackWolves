@@ -1,5 +1,6 @@
 import pygame
 import main
+from helpers import *
 
 class Level():
     platform_list = None
