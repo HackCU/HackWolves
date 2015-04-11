@@ -1,0 +1,21 @@
+Notes & Reminders: **USE STANDARD PYTHON
+- Title Screen -> finish up (Kara)
+- Make ground for him to stand on (Josh)
+- Figure out collision (Emily)
+- Add in blob functionality
+- Player save data -> unlocked blobs, unlocked levels
+- Functionality in title screen
+- Move Globals to helpers.py
+
+Stretch Goals:
+- Images
+	- .png for title screen
+	- Sprites?
+	- Backgrounds? Etc?
+- Colors
+	- blob screen
+	- level screen
+- rocket ships?
+- Multiple levels
+- Enemies?
+- Refactoring code
