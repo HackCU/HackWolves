@@ -6,14 +6,15 @@ from helpers import *
 
 def playGame(done, screen, clock):
     mainPlayer = player.Player()
+    transitionScreen = None
     
     level_list = []
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
     
-    #current_level_no = 0
     current_level_no = pickle.load(open("save.p", "rb"))
     current_level = level_list[current_level_no]
+    currentString = "Level " + str((current_level_no)+1)
     
     active_sprite_list = pygame.sprite.Group()
     mainPlayer.level = current_level
@@ -27,7 +28,11 @@ def playGame(done, screen, clock):
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
                 done = True
-                
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                (mouseX, mouseY) = pygame.mouse.get_pos()
+                if mouseX > 25 and mouseX < 150:
+                    if mouseY > 25 and mouseY < 50:
+                        transitionScreen = "blobScreen"
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     mainPlayer.go_left()
@@ -37,10 +42,12 @@ def playGame(done, screen, clock):
                     mainPlayer.jump()
                 if event.key == pygame.K_1:
                     current_level_no = 0
+                    currentString = "Level " + str((current_level_no)+1)
                     current_level = level_list[current_level_no]
                     mainPlayer.level = current_level
                 if event.key == pygame.K_2:
                     current_level_no = 1
+                    currentString = "Level " + str((current_level_no)+1)
                     current_level = level_list[current_level_no]
                     mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
@@ -72,16 +79,24 @@ def playGame(done, screen, clock):
             mainPlayer.rect.x = 120
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
+                currentString = "Level " + str((current_level_no)+1)
                 current_level = level_list[current_level_no]
                 mainPlayer.level = current_level
         
         #drawing code should go here
         current_level.draw(screen)
         active_sprite_list.draw(screen)
+        smallTransitionButton(25,25, "Building Screen", screen)
+        TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
+        TitleText = TitleFont.render(currentString, True, BLACK)
+        screen.blit(TitleText, [(700),(25)])
         #end of drawing code section    
         
         clock.tick(60)
         
         pygame.display.flip()
+        
+        if transitionScreen != None:
+            return "blobScreen"
         
     return "done"

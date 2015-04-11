@@ -27,12 +27,22 @@ class TransitionButton():
         font = pygame.font.SysFont('Calibri', 40, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+25),(valueY+25)])
-    
-    #likely unnecessary
-    def update(self, string):
-		print "Transition to:", string
-		if string == "blobs":
-			return "blobs"
+
+class smallTransitionButton():
+    #location
+    locationX = None
+    locationY = None
+    #rectangle/sprite
+    form = None
+    #text
+    text = None
+    def __init__(self, valueX, valueY, string, screen):
+        self.locationX = valueX
+        self.locationY = valueY
+        self.form = pygame.draw.rect(screen, BLACK, [valueX,valueY,125,25], 2)
+        font = pygame.font.SysFont('Calibri', 20, True, False)
+        self.text = font.render(string, True, BLACK)
+        screen.blit(self.text, [(valueX+5),(valueY+10)])
 
 class Blob():
     #location
