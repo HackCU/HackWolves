@@ -9,6 +9,7 @@ def playGame(done, screen, clock, load):
     transitionScreen = None
     gameOver = False
     
+    
     level_list = []
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
@@ -28,6 +29,7 @@ def playGame(done, screen, clock, load):
     active_sprite_list.add(mainPlayer)
     
     while not done:
+            
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
@@ -77,6 +79,7 @@ def playGame(done, screen, clock, load):
             diff = 120 - mainPlayer.rect.left
             mainPlayer.rect.left = 120
             current_level.shift_world(diff)
+            
         
         current_position = mainPlayer.rect.x + current_level.world_shift
         if current_position < current_level.level_limit:

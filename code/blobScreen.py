@@ -13,7 +13,6 @@ import blobObject
 def blobScreen(done, screen, clock):
     transitionScreen = None
     
-    blobList = []
     MoveRight = Blob(25, 25, screen, blobObject.blobObject("MoveRight"))
     MoveLeft = Blob(25, 100, screen, blobObject.blobObject("MoveLeft"))
     Jump = Blob(25, 175, screen, blobObject.blobObject("Jump"))
@@ -22,10 +21,7 @@ def blobScreen(done, screen, clock):
     blobList.append(MoveLeft)
     blobList.append(Jump)
     blobList.append(Crouch)
-    
-    # if (player.Player()):
-    #     for x in player.Player.blobs:
-    #         blobList.append(x)
+
     
     
     selectedBlob = None
@@ -33,6 +29,7 @@ def blobScreen(done, screen, clock):
     #(mouseX, mouseY) = (0, 0)
     
     while not done:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
@@ -47,7 +44,7 @@ def blobScreen(done, screen, clock):
                         print "Move Right"
                         if selectedBlob == None:
                             blobList.remove(MoveRight)
-                            MoveRight2 = Blob(25, 25, "Move Right", screen)
+                            MoveRight2 = Blob(25, 25, screen, blobObject.blobObject("MoveRight"))
                             blobList.append(MoveRight2)
                         selectedBlob = MoveRight
                     elif mouseY > 100 and mouseY < 150:
