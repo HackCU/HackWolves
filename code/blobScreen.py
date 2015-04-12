@@ -66,7 +66,7 @@ def blobScreen(done, clock):
                         # Unimplemented: Clear workspace
                         return "unimplemented"
                     elif mouseY > 325 and mouseY < 375:
-                        return "playScreen"
+                        return "playScreen", True
                     elif mouseY > 400 and mouseY < 450:
                         return "optionsScreen"
                     elif mouseY > 475 and mouseY < 525:
@@ -77,13 +77,18 @@ def blobScreen(done, clock):
         
         screen.fill(BACKGROUND)
         
-        WorkSpace1 = pygame.draw.rect(screen, BUTTON2, [175, 125, 450, 400], 0)
-        WorkSpace2 = pygame.draw.rect(screen, BUTTON1, [175, 125, 450, 400], 4)
+        WorkSpace1 = pygame.draw.rect(screen, BUTTON2, [175, 125, 450, 450], 0)
+        WorkSpace2 = pygame.draw.rect(screen, BUTTON1, [175, 125, 450, 450], 4)
         LevelScreen1 = pygame.draw.rect(screen, BUTTON2, [200, 25, 400, 75], 0)
         LevelScreen2 = pygame.draw.rect(screen, BUTTON1, [200, 25, 400, 75], 4)
-        pygame.draw.line(screen, BUTTON1, [175, 225], [625, 225], 4)
-        pygame.draw.line(screen, BUTTON1, [175, 325], [625, 325], 4)
-        pygame.draw.line(screen, BUTTON1, [175, 425], [625, 425], 4)
+        
+        start = 200
+        while start < 525:
+            pygame.draw.line(screen, BUTTON1, [175, start], [625, start], 4)
+            start = start + 75
+        #pygame.draw.line(screen, BUTTON1, [175, 225], [625, 225], 4)
+        #pygame.draw.line(screen, BUTTON1, [175, 325], [625, 325], 4)
+        #pygame.draw.line(screen, BUTTON1, [175, 425], [625, 425], 4)
         
         if selectedBlob != None and clicked == True:
             (mouseX, mouseY) = pygame.mouse.get_pos()

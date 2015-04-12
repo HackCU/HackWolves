@@ -17,7 +17,9 @@ def exitScreen(done, clock):
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 clicked = True
-        
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
         screen.fill(BACKGROUND)
         ExitButton = TransitionButton(425, 500, "Exit Game")
         
@@ -53,7 +55,7 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
         if transitionScreen == "blobScreen":
-            transitionScreen = blobScreen.blobScreen(done, clock)
+            transitionScreen, load = blobScreen.blobScreen(done, clock)
         if transitionScreen == "playScreen":
             transitionScreen = playScreen.playGame(done, clock, load)
         if transitionScreen == "titleScreen":
