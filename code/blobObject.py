@@ -32,7 +32,6 @@ class blobObject(pygame.sprite.Sprite):
             blobBlob2 = Blob(25, 250, self)
             blobList.append(blobBlob2)
             
-            
         elif self.name == 'rArrow':
             blobBlob = Blob(25, 325, self)
             blobList.append(blobBlob)
@@ -87,7 +86,6 @@ class blobObject(pygame.sprite.Sprite):
             blobBlob2 = Blob(25, 175, self)
             blobList.append(blobBlob2)
             
-   
         else:
             blobBlob = Blob(25, 550, self)
             blobList.append(blobBlob)
