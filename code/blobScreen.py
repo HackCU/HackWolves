@@ -12,18 +12,10 @@ import blobObject
 
 def findBlob(blobList, mouseX, mouseY):
     for blob in blobList:
-        print "***** InFindBlob! *****"
-        print "mouseX:", mouseX, "mouseY:", mouseY
-        print blob.name
         (X, Y) = blob.returnPosition()
-        print "X:", X, "Y:", Y
-        print "X if (X)", X, "< (mouseX)", mouseX, "and (X+100)", (X+100), "> (mouseX)", mouseX
         if X < mouseX and (X+100) > mouseX:
-            print "Y if (Y)", Y, "< (mouseY)", mouseY, "and (Y+50)", (Y+50), "> (mouseY)", mouseY
             if Y < mouseY and (Y+50) > mouseY:
-                print blob.name
                 return blob
-    print "None found"
     return None
         
 def blobScreen(done, clock):
@@ -57,31 +49,13 @@ def blobScreen(done, clock):
                     clicked = False
                 elif clicked == False:
                     clicked = True
-                '''
-                if mouseX > 25 and mouseX < 125:
-                    if mouseY > 25 and mouseY < 75:
-                        print "Move Right"
-                        if selectedBlob == None:
-                            blobList.remove(MoveRight)
-                            MoveRight2 = Blob(25, 25, blobObject.blobObject("MoveRight"))
-                            blobList.append(MoveRight2)
-                        selectedBlob = MoveRight
-                    elif mouseY > 100 and mouseY < 150:
-                        print "Move Left"
-                    elif mouseY > 175 and mouseY < 225:
-                        print "Jump"
-                    elif mouseY > 250 and mouseY < 300:
-                        print "Crouch"
-                '''
                 # Static object, no need to update
-                if mouseX > 175 and mouseX < 625:
-                    bloop = 1
-                elif mouseX > 675 and mouseX < 775:
+                if mouseX > 675 and mouseX < 775:
                     if mouseY > 25 and mouseY < 75:
                         # Unimplemented: Saved Fns
                         return "unimplemented"
                     elif mouseY > 100 and mouseY < 150:
-                        # Unimplemented: Bind to key
+                        # Unimplemented: Save Fn
                         return "unimplemented"
                     elif mouseY > 175 and mouseY < 225:
                         # Unimplemented: Clear workspace
