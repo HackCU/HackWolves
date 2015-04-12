@@ -59,14 +59,26 @@ def blobScreen(done, clock):
                 elif mouseX > 175 and mouseX < 625:
                     print "Level display & workspace"
                 elif mouseX > 675 and mouseX < 775:
-                    if mouseY > 325 and mouseY < 375:
+                    if mouseY > 25 and mouseY < 75:
+                        # Unimplemented: Saved Fns
+                        return "unimplemented"
+                    elif mouseY > 100 and mouseY < 150:
+                        # Unimplemented: Bind to key
+                        return "unimplemented"
+                    elif mouseY > 175 and mouseY < 225:
+                        # Unimplemented: Clear workspace
+                        return "unimplemented"
+                    elif mouseY > 325 and mouseY < 375:
                         return "playScreen"
-                    print "Transition buttons"
+                    elif mouseY > 400 and mouseY < 450:
+                        return "optionsScreen"
+                    elif mouseY > 475 and mouseY < 525:
+                        return "unimplemented"
         
         if transitionScreen != None:
             return transitionScreen
         
-        screen.fill(WHITE)
+        screen.fill(BACKGROUND)
         
         if selectedBlob != None and clicked == True:
             (mouseX, mouseY) = pygame.mouse.get_pos()
@@ -87,8 +99,10 @@ def blobScreen(done, clock):
         Options = smallTransitionButton(675, 400, "Options")
         Help = smallTransitionButton(675, 475, "Help")
 
-        WorkSpace = pygame.draw.rect(screen, BLACK, [175, 125, 450, 400], 2)
-        LevelScreen = pygame.draw.rect(screen, BLACK, [200, 25, 400, 75], 2)
+        WorkSpace1 = pygame.draw.rect(screen, BUTTON2, [175, 125, 450, 400], 0)
+        WorkSpace2 = pygame.draw.rect(screen, BUTTON1, [175, 125, 450, 400], 4)
+        LevelScreen1 = pygame.draw.rect(screen, BUTTON2, [200, 25, 400, 75], 0)
+        LevelScreen2 = pygame.draw.rect(screen, BUTTON1, [200, 25, 400, 75], 4)
 
         clock.tick(60)
         pygame.display.flip()

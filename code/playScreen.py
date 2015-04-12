@@ -35,6 +35,9 @@ def playGame(done, clock, load):
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
                 pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 25 and mouseX < 135:
