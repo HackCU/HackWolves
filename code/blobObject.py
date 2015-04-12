@@ -21,11 +21,13 @@ class blobObject(pygame.sprite.Sprite):
     def collect(self):
         self.collected = True
         
-        blobBlob = Blob(25, 325, screen, self)
+        blobBlob = Blob(25, 325, self)
         blobList.append(blobBlob)
         # for x in blobScreen.blobList:
 #             print x
     
+    def __reduce__(self):
+        return (self.__class__, (self.name,))
     
     # def update(self):
     #     if self.collected:

@@ -26,9 +26,9 @@ class Player(pygame.sprite.Sprite):
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
             blob.collect()
-            self.blobs.append(blob)
-            for x in self.blobs:
-                print x.name
+            #self.blobs.append(blob)
+            #for x in self.blobs:
+                #print x.name
  
         # See if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)

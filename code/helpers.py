@@ -22,6 +22,8 @@ SCREEN_HEIGHT = 600
 
 blobList = []
 
+size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
 
 class TransitionButton():
     #location
@@ -32,7 +34,7 @@ class TransitionButton():
     form2 = None
     #text
     text = None
-    def __init__(self, valueX, valueY, string, screen):
+    def __init__(self, valueX, valueY, string):
         self.locationX = valueX
         self.locationY = valueY
         self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,250,75], 0)
@@ -49,7 +51,7 @@ class smallTransitionButton():
     form = None
     #text
     text = None
-    def __init__(self, valueX, valueY, string, screen):
+    def __init__(self, valueX, valueY, string):
         self.locationX = valueX
         self.locationY = valueY
         self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,115,50], 0)
@@ -67,8 +69,8 @@ class Blob():
     #form = None
     #text
     #text = None
-    def __init__(self, valueX, valueY, screen, blobObject):
-        
+
+    def __init__(self, valueX, valueY, blobObject):
         #print "---------------------"
         #print ""
         #print ""
@@ -82,14 +84,20 @@ class Blob():
         self.colorFill = BUTTON2
         self.colorText = BLACK
         self.screen = screen
+
+        self.blob = blobObject
         self.form1 = pygame.draw.rect(screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
         self.form2 = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+
         font = pygame.font.SysFont('Calibri', 25, True, False)
         self.text = font.render(blobObject.name, True, self.colorText)
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
         
         self.name = blobObject.name
         self.string = ""
+        
+    def __reduce__(self):
+        return (self.__class__, (self.locationX, self.locationY, self.blob))
         
     def generateString(self):
         if self.name == "Default":

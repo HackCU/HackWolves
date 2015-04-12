@@ -1,7 +1,7 @@
 import pygame
 from helpers import *
 
-def options(done, screen, clock):
+def options(done, clock):
     transitionScreen = None
     while not done:
         (mouseX, mouseY) = (0, 0)
@@ -31,10 +31,10 @@ def options(done, screen, clock):
             return transitionScreen
         else:
             screen.fill(BACKGROUND)
-            StartButton = TransitionButton(100, 400, "BUTTON1", screen)
-            LoadButton = TransitionButton(100, 500, "BUTTON2", screen)
-            OptionsButton = TransitionButton(425, 400, "BUTTON3", screen)
-            ExitButton = TransitionButton(425, 500, "Main Menu", screen)
+            StartButton = TransitionButton(100, 400, "BUTTON1")
+            LoadButton = TransitionButton(100, 500, "BUTTON2")
+            OptionsButton = TransitionButton(425, 400, "BUTTON3")
+            ExitButton = TransitionButton(425, 500, "Main Menu")
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
             TitleText = TitleFont.render("Options", True, BLACK)

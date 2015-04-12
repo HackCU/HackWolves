@@ -10,13 +10,13 @@ import blobObject
 #	selected_particle.x = mouseX
 #	selected_particle.y = mouseY
         
-def blobScreen(done, screen, clock):
+def blobScreen(done, clock):
     transitionScreen = None
     
-    MoveRight = Blob(25, 25, screen, blobObject.blobObject("MoveRight"))
-    MoveLeft = Blob(25, 100, screen, blobObject.blobObject("MoveLeft"))
-    Jump = Blob(25, 175, screen, blobObject.blobObject("Jump"))
-    Crouch = Blob(25, 250, screen, blobObject.blobObject("Crouch"))
+    MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
+    MoveLeft = Blob(25, 100, blobObject.blobObject("MoveLeft"))
+    Jump = Blob(25, 175, blobObject.blobObject("Jump"))
+    Crouch = Blob(25, 250, blobObject.blobObject("Crouch"))
     blobList.append(MoveRight)
     blobList.append(MoveLeft)
     blobList.append(Jump)
@@ -43,7 +43,7 @@ def blobScreen(done, screen, clock):
                         print "Move Right"
                         if selectedBlob == None:
                             blobList.remove(MoveRight)
-                            MoveRight2 = Blob(25, 25, screen, blobObject.blobObject("MoveRight"))
+                            MoveRight2 = Blob(25, 25, blobObject.blobObject("MoveRight"))
                             blobList.append(MoveRight2)
                         selectedBlob = MoveRight
                     elif mouseY > 100 and mouseY < 150:
@@ -97,12 +97,12 @@ def blobScreen(done, screen, clock):
         for item in blobList:
             item.refreshPosition()
         
-        Functions = smallTransitionButton(675, 25, "Saved Functions", screen)
-        BindToKey = smallTransitionButton(675, 100, "Save Current", screen)
-        Clear = smallTransitionButton(675, 175, "Clear", screen)
-        Start = smallTransitionButton(675, 325, "Start", screen)
-        Options = smallTransitionButton(675, 400, "Options", screen)
-        Help = smallTransitionButton(675, 475, "Help", screen)
+        Functions = smallTransitionButton(675, 25, "Saved Functions")
+        BindToKey = smallTransitionButton(675, 100, "Bind to Key")
+        Clear = smallTransitionButton(675, 175, "Clear")
+        Start = smallTransitionButton(675, 325, "Start")
+        Options = smallTransitionButton(675, 400, "Options")
+        Help = smallTransitionButton(675, 475, "Help")
 
         clock.tick(60)
         pygame.display.flip()
