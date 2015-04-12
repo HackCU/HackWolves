@@ -17,6 +17,9 @@ class blobObject(pygame.sprite.Sprite):
         
         self.collected = False
         
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+        
     def collect(self):
         self.collected = True
         
