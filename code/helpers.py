@@ -5,9 +5,13 @@ from pygame.locals import *
 #Globals
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
+GREEN = (42, 168, 27)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+SKY = (102, 182, 222)
+BACKGROUND = (19, 146, 237)
+BUTTON1 = (209, 98, 19)
+BUTTON2 = (237, 110, 19)
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -17,13 +21,15 @@ class TransitionButton():
     locationX = None
     locationY = None
     #rectangle/sprite
-    form = None
+    form1 = None
+    form2 = None
     #text
     text = None
     def __init__(self, valueX, valueY, string, screen):
         self.locationX = valueX
         self.locationY = valueY
-        self.form = pygame.draw.rect(screen, BLACK, [valueX,valueY,250,75], 2)
+        self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,250,75], 0)
+        self.form2 = pygame.draw.rect(screen, BUTTON2, [valueX,valueY,250,75], 4)
         font = pygame.font.SysFont('Calibri', 40, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+25),(valueY+25)])
@@ -39,7 +45,8 @@ class smallTransitionButton():
     def __init__(self, valueX, valueY, string, screen):
         self.locationX = valueX
         self.locationY = valueY
-        self.form = pygame.draw.rect(screen, BLACK, [valueX,valueY,125,25], 2)
+        self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,125,25], 0)
+        self.form2 = pygame.draw.rect(screen, BUTTON2, [valueX,valueY,125,25], 2)
         font = pygame.font.SysFont('Calibri', 20, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])

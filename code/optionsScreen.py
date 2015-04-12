@@ -24,7 +24,7 @@ def options(done, screen, clock):
         if transitionScreen != None:
             return transitionScreen
         else:
-            screen.fill(WHITE)
+            screen.fill(BACKGROUND)
             StartButton = TransitionButton(100, 400, "BUTTON1", screen)
             LoadButton = TransitionButton(100, 500, "BUTTON2", screen)
             OptionsButton = TransitionButton(425, 400, "BUTTON3", screen)

@@ -27,7 +27,7 @@ class Level():
         self.blob_list.update()
         
     def draw(self, screen):
-        screen.fill(BLUE)
+        screen.fill(SKY)
         
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
@@ -92,7 +92,7 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
             
-        wall = Platform(1, 550, BLUE)
+        wall = Platform(1, 550, SKY)
         wall.rect.x = 0
         wall.rect.y = 0
         wall.player = self.player
@@ -129,7 +129,7 @@ class Level_02(Level):
             block.player = self.player
             self.platform_list.add(block)
            
-        wall = Platform(1, 550, BLUE)
+        wall = Platform(1, 550, SKY)
         wall.rect.x = 0
         wall.rect.y = 0
         wall.player = self.player

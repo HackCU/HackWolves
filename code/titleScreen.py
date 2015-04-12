@@ -23,7 +23,7 @@ def titleScreen(done, screen, clock):
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "done"
         if transitionScreen == None:
-            screen.fill(WHITE)
+            screen.fill(BACKGROUND)
             StartButton = TransitionButton(100, 400, "Start Game", screen)
             LoadButton = TransitionButton(100, 500, "Load Save", screen)
             OptionsButton = TransitionButton(425, 400, "Options", screen)
