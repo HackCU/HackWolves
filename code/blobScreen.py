@@ -53,7 +53,57 @@ def findPositionInArray(mouseX, mouseY):
             return (5,2)
     else:
         return None
-        
+
+def snapToGrid(stored):
+    if stored != None:
+        X, Y = stored.returnPosition()
+        if 175 < X and X < 325:
+            X = 190
+            if Y < 200:
+                Y = 140
+            elif 200 < Y < 275:
+                Y = 215
+            elif 275 < Y < 350:
+                Y = 290
+            elif 350 < Y < 425:
+                Y = 365
+            elif 425 < Y < 500:
+                Y = 440
+            elif 500 < Y < 575:
+                Y = 515
+        elif 325 < X and X < 475:
+            X = 340
+            if Y < 200:
+                Y = 140
+            elif 200 < Y < 275:
+                Y = 215
+            elif 275 < Y < 350:
+                Y = 290
+            elif 350 < Y < 425:
+                Y = 365
+            elif 425 < Y < 500:
+                Y = 440
+            elif 500 < Y < 575:
+                Y = 515
+        elif 475 < X and X < 625:
+            X = 490
+            if Y < 200:
+                Y = 140
+            elif 200 < Y < 275:
+                Y = 215
+            elif 275 < Y < 350:
+                Y = 290
+            elif 350 < Y < 425:
+                Y = 365
+            elif 425 < Y < 500:
+                Y = 440
+            elif 500 < Y < 575:
+                Y = 515
+        else:
+            return None
+        stored.updatePosition(X,Y)
+        return
+
 def blobScreen(done, clock, load):
     transitionScreen = None
     
@@ -111,13 +161,9 @@ def blobScreen(done, clock, load):
                     done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouseX, mouseY = pygame.mouse.get_pos()
-                #if recentlySelected != None:
                 if 175 < mouseX and mouseX < 625 and 125 < mouseY and mouseY < 575:
-                    print "huh? mousex:", mouseX, "mousey:", mouseY
                     (positionX, positionY) = findPositionInArray(mouseX, mouseY)
-                    print "posX:", positionX, "posY:", positionY
                     if workspaceArray[positionX][positionY] != "":
-                        print "made it here"
                         workspaceArray[positionX][positionY] = ""
                 selectedBlob = findBlob(blobList, mouseX, mouseY)
                 if selectedBlob != None:
@@ -171,12 +217,12 @@ def blobScreen(done, clock, load):
             (mouseX, mouseY) = pygame.mouse.get_pos()
             if findPositionInArray(mouseX, mouseY) != None:
                 if 175 > X or X > 625 or 125 > Y or Y > 575:
-                    print "nope"
+                    i = 1 #filler
                 else:
                     (positionX, positionY) = findPositionInArray(mouseX, mouseY)
-                    print "what?", recentlySelected.generateString()
+                    snapToGrid(recentlySelected)
                     workspaceArray[positionX][positionY] = recentlySelected.generateString()
-            print "workspaceArray:", workspaceArray
+                    print workspaceArray
             if 175 > X or X > 625 or 125 > Y or Y > 575:
                 (originX, originY) = recentlySelected.returnOrigin()
                 recentlySelected.updatePosition(originX, originY)
