@@ -70,7 +70,7 @@ def playGame(done, clock, load):
                 testString21 = "event.key == pygame.K_RIGHT"
                 testString20 = "if " + testString21 +": "
                 testString31 = testString20 + "exec('mainPlayer.go_right()')"
-                
+
                 exec(testString11)
                 exec(testString31)
                 

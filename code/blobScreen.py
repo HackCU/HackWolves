@@ -57,13 +57,43 @@ def findPositionInArray(mouseX, mouseY):
 def blobScreen(done, clock, load):
     transitionScreen = None
     
+    
+    rArrow = Blob(25, 325, blobObject.blobObject("rArrow"))
+    lArrow = Blob(25, 400, blobObject.blobObject("lArrow"))
+    upArrow = Blob(25, 475, blobObject.blobObject("upArrow"))
+    ifBlob = Blob(25, 250, blobObject.blobObject("if"))
+    
     MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
-    MoveLeft = Blob(25, 100, blobObject.blobObject("MoveLeft"))
-    Jump = Blob(25, 175, blobObject.blobObject("Jump"))
-    # Crouch = Blob(25, 250, blobObject.blobObject("Crouch"))
     blobList.append(MoveRight)
-    blobList.append(MoveLeft)
-    blobList.append(Jump)
+    
+    blobList.append(rArrow)
+    blobList.append(lArrow)
+    blobList.append(upArrow)
+    blobList.append(ifBlob)
+    
+    
+    rArrow2 = Blob(25, 325, blobObject.blobObject("rArrow"))
+    lArrow2 = Blob(25, 400, blobObject.blobObject("lArrow"))
+    upArrow2 = Blob(25, 475, blobObject.blobObject("upArrow"))
+    ifBlob2 = Blob(25, 250, blobObject.blobObject("if"))
+    
+    MoveRight2 = Blob(25, 25, blobObject.blobObject("MoveRight"))
+    blobList.append(MoveRight2)
+    
+    blobList.append(rArrow2)
+    blobList.append(lArrow2)
+    blobList.append(upArrow2)
+    blobList.append(ifBlob2)
+    
+    
+    
+    # MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
+    # MoveLeft = Blob(25, 100, blobObject.blobObject("MoveLeft"))
+    # Jump = Blob(25, 175, blobObject.blobObject("Jump"))
+    # Crouch = Blob(25, 250, blobObject.blobObject("Crouch"))
+    # blobList.append(MoveRight)
+    # blobList.append(MoveLeft)
+    # blobList.append(Jump)
     # blobList.append(Crouch)
 
     selectedBlob = None
