@@ -1,10 +1,13 @@
 Notes & Reminders: **USE STANDARD PYTHON
-- Add in blob functionality
-- Player save data -> unlocked blobs, unlocked levels
-- Level endpts; level 2 finish
-- 
+- Player save data fixed up
+- Interpreter
+- Map visual array to 2D array
+- Minor level fixes
 
-Stretch Goals:
+HackCU Stretch Goals:
+- Ideal level01
+
+Post-HackCU Stretch Goals:
 - Images
 	- .png for title screen
 	- Sprites?
@@ -12,7 +15,6 @@ Stretch Goals:
 - Colors
 	- blob screen
 	- level screen
-- rocket ships?
 - Multiple levels
 - Enemies?
 - Refactoring code
