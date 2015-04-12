@@ -63,7 +63,10 @@ class Blob():
         
         self.name = blobObject.name
         self.string = ""
-        
+    
+    def provideName(self):
+        return self.bname
+    
     def __reduce__(self):
         return (self.__class__, (self.locationX, self.locationY, self.blob))
         

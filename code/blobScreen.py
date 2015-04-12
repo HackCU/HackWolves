@@ -9,6 +9,20 @@ import blobObject
 #	(mouseX, mouseY) = pygame.mouse.get_pos()
 #	selected_particle.x = mouseX
 #	selected_particle.y = mouseY
+
+def findBlob(blobList, mouseX, mouseY):
+    for blob in blobList:
+        print "***** InFindBlob! *****"
+        print "mouseX:", mouseX, "mouseY:", mouseY
+        for blob in blobList:
+            print blob.name
+        X, Y = blob.returnPosition()
+        print "X:", X, "Y:", Y
+        if X < mouseX and (X+100) > mouseX:
+            if Y < mouseY and (Y+50) > mouseY:
+                print blob.name
+                return blob
+        return None
         
 def blobScreen(done, clock):
     transitionScreen = None
@@ -25,6 +39,8 @@ def blobScreen(done, clock):
     selectedBlob = None
     clicked = False
     
+    workspaceArray = [[0 for x in range(3)] for x in range(6)]
+    
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -34,10 +50,12 @@ def blobScreen(done, clock):
                     done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
+                selectedBlob = findBlob(blobList, mouseX, mouseY)
                 if clicked == True:
                     clicked = False
                 elif clicked == False:
                     clicked = True
+                '''
                 if mouseX > 25 and mouseX < 125:
                     if mouseY > 25 and mouseY < 75:
                         print "Move Right"
@@ -52,9 +70,10 @@ def blobScreen(done, clock):
                         print "Jump"
                     elif mouseY > 250 and mouseY < 300:
                         print "Crouch"
+                '''
                 # Static object, no need to update
-                elif mouseX > 175 and mouseX < 625:
-                    print "Level display & workspace"
+                if mouseX > 175 and mouseX < 625:
+                    bloop = 1
                 elif mouseX > 675 and mouseX < 775:
                     if mouseY > 25 and mouseY < 75:
                         # Unimplemented: Saved Fns
@@ -82,13 +101,14 @@ def blobScreen(done, clock):
         LevelScreen1 = pygame.draw.rect(screen, BUTTON2, [200, 25, 400, 75], 0)
         LevelScreen2 = pygame.draw.rect(screen, BUTTON1, [200, 25, 400, 75], 4)
         
-        start = 200
-        while start < 525:
-            pygame.draw.line(screen, BUTTON1, [175, start], [625, start], 4)
-            start = start + 75
-        #pygame.draw.line(screen, BUTTON1, [175, 225], [625, 225], 4)
-        #pygame.draw.line(screen, BUTTON1, [175, 325], [625, 325], 4)
-        #pygame.draw.line(screen, BUTTON1, [175, 425], [625, 425], 4)
+        horizontalStart = 200
+        while horizontalStart < 525:
+            pygame.draw.line(screen, BUTTON1, [175, horizontalStart], [625, horizontalStart], 4)
+            horizontalStart = horizontalStart + 75
+        verticalStart = 175
+        while verticalStart < 625:
+            pygame.draw.line(screen, BUTTON1, [verticalStart, 125], [verticalStart, 575], 4)
+            verticalStart = verticalStart + 150
         
         if selectedBlob != None and clicked == True:
             (mouseX, mouseY) = pygame.mouse.get_pos()
@@ -102,8 +122,8 @@ def blobScreen(done, clock):
         for item in blobList:
             item.refreshPosition()
         
-        Functions = smallTransitionButton(675, 25, "Saved Functions")
-        BindToKey = smallTransitionButton(675, 100, "Bind to Key")
+        Functions = smallTransitionButton(675, 25, "Open Functions")
+        BindToKey = smallTransitionButton(675, 100, "Save Function")
         Clear = smallTransitionButton(675, 175, "Clear")
         Start = smallTransitionButton(675, 325, "Start")
         Options = smallTransitionButton(675, 400, "Options")
