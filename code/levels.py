@@ -93,7 +93,7 @@ class Level_01(Level):
             self.platform_list.add(block)
             
             
-        blob1 = blobObject()
+        blob1 = blobObject("default")
         blob1.rect.x = 1500
         blob1.rect.y = 500
         self.blob_list.add(blob1)

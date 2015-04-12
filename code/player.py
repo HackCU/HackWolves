@@ -22,10 +22,13 @@ class Player(pygame.sprite.Sprite):
         # Move left/right
         self.rect.x += self.change_x
         
+        # Collectin' blobs
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
             blob.collected = True
             self.blobs.append(blob)
+            for x in self.blobs:
+                print x.name
  
         # See if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)

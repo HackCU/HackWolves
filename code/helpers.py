@@ -43,15 +43,32 @@ class Blob():
     form = None
     #text
     text = None
-    def __init__(self, valueX, valueY, string, screen):
+    def __init__(self, valueX, valueY, screen, blobObject):
+        
+        print "---------------------"
+        print ""
+        print ""
+        print blobObject.name
+        print ""
+        print ""
+        print "---------------------"
+        
         self.locationX = valueX
         self.locationY = valueY
         self.colorFill = BLACK
         self.screen = screen
         self.form = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
-        self.text = font.render(string, True, BLACK)
+        self.text = font.render(blobObject.name, True, BLACK)
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
+        
+        self.name = blobObject.name
+        self.string = ""
+        
+    def generateString(self):
+        if self.name == "Default":
+            self.string = "TESTING - Default Generation"
+        print self.string
         
     def updateColor(self, clickValue):
         if clickValue == True:
