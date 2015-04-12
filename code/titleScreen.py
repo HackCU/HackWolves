@@ -16,17 +16,18 @@ def titleScreen(done, clock):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 #print "Mousex:", mouseX, "MouseY:", mouseY
                 if mouseX > 100 and mouseX < 350:
-                    if mouseY > 400 and mouseY < 475:
+                    if mouseY > 400 and mouseY < 475:#startgame
                         transitionScreen = "blobScreen"
-                    elif mouseY > 500 and mouseY < 625:
+                        load = False
+                    elif mouseY > 500 and mouseY < 625:#loadgame
                         transitionScreen = "playScreen"
                         load = True
                         #print "Load Save Button"
                 elif mouseX > 425 and mouseX < 675:
-                    if mouseY > 400 and mouseY < 475:
+                    if mouseY > 400 and mouseY < 475:#options
                         print "Options Button"
                         transitionScreen = "optionsScreen"
-                    elif mouseY > 500 and mouseY < 625:
+                    elif mouseY > 500 and mouseY < 625:#exit
                         transitionScreen = "done"
         if transitionScreen == None:
             screen.fill(BACKGROUND)
