@@ -33,11 +33,17 @@ def titleScreen(done, clock):
             OptionsButton = TransitionButton(425, 400, "Options")
             ExitButton = TransitionButton(425, 500, "Exit")
             
-            TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
-            TitleText = TitleFont.render("HACK_WOLVES", True, BLACK)
-            SubtitleText = TitleFont.render("Title TBD", True, BLACK)
-            screen.blit(TitleText, [(150),(100)])
-            screen.blit(SubtitleText, [(150),(200)])
+            TeamFont = pygame.font.SysFont('Calibri', 100, True, False)
+            PresentsFont = pygame.font.SysFont('Calibri', 75, True, False)
+            TitleFont = pygame.font.SysFont('Calibri', 150, True, False)
+            
+            TeamText = TeamFont.render("Team HackWolves", True, BLACK)
+            PresentsText = PresentsFont.render("presents:", True, BLACK)
+            TitleText = TitleFont.render("Codeventures!", True, BLACK)
+            
+            screen.blit(TeamText, [(90),(50)])
+            screen.blit(PresentsText, [(275),(125)])
+            screen.blit(TitleText, [(30),(200)])
         if transitionScreen != None:
             return transitionScreen, load
         

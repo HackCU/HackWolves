@@ -1,9 +1,9 @@
 #Hack CU Spring 2015
 
-##Project Name: TBD
+##Project Name: Codeventures!
 
 ###Team Name: HackWolves
 
 ###Team Contributors: Emily Owens, Joshua Weaver, Kara James
 
-This is an app that will introduce people to the concepts within programming through an enjoyable game. In this game, the user will design action functions to help their character navigate through side-scrolling levels.
+Codeventures! is an app that will introduce people to the concepts within programming through an enjoyable game. In this game, the user will design action functions and use those functions to navigate their character through side-scrolling levels.
