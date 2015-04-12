@@ -158,4 +158,4 @@ def playGame(done, clock, load):
     
     # clear?
     pickle.dump((340, 50, 0), open( "position.p", "wb" ) )
-    return "done"
+    return "done", False
