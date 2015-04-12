@@ -22,14 +22,10 @@ def blobScreen(done, screen, clock):
     blobList.append(Jump)
     blobList.append(Crouch)
 
-    
-    
     selectedBlob = None
     clicked = False
-    #(mouseX, mouseY) = (0, 0)
     
     while not done:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
@@ -56,6 +52,7 @@ def blobScreen(done, screen, clock):
                         print "Jump"
                     elif mouseY > 250 and mouseY < 300:
                         print "Crouch"
+                # Static object, no need to update
                 elif mouseX > 175 and mouseX < 625:
                     print "Level display & workspace"
                 elif mouseX > 675 and mouseX < 775:
@@ -80,6 +77,14 @@ def blobScreen(done, screen, clock):
         
         screen.fill(BACKGROUND)
         
+        WorkSpace1 = pygame.draw.rect(screen, BUTTON2, [175, 125, 450, 400], 0)
+        WorkSpace2 = pygame.draw.rect(screen, BUTTON1, [175, 125, 450, 400], 4)
+        LevelScreen1 = pygame.draw.rect(screen, BUTTON2, [200, 25, 400, 75], 0)
+        LevelScreen2 = pygame.draw.rect(screen, BUTTON1, [200, 25, 400, 75], 4)
+        pygame.draw.line(screen, BUTTON1, [175, 225], [625, 225], 4)
+        pygame.draw.line(screen, BUTTON1, [175, 325], [625, 325], 4)
+        pygame.draw.line(screen, BUTTON1, [175, 425], [625, 425], 4)
+        
         if selectedBlob != None and clicked == True:
             (mouseX, mouseY) = pygame.mouse.get_pos()
             selectedBlob.updateColor(True)
@@ -88,21 +93,16 @@ def blobScreen(done, screen, clock):
             selectedBlob.updateColor(False)
             blobList.append(selectedBlob)
             selectedBlob = None
-                
+        
         for item in blobList:
             item.refreshPosition()
         
         Functions = smallTransitionButton(675, 25, "Saved Functions", screen)
-        BindToKey = smallTransitionButton(675, 100, "Bind to Key", screen)
+        BindToKey = smallTransitionButton(675, 100, "Save Current", screen)
         Clear = smallTransitionButton(675, 175, "Clear", screen)
         Start = smallTransitionButton(675, 325, "Start", screen)
         Options = smallTransitionButton(675, 400, "Options", screen)
         Help = smallTransitionButton(675, 475, "Help", screen)
-
-        WorkSpace1 = pygame.draw.rect(screen, BUTTON2, [175, 125, 450, 400], 0)
-        WorkSpace2 = pygame.draw.rect(screen, BUTTON1, [175, 125, 450, 400], 4)
-        LevelScreen1 = pygame.draw.rect(screen, BUTTON2, [200, 25, 400, 75], 0)
-        LevelScreen2 = pygame.draw.rect(screen, BUTTON1, [200, 25, 400, 75], 4)
 
         clock.tick(60)
         pygame.display.flip()

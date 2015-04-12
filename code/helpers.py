@@ -60,30 +60,32 @@ class smallTransitionButton():
 
 class Blob():
     #location
-    locationX = None
-    locationY = None
-    screen = None
+    #locationX = None
+    #locationY = None
+    #screen = None
     #rectangle/sprite
-    form = None
+    #form = None
     #text
-    text = None
+    #text = None
     def __init__(self, valueX, valueY, screen, blobObject):
         
-        print "---------------------"
-        print ""
-        print ""
-        print blobObject.name
-        print ""
-        print ""
-        print "---------------------"
+        #print "---------------------"
+        #print ""
+        #print ""
+        #print blobObject.name
+        #print ""
+        #print ""
+        #print "---------------------"
         
         self.locationX = valueX
         self.locationY = valueY
-        self.colorFill = BLACK
+        self.colorFill = BUTTON2
+        self.colorText = BLACK
         self.screen = screen
-        self.form = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+        self.form1 = pygame.draw.rect(screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
+        self.form2 = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
-        self.text = font.render(blobObject.name, True, BLACK)
+        self.text = font.render(blobObject.name, True, self.colorText)
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
         
         self.name = blobObject.name
@@ -97,19 +99,23 @@ class Blob():
     def updateColor(self, clickValue):
         if clickValue == True:
             self.colorFill = RED
+            self.colorText = RED
         elif clickValue == False:
+            self.colorFill = BUTTON2
             self.colorFill = BLACK
             
     def updatePosition(self, valueX, valueY):
         self.locationX = valueX
         self.locationY = valueY
-        self.form = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+        self.form1 = pygame.draw.rect(self.screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
+        self.form2 = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
         screen = self.screen
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])	
             
     def refreshPosition(self):
-        self.form = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
+        self.form1 = pygame.draw.rect(self.screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
+        self.form2 = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
         screen = self.screen
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])		
