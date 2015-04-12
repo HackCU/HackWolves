@@ -66,7 +66,7 @@ def blobScreen(done, clock):
                         # Unimplemented: Clear workspace
                         return "unimplemented"
                     elif mouseY > 325 and mouseY < 375:
-                        return "playScreen"
+                        return "playScreen", True
                     elif mouseY > 400 and mouseY < 450:
                         return "optionsScreen"
                     elif mouseY > 475 and mouseY < 525:

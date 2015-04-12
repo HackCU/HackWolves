@@ -28,8 +28,15 @@ def playGame(done, clock, load):
     mainPlayer.rect.y = SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
-    while not done:
+    #current_level.shift_world(-current_level.world_shift)
+
+    temp = current_level.world_shift
+    current_level.world_shift = 0
+    current_level.shift_world(temp)
             
+    while not done:
+        
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
@@ -87,6 +94,8 @@ def playGame(done, clock, load):
             
         
         current_position = mainPlayer.rect.x + current_level.world_shift
+        #print "rect ",mainPlayer.rect.x
+        #print "worldshift ", current_level.world_shift
         if current_position < current_level.level_limit:
             mainPlayer.rect.x = 120
             if current_level_no < len(level_list)-1:
@@ -119,6 +128,7 @@ def playGame(done, clock, load):
         if transitionScreen != None:
             #save position
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
+            pickle.dump(current_level_no, open( "save.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen"
     
