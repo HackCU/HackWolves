@@ -4,7 +4,7 @@ import pygame
 import cPickle as pickle
 from helpers import *
 
-def playGame(done, screen, clock):
+def playGame(done, screen, clock, load):
     mainPlayer = player.Player()
     transitionScreen = None
     gameOver = False
@@ -13,7 +13,10 @@ def playGame(done, screen, clock):
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
     
-    current_level_no = pickle.load(open("save.p", "rb"))
+    if load:
+        current_level_no = pickle.load(open("save.p", "rb"))
+    else:
+        current_level_no = 0
     current_level = level_list[current_level_no]
     currentString = "Level " + str((current_level_no)+1)
     

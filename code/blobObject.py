@@ -3,11 +3,13 @@ from helpers import *
 
 class blobObject(pygame.sprite.Sprite):
     
-    def __init__(self):
+    def __init__(self, name):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface([50, 50])
         self.image.fill(BLACK)
         self.rect = self.image.get_rect()
+        
+        self.name = name
         
         self.collected = False
         
@@ -15,7 +17,7 @@ class blobObject(pygame.sprite.Sprite):
         self.collected = True
     
     
-    def update(self):
-        if self.collected:
-            self.rect = [0,0]
+    # def update(self):
+    #     if self.collected:
+    #         self.rect = [0,0]
         

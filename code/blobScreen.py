@@ -1,5 +1,7 @@
 import pygame
 from helpers import *
+import player
+import blobObject
 
 #selected_particle = findParticle(my_particles, mouseX, mouseY)
 #if selected_particle:
@@ -12,14 +14,19 @@ def blobScreen(done, screen, clock):
     transitionScreen = None
     
     blobList = []
-    MoveRight = Blob(25, 25, "Move Right", screen)
-    MoveLeft = Blob(25, 100, "Move Left", screen)
-    Jump = Blob(25, 175, "Jump", screen)
-    Crouch = Blob(25, 250, "Crouch", screen)
+    MoveRight = Blob(25, 25, screen, blobObject.blobObject("MoveRight"))
+    MoveLeft = Blob(25, 100, screen, blobObject.blobObject("MoveLeft"))
+    Jump = Blob(25, 175, screen, blobObject.blobObject("Jump"))
+    Crouch = Blob(25, 250, screen, blobObject.blobObject("Crouch"))
     blobList.append(MoveRight)
     blobList.append(MoveLeft)
     blobList.append(Jump)
     blobList.append(Crouch)
+    
+    # if (player.Player()):
+    #     for x in player.Player.blobs:
+    #         blobList.append(x)
+    
     
     selectedBlob = None
     clicked = False
@@ -73,13 +80,13 @@ def blobScreen(done, screen, clock):
         for item in blobList:
             item.refreshPosition()
         
-        Functions = Blob(675, 25, "Functions", screen)
-        BindToKey = Blob(675, 100, "Bind to Key", screen)
-        Clear = Blob(675, 175, "Clear", screen)
-        Start = Blob(675, 325, "Start", screen)
-        Options = Blob(675, 400, "Options", screen)
-        Help = Blob(675, 475, "Help", screen)
-        
+        # Functions = Blob(675, 25, screen, blobObject.blobObject("Functions"))
+        # BindToKey = Blob(675, 100, "Bind to Key", screen)
+        # Clear = Blob(675, 175, "Clear", screen)
+        # Start = Blob(675, 325, "Start", screen)
+        # Options = Blob(675, 400, "Options", screen)
+        # Help = Blob(675, 475, "Help", screen)
+        #
         WorkSpace = pygame.draw.rect(screen, BLACK, [175, 125, 450, 400], 2)
         LevelScreen = pygame.draw.rect(screen, BLACK, [200, 25, 400, 75], 2)
 
