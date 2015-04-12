@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         # Collectin' blobs
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
-            if blob.name is "moveLeft":
+            if blob.name is "MoveLeft":
                 helpers.collected = True
                 #print "collected"
             blob.collect()

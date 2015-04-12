@@ -68,11 +68,14 @@ def playGame(done, clock, load):
                 # testString21 = "event.key == pygame.K_RIGHT"
                 # testString20 = "if " + testString21 +": "
                 # testString31 = testString20 + "exec('mainPlayer.go_right()')"
-                buildCommands(workspaceArray)
-                print commandString1
-                exec(commandString1)
-                exec(commandString2)
-                exec(commandString3)
+                (cs1,cs2,cs3) = buildCommands(workspaceArray)
+                print "cs1 = " + cs1
+                print "cs2 = " + cs2
+                print "cs3 = " + cs3
+                
+                exec(cs1)
+                exec(cs2)
+                exec(cs3)
                 
                 # ourString = "if event.key == pygame.K_LEFT: exec('mainPlayer.go_left()')"
 #                 ourString2 = "if event.key == pygame.K_RIGHT: exec('mainPlayer.go_right()')"

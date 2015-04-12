@@ -105,23 +105,6 @@ class Blob():
             self.string = "if"
         return self.string
         
-    def createString(self, array, i, j):
-        if self.name == "if":
-            self.string = "if " + array[i][j+1].createString(array, i, j+1) +":"
-        
-        if self.name == "MoveRight":
-            self.string = "exec('mainPlayer.go_right()')"
-        if self.name == "MoveLeft":
-            self.string = "exec('mainPlayer.go_left()')"
-        if self.name == "Jump":
-            self.string = "exec('mainPlayer.jump()')"
-            
-        if self.name == "rArrow":
-            self.string = "event.key == pygame.K_RIGHT"
-        if self.name == "lArrow":
-            self.string = "event.key == pygame.K_LEFT"
-        if self.name == "upArrow":
-            self.string = "event.key == pygame.K_UP"
         
         
     def updateColor(self, clickValue):
@@ -168,6 +151,33 @@ def load_image(name, colorkey=None):
         image.set_colorkey(colorkey,RLEACCEL)
     return image, image.get_rect()
     
+    
+def createString(name, array, i, j):
+    
+    string = ""
+    
+    if name == "if":
+        print "Found if"
+        string = "if " + createString(array[i][j+1],array, i, j+1) +":"
+    
+    if name == "MoveRight":
+        string = "exec('mainPlayer.go_right()')"
+    if name == "MoveLeft":
+        print "Found MoveLeft"
+        string = "exec('mainPlayer.go_left()')"
+    if name == "Jump":
+        string = "exec('mainPlayer.jump()')"
+        
+    if name == "rArrow":
+        string = "event.key == pygame.K_RIGHT"
+    if name == "lArrow":
+        print "Found lArrow"
+        string = "event.key == pygame.K_LEFT"
+    if name == "upArrow":
+        string = "event.key == pygame.K_UP"
+        
+    return string
+    
 def buildCommands(array):
     
     commandString1 = ""
@@ -176,22 +186,26 @@ def buildCommands(array):
     
     for i in range(0,5):
         for j in range(0,2):
-            print array[i][j]
+            
             if array[i][j] != "":
-                if i==0:
-                    
+                if j==0:
+                    print "TESTING ---- " + commandString1
                     if array[i][j] == "if":
                         if commandString1 == "":
-                            commandString1 = array[i][j].generateString() + array[i+1][j+1].generateString()
+                            commandString1 = createString(array[i][j], array, i, j) + createString(array[i+1][j+1], array, i+1, j+1)
+                            # print commandString1
                             
                         elif commandString2 == "":
-                            commandString2 = array[i][j].generateString() + array[i+1][j+1].generateString()
+                            print "Yeppers"
+                            commandString2 = createString(array[i][j], array, i, j) + createString(array[i+1][j+1], array, i+1, j+1)
+                            print commandString1
                             
                         else:
-                            commandString3 = array[i][j].generateString() + array[i+1][j+1].generateString()
+                            print "Sures"
+                            commandString3 = createString(array[i][j], array, i, j) + createString(array[i+1][j+1], array, i+1, j+1)
 
         
-    return
+    return (commandString1, commandString2, commandString3)
     
     
     
