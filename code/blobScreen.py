@@ -14,15 +14,17 @@ def findBlob(blobList, mouseX, mouseY):
     for blob in blobList:
         print "***** InFindBlob! *****"
         print "mouseX:", mouseX, "mouseY:", mouseY
-        for blob in blobList:
-            print blob.name
-        X, Y = blob.returnPosition()
+        print blob.name
+        (X, Y) = blob.returnPosition()
         print "X:", X, "Y:", Y
+        print "X if (X)", X, "< (mouseX)", mouseX, "and (X+100)", (X+100), "> (mouseX)", mouseX
         if X < mouseX and (X+100) > mouseX:
+            print "Y if (Y)", Y, "< (mouseY)", mouseY, "and (Y+50)", (Y+50), "> (mouseY)", mouseY
             if Y < mouseY and (Y+50) > mouseY:
                 print blob.name
                 return blob
-        return None
+    print "None found"
+    return None
         
 def blobScreen(done, clock):
     transitionScreen = None
@@ -49,7 +51,7 @@ def blobScreen(done, clock):
                 if event.key == pygame.K_ESCAPE:
                     done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
-                (mouseX, mouseY) = pygame.mouse.get_pos()
+                mouseX, mouseY = pygame.mouse.get_pos()
                 selectedBlob = findBlob(blobList, mouseX, mouseY)
                 if clicked == True:
                     clicked = False
