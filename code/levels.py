@@ -98,10 +98,27 @@ class Level_01(Level):
         wall.player = self.player
         self.platform_list.add(wall)    
             
-        blob1 = blobObject("default")
+        blob1 = blobObject("if")
         blob1.rect.x = 1500
         blob1.rect.y = 500
         self.blob_list.add(blob1)
+        
+        blob2 = blobObject("rArrow")
+        blob2.rect.x = 1300
+        blob2.rect.y = 500
+        self.blob_list.add(blob2)
+        
+        blob3 = blobObject("lArrow")
+        blob3.rect.x = 1500
+        blob3.rect.y = 400
+        self.blob_list.add(blob3)
+        
+        blob4 = blobObject("upArrow")
+        blob4.rect.x = 900
+        blob4.rect.y = 400
+        self.blob_list.add(blob4)
+        
+        
         
         door = exitDoor(40, 50)
         door.rect.x = 1900
