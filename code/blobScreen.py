@@ -11,7 +11,7 @@ def findBlob(blobList, mouseX, mouseY):
                 return blob
     return None
         
-def blobScreen(done, clock):
+def blobScreen(done, clock, load):
     transitionScreen = None
     
     MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
@@ -56,7 +56,7 @@ def blobScreen(done, clock):
                         # Unimplemented: Clear workspace
                         return "unimplemented", False
                     elif mouseY > 325 and mouseY < 375:
-                        return "playScreen", True
+                        return "playScreen", load
                     elif mouseY > 400 and mouseY < 450:
                         return "optionsScreen", False
                     elif mouseY > 475 and mouseY < 525:

@@ -16,17 +16,23 @@ def playGame(done, clock, load):
     
     if load:
         current_level_no = pickle.load(open("save.p", "rb"))
+        current_level = level_list[current_level_no]
+        mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
+
     else:
         current_level_no = 0
-    current_level = level_list[current_level_no]
+        current_level = level_list[current_level_no]
+        mainPlayer.rect.x = 50
+        mainPlayer.rect.y = 0
+    #current_level = level_list[current_level_no]
     currentString = "Level " + str((current_level_no)+1)
     
     active_sprite_list = pygame.sprite.Group()
     mainPlayer.level = current_level
     
-    mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
-    mainPlayer.rect.x = 50
-    mainPlayer.rect.y = 0#SCREEN_HEIGHT - 50 - mainPlayer.rect.height
+    #mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
+    #mainPlayer.rect.x = 50
+    #mainPlayer.rect.y = 0#SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
     #current_level.shift_world(-current_level.world_shift)
@@ -131,7 +137,7 @@ def playGame(done, clock, load):
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump(current_level_no, open( "save.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
-            return "blobScreen"
+            return "blobScreen", True
     
     # clear?
     pickle.dump((340, 50, 0), open( "position.p", "wb" ) )

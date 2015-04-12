@@ -105,11 +105,12 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
             
-        wall = Platform(1, 550, SKY)
+        '''wall = Platform(1, 550, SKY)
         wall.rect.x = 0
         wall.rect.y = 0
         wall.player = self.player
         self.platform_list.add(wall)    
+        '''
            
         trapDoor = Platform(100, 1, GREEN)
         trapDoor.rect.x = 300
