@@ -272,7 +272,7 @@ class Level_03(Level):
         trap.player = self.player
         self.trap_list.add(trap)
             
-        blob1 = blobObject("moveLeft")
+        blob1 = blobObject("MoveLeft")
         blob1.rect.x = 650
         blob1.rect.y = 50
         self.blob_list.add(blob1)

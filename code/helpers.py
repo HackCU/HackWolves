@@ -112,8 +112,8 @@ class Blob():
             self.colorFill = RED
             self.colorText = RED
         elif clickValue == False:
-            self.colorFill = BUTTON2
-            self.colorFill = BLACK
+            self.colorFill = BUTTON1
+            self.colorText = BLACK
             
     def updatePosition(self, valueX, valueY):
         self.locationX = valueX
