@@ -1,11 +1,4 @@
 Notes & Reminders: **USE STANDARD PYTHON
-- Player save data fixed up
-- Interpreter
-- Map visual array to 2D array
-- Minor level fixes
-
-HackCU Stretch Goals:
-- Ideal level01
 
 Post-HackCU Stretch Goals:
 - Images
