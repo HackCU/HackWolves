@@ -32,7 +32,13 @@ class Level():
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
         self.exit_list.draw(screen)
-        self.blob_list.draw(screen)
+        for item in self.blob_list:
+            possessed = False
+            for item2 in blobList:
+                if item.name is item2.name:
+                    possessed = True
+            if not possessed:
+                item.draw(screen)
     
     def shift_world(self, shift_x):
         self.world_shift += shift_x
@@ -79,12 +85,19 @@ class Level_01(Level):
         
         self.level_limit = -1000
         
-        level = [[210, 70, 500, 450],
-                 [210, 70, 800, 350],
-                 [210, 70, 1000, 450],
-                 [210, 70, 1120, 230],
-                 [3500, 50, -1000, 550]]
-                 
+        #level = [[210, 70, 500, 450],
+        #         [210, 70, 800, 350],
+        #         [210, 70, 1000, 450],
+        #         [210, 70, 1120, 230],
+        #         [3500, 50, -1000, 550]]
+        
+        level = [[300, 100, 0, 100],
+                 [300, 350, 400, 100],
+                 [200, 600, -150, 0],
+                 [200, 100, 200, 350],
+                 [100, 450, 700, 0],
+                 [3500, 50, -1000, 550]]        
+        
         for platform in level:
             block = Platform(platform[0], platform[1], GREEN)
             block.rect.x = platform[2]
@@ -97,13 +110,19 @@ class Level_01(Level):
         wall.rect.y = 0
         wall.player = self.player
         self.platform_list.add(wall)    
-            
-        blob1 = blobObject("if")
-        blob1.rect.x = 1500
-        blob1.rect.y = 500
+           
+        trapDoor = Platform(100, 1, GREEN)
+        trapDoor.rect.x = 300
+        trapDoor.rect.y = 100
+        trapDoor.player = self.player
+        self.platform_list.add(trapDoor)
+        
+        blob1 = blobObject("lArrow")
+        blob1.rect.x = 650
+        blob1.rect.y = 50
         self.blob_list.add(blob1)
         
-        blob2 = blobObject("rArrow")
+        '''blob2 = blobObject("rArrow")
         blob2.rect.x = 1300
         blob2.rect.y = 500
         self.blob_list.add(blob2)
@@ -117,11 +136,11 @@ class Level_01(Level):
         blob4.rect.x = 900
         blob4.rect.y = 400
         self.blob_list.add(blob4)
-        
+        '''
         
         
         door = exitDoor(40, 50)
-        door.rect.x = 1900
+        door.rect.x = 750
         door.rect.y = 500
         door.player = self.player
         self.exit_list.add(door)

@@ -25,7 +25,8 @@ def playGame(done, clock, load):
     mainPlayer.level = current_level
     
     mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
-    mainPlayer.rect.y = SCREEN_HEIGHT - 50 - mainPlayer.rect.height
+    mainPlayer.rect.x = 50
+    mainPlayer.rect.y = 0#SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
     #current_level.shift_world(-current_level.world_shift)
