@@ -25,6 +25,13 @@ blobList = []
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 
+workspaceArray = [["" for x in range(3)] for x in range(6)]
+
+
+commandString1 = ""
+commandString2 = ""
+commandString3 = ""
+
 class TransitionButton():
     def __init__(self, valueX, valueY, string):
         self.locationX = valueX
@@ -81,11 +88,11 @@ class Blob():
         if self.name == "Default":
             self.string = "TESTING - Default Generation"
         if self.name == "MoveRight":
-            self.string = "hi!"
+            self.string = "MoveRight"
         if self.string == "MoveLeft":
-            self.string = "left"
+            self.string = "MoveLeft"
         if self.string == "Jump":
-            self.string = "jump"
+            self.string = "Jump"
         if self.string == "lArrow":
             self.string = "lArrow"
         if self.string == "rArrow":
@@ -95,6 +102,25 @@ class Blob():
         if self.string == "if":
             self.string = "if"
         return self.string
+        
+    def createString(self, array, i, j):
+        if self.name == "if":
+            self.string = "if " + array[i][j+1].createString(array, i, j+1) +":"
+        
+        if self.name == "MoveRight":
+            self.string = "exec('mainPlayer.go_right()')"
+        if self.name == "MoveLeft":
+            self.string = "exec('mainPlayer.go_left()')"
+        if self.name == "Jump":
+            self.string = "exec('mainPlayer.jump()')"
+            
+        if self.name == "rArrow":
+            self.string = "event.key == pygame.K_RIGHT"
+        if self.name == "lArrow":
+            self.string = "event.key == pygame.K_LEFT"
+        if self.name == "upArrow":
+            self.string = "event.key == pygame.K_UP"
+        
         
     def updateColor(self, clickValue):
         if clickValue == True:
@@ -139,3 +165,36 @@ def load_image(name, colorkey=None):
             colorkey = image.get_at((0,0))
         image.set_colorkey(colorkey,RLEACCEL)
     return image, image.get_rect()
+    
+def buildCommands(array):
+    
+    commandString1 = ""
+    commandString2 = ""
+    commandString3 = ""
+    
+    for i in range(0,5):
+        for j in range(0,2):
+            print array[i][j]
+            if array[i][j] != "":
+                if i==0:
+                    
+                    if array[i][j] == "if":
+                        if commandString1 == "":
+                            commandString1 = array[i][j].generateString() + array[i+1][j+1].generateString()
+                            
+                        elif commandString2 == "":
+                            commandString2 = array[i][j].generateString() + array[i+1][j+1].generateString()
+                            
+                        else:
+                            commandString3 = array[i][j].generateString() + array[i+1][j+1].generateString()
+
+        
+    return
+    
+    
+    
+    
+    
+    
+    
+    

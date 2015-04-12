@@ -65,24 +65,27 @@ def playGame(done, clock, load):
                 # if event.key == pygame.K_RIGHT:
 #                     mainPlayer.go_right()
 
-                testString01 = "event.key == pygame.K_LEFT"
-                testString00 = "if " + testString01 +": "
-                testString11 = testString00 + "exec('mainPlayer.go_left()')"
-                
-                testString21 = "event.key == pygame.K_RIGHT"
-                testString20 = "if " + testString21 +": "
-                testString31 = testString20 + "exec('mainPlayer.go_right()')"
 
-                exec(testString11)
-                exec(testString31)
+                # testString01 = "event.key == pygame.K_LEFT"
+                # testString00 = "if " + testString01 +": "
+                # testString11 = testString00 + "exec('mainPlayer.go_left()')"
+                #
+                # testString21 = "event.key == pygame.K_RIGHT"
+                # testString20 = "if " + testString21 +": "
+                # testString31 = testString20 + "exec('mainPlayer.go_right()')"
+                buildCommands(workspaceArray)
+                print commandString1
+                exec(commandString1)
+                exec(commandString2)
+                exec(commandString3)
                 
                 
                 # ourString = "if event.key == pygame.K_LEFT: exec('mainPlayer.go_left()')"
 #                 ourString2 = "if event.key == pygame.K_RIGHT: exec('mainPlayer.go_right()')"
 #                 exec(ourString +"\n" + ourString2)
                 
-                if event.key == pygame.K_UP:
-                    mainPlayer.jump()
+                # if event.key == pygame.K_UP:
+                #     mainPlayer.jump()
                 if event.key == pygame.K_1:
                     current_level_no = 0
                     currentString = "Level " + str((current_level_no)+1)

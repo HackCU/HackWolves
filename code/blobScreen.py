@@ -149,7 +149,7 @@ def blobScreen(done, clock, load):
     selectedBlob = None
     clicked = False
     
-    workspaceArray = [["" for x in range(3)] for x in range(6)]
+    
     recentlySelected = None
     
     while not done:
