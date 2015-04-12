@@ -16,41 +16,41 @@ def findPositionInArray(mouseX, mouseY):
         if mouseY < 200:
             return (0,0)
         elif 200 < mouseY < 275:
-            return (0,1)
+            return (1,0)
         elif 275 < mouseY < 350:
-            return (0,2)
+            return (2,0)
         elif 350 < mouseY < 425:
-            return (0,3)
+            return (3,0)
         elif 425 < mouseY < 500:
-            return (0,4)
+            return (4,0)
         elif 500 < mouseY < 575:
-            return (0,5)
+            return (5,0)
     elif 325 < mouseX and mouseX < 475:
         if mouseY < 200:
-            return (1,0)
+            return (0,1)
         elif 200 < mouseY < 275:
             return (1,1)
         elif 275 < mouseY < 350:
-            return (1,2)
+            return (2,1)
         elif 350 < mouseY < 425:
-            return (1,3)
+            return (3,1)
         elif 425 < mouseY < 500:
-            return (1,4)
+            return (4,1)
         elif 500 < mouseY < 575:
-            return (1,5)
+            return (5,1)
     elif 475 < mouseX and mouseX < 625:
         if mouseY < 200:
-            return (2,0)
+            return (0,2)
         elif 200 < mouseY < 275:
-            return (2,1)
+            return (1,2)
         elif 275 < mouseY < 350:
             return (2,2)
         elif 350 < mouseY < 425:
-            return (2,3)
+            return (3,2)
         elif 425 < mouseY < 500:
-            return (2,4)
+            return (4,2)
         elif 500 < mouseY < 575:
-            return (2,5)
+            return (5,2)
     else:
         return None
         
@@ -69,7 +69,7 @@ def blobScreen(done, clock):
     selectedBlob = None
     clicked = False
     
-    workspaceArray = [[0 for x in range(3)] for x in range(6)]
+    workspaceArray = [["" for x in range(3)] for x in range(6)]
     recentlySelected = None
     
     while not done:
@@ -86,9 +86,9 @@ def blobScreen(done, clock):
                     print "huh? mousex:", mouseX, "mousey:", mouseY
                     (positionX, positionY) = findPositionInArray(mouseX, mouseY)
                     print "posX:", positionX, "posY:", positionY
-                    if workspaceArray[positionX][positionY] != 0:
+                    if workspaceArray[positionX][positionY] != "":
                         print "made it here"
-                        workspaceArray[positionX][positionY] = 0
+                        workspaceArray[positionX][positionY] = ""
                 selectedBlob = findBlob(blobList, mouseX, mouseY)
                 if selectedBlob != None:
                     recentlySelected = selectedBlob
@@ -144,7 +144,8 @@ def blobScreen(done, clock):
                     print "nope"
                 else:
                     (positionX, positionY) = findPositionInArray(mouseX, mouseY)
-                    workspaceArray[positionX][positionY] = recentlySelected
+                    print "what?", recentlySelected.generateString()
+                    workspaceArray[positionX][positionY] = recentlySelected.generateString()
             print "workspaceArray:", workspaceArray
             if 175 > X or X > 625 or 125 > Y or Y > 575:
                 (originX, originY) = recentlySelected.returnOrigin()
