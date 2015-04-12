@@ -1,6 +1,4 @@
 Notes & Reminders: **USE STANDARD PYTHON
-- Make ground for him to stand on (Josh)
-- Figure out side collision (Emily)
 - Add in blob functionality
 - Player save data -> unlocked blobs, unlocked levels
 - Functionality in title screen (Kara)
