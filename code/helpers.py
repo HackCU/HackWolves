@@ -62,13 +62,13 @@ class smallTransitionButton():
 
 class Blob():
     #location
-    locationX = None
-    locationY = None
+    #locationX = None
+    #locationY = None
     #screen = None
     #rectangle/sprite
-    form = None
+    #form = None
     #text
-    text = None
+    #text = None
     def __init__(self, valueX, valueY, blobObject):
         
         print "---------------------"
@@ -92,8 +92,8 @@ class Blob():
         self.name = blobObject.name
         self.string = ""
         
-    #def __reduce__(self):
-        #return (self.__class__, (self.locationX, self.locationY, self.blob))
+    def __reduce__(self):
+        return (self.__class__, (self.locationX, self.locationY, self.blob))
         
     def generateString(self):
         if self.name == "Default":

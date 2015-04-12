@@ -33,7 +33,7 @@ def playGame(done, clock, load):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
-                pickle.dump(blobList, open( "blobs.p", "wb" ) )
+                #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -62,7 +62,7 @@ def playGame(done, clock, load):
                     mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
                     pickle.dump(current_level_no, open("save.p", "wb" ))
-                    pickle.dump(blobList, open( "blobs.p", "wb" ) )
+                    #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                     done = True
             
             if event.type == pygame.KEYUP:
@@ -118,7 +118,7 @@ def playGame(done, clock, load):
         
         if transitionScreen != None:
             #save position
-            pickle.dump(blobList, open( "blobs.p", "wb" ) )
+            #pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen"
     

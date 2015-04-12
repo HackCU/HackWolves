@@ -9,7 +9,7 @@ import optionsScreen
 import cPickle as pickle
 from helpers import *
 
-def exitScreen(done, screen, clock):
+def exitScreen(done, clock):
     clicked = False
     while not done:
         for event in pygame.event.get():
@@ -19,7 +19,7 @@ def exitScreen(done, screen, clock):
                 clicked = True
         
         screen.fill(BACKGROUND)
-        ExitButton = TransitionButton(425, 500, "Exit Game", screen)
+        ExitButton = TransitionButton(425, 500, "Exit Game")
         
         TitleFont = pygame.font.SysFont('Calibri', 60, True, False)
         TitleText = TitleFont.render("We hope you had fun :)", True, BLACK)
@@ -63,7 +63,7 @@ def main():
         if transitionScreen == "unimplemented":
             transitionScreen = unimplementedScreen.unimplemented(done, clock)
         if transitionScreen == "done":
-            exitScreen(done, screen, clock)
+            exitScreen(done, clock)
             done = True
             
     pygame.quit()

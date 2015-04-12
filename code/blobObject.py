@@ -27,7 +27,7 @@ class blobObject(pygame.sprite.Sprite):
 #             print x
     
     def __reduce__(self):
-        return (self.__class__, (self.name))
+        return (self.__class__, (self.name,))
     
     # def update(self):
     #     if self.collected:
