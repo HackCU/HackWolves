@@ -9,6 +9,9 @@ def titleScreen(done, screen, clock):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 #print "Mousex:", mouseX, "MouseY:", mouseY
