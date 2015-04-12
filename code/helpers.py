@@ -80,7 +80,21 @@ class Blob():
     def generateString(self):
         if self.name == "Default":
             self.string = "TESTING - Default Generation"
-        print self.string
+        if self.name == "MoveRight":
+            self.string = "hi!"
+        if self.string == "MoveLeft":
+            self.string = "left"
+        if self.string == "Jump":
+            self.string = "jump"
+        if self.string == "lArrow":
+            self.string = "lArrow"
+        if self.string == "rArrow":
+            self.string = "rArrow"
+        if self.string == "upArrow":
+            self.string = "upArrow"
+        if self.string == "if":
+            self.string = "if"
+        return self.string
         
     def updateColor(self, clickValue):
         if clickValue == True:
