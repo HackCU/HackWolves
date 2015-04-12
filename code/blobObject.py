@@ -2,7 +2,6 @@ import pygame
 from helpers import *
 import blobScreen
 
-
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
  
@@ -40,11 +39,6 @@ class blobObject(pygame.sprite.Sprite):
         else:
             blobBlob = Blob(25, 550, self)
             blobList.append(blobBlob)
-            
-        
-        
-        # for x in blobScreen.blobList:
-#             print x
     
     def __reduce__(self):
         return (self.__class__, (self.name,))
