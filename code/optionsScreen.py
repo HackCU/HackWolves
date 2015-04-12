@@ -27,9 +27,9 @@ def options(done, clock):
             return transitionScreen
         else:
             screen.fill(BACKGROUND)
-            StartButton = TransitionButton(100, 400, "BUTTON1")
-            LoadButton = TransitionButton(100, 500, "BUTTON2")
-            OptionsButton = TransitionButton(425, 400, "BUTTON3")
+            StartButton = TransitionButton(100, 400, "Button 1")
+            LoadButton = TransitionButton(100, 500, "Button 2")
+            OptionsButton = TransitionButton(425, 400, "Button 3")
             ExitButton = TransitionButton(425, 500, "Main Menu")
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
