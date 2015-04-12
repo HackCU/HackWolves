@@ -27,17 +27,64 @@ class blobObject(pygame.sprite.Sprite):
             blobBlob = Blob(25, 250, self)
             blobList.append(blobBlob)
             
+            blobBlob1 = Blob(25, 250, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 250, self)
+            blobList.append(blobBlob2)
+            
         elif self.name == 'rArrow':
             blobBlob = Blob(25, 325, self)
             blobList.append(blobBlob)
+            
+            blobBlob1 = Blob(25, 325, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 325, self)
+            blobList.append(blobBlob2)
         
         elif self.name == 'lArrow':
             blobBlob = Blob(25, 400, self)
             blobList.append(blobBlob)
             
+            blobBlob1 = Blob(25, 400, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 400, self)
+            blobList.append(blobBlob2)
+            
         elif self.name == 'upArrow':
             blobBlob = Blob(25, 475, self)
             blobList.append(blobBlob)
+            
+            blobBlob1 = Blob(25, 475, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 475, self)
+            blobList.append(blobBlob2)
+            
+        elif self.name == "MoveRight":
+            blobBlob = Blob(25, 25, self)
+            blobList.append(blobBlob)
+            
+            blobBlob1 = Blob(25, 25, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 25, self)
+            blobList.append(blobBlob2)
+        
+        elif self.name == "MoveLeft":
+            blobBlob = Blob(25, 100, self)
+            blobList.append(blobBlob)
+            
+            blobBlob1 = Blob(25, 100, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 100, self)
+            blobList.append(blobBlob2)
+            
+        elif self.name == "Jump":
+            blobBlob = Blob(25, 175, self)
+            blobList.append(blobBlob)
+            
+            blobBlob1 = Blob(25, 175, self)
+            blobList.append(blobBlob1)
+            blobBlob2 = Blob(25, 175, self)
+            blobList.append(blobBlob2)
             
         else:
             blobBlob = Blob(25, 550, self)

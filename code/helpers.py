@@ -83,18 +83,18 @@ class Blob():
         if self.name == "Default":
             self.string = "TESTING - Default Generation"
         if self.name == "MoveRight":
-            self.string = "hi!"
-        if self.string == "MoveLeft":
-            self.string = "left"
-        if self.string == "Jump":
-            self.string = "jump"
-        if self.string == "lArrow":
+            self.string = "MoveRight"
+        if self.name == "MoveLeft":
+            self.string = "MoveLeft"
+        if self.name == "Jump":
+            self.string = "Jump"
+        if self.name == "lArrow":
             self.string = "lArrow"
-        if self.string == "rArrow":
+        if self.name == "rArrow":
             self.string = "rArrow"
-        if self.string == "upArrow":
+        if self.name == "upArrow":
             self.string = "upArrow"
-        if self.string == "if":
+        if self.name == "if":
             self.string = "if"
         return self.string
         
