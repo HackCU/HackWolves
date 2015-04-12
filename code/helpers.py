@@ -3,6 +3,8 @@ import pygame
 from pygame.locals import *
 
 #Globals
+
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (42, 168, 27)
@@ -15,6 +17,9 @@ BUTTON2 = (237, 110, 19)
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+blobList = []
+
 
 class TransitionButton():
     #location

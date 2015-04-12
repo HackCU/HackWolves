@@ -1,6 +1,11 @@
 import pygame
 from helpers import *
+import blobScreen
 
+
+size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
+ 
 class blobObject(pygame.sprite.Sprite):
     
     def __init__(self, name):
@@ -15,6 +20,11 @@ class blobObject(pygame.sprite.Sprite):
         
     def collect(self):
         self.collected = True
+        
+        blobBlob = Blob(25, 325, screen, self)
+        blobList.append(blobBlob)
+        # for x in blobScreen.blobList:
+#             print x
     
     
     # def update(self):
