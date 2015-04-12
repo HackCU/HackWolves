@@ -2,6 +2,7 @@ import pygame
 from helpers import *
 
 def titleScreen(done, screen, clock):
+    load = False
     while not done:
         (mouseX, mouseY) = (0, 0)
         transitionScreen = None
@@ -15,6 +16,8 @@ def titleScreen(done, screen, clock):
                     if mouseY > 400 and mouseY < 475:
                         transitionScreen = "blobScreen"
                     elif mouseY > 500 and mouseY < 625:
+                        transitionScreen = "playScreen"
+                        load = True
                         print "Load Save Button"
                 elif mouseX > 425 and mouseX < 675:
                     if mouseY > 400 and mouseY < 475:
@@ -23,7 +26,7 @@ def titleScreen(done, screen, clock):
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "done"
         if transitionScreen == None:
-            screen.fill(WHITE)
+            screen.fill(BACKGROUND)
             StartButton = TransitionButton(100, 400, "Start Game", screen)
             LoadButton = TransitionButton(100, 500, "Load Save", screen)
             OptionsButton = TransitionButton(425, 400, "Options", screen)
@@ -35,8 +38,8 @@ def titleScreen(done, screen, clock):
             screen.blit(TitleText, [(150),(100)])
             screen.blit(SubtitleText, [(150),(200)])
         if transitionScreen != None:
-            return transitionScreen
+            return transitionScreen, load
         
         clock.tick(60)
         pygame.display.flip()
-    return "done"
+    return "done", load

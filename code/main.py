@@ -17,7 +17,7 @@ def main():
     done = False
     clock = pygame.time.Clock()
 	
-    transitionScreen = titleScreen.titleScreen(done, screen, clock)
+    transitionScreen,load = titleScreen.titleScreen(done, screen, clock)
     
     while not done:
         for event in pygame.event.get():
@@ -26,9 +26,9 @@ def main():
         if transitionScreen == "blobScreen":
             transitionScreen = blobScreen.blobScreen(done, screen, clock)
         if transitionScreen == "playScreen":
-            transitionScreen = playScreen.playGame(done, screen, clock)
+            transitionScreen = playScreen.playGame(done, screen, clock, load)
         if transitionScreen == "titleScreen":
-            transitionScreen = titleScreen.titleScreen(done, screen, clock)
+            transitionScreen, load = titleScreen.titleScreen(done, screen, clock)
         if transitionScreen == "optionsScreen":
             transitionScreen = optionsScreen.options(done, screen, clock)
         if transitionScreen == "done":

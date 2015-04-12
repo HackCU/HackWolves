@@ -27,7 +27,7 @@ class Level():
         self.blob_list.update()
         
     def draw(self, screen):
-        screen.fill(BLUE)
+        screen.fill(SKY)
         
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
@@ -52,12 +52,12 @@ class Level():
             
 class Platform(pygame.sprite.Sprite):
     
-    def __init__(self, width, height):
+    def __init__(self, width, height, color):
         
         super(Platform,self).__init__()
         
         self.image = pygame.Surface([width, height])
-        self.image.fill(GREEN)
+        self.image.fill(color)
         
         self.rect = self.image.get_rect()
         
@@ -83,15 +83,20 @@ class Level_01(Level):
                  [210, 70, 800, 350],
                  [210, 70, 1000, 450],
                  [210, 70, 1120, 230],
-                 [2500, 50, 0, 550]]
+                 [3500, 50, -1000, 550]]
                  
         for platform in level:
-            block = Platform(platform[0], platform[1])
+            block = Platform(platform[0], platform[1], GREEN)
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
             
+        wall = Platform(1, 550, SKY)
+        wall.rect.x = 0
+        wall.rect.y = 0
+        wall.player = self.player
+        self.platform_list.add(wall)    
             
         blob1 = blobObject("default")
         blob1.rect.x = 1500
@@ -115,15 +120,21 @@ class Level_02(Level):
                  [210, 30, 800, 350],
                  [210, 30, 1000, 450],
                  [210, 30, 1120, 230],
-                 [2500, 50, 0, 550]]
+                 [3500, 50, -1000, 550]]
                  
         for platform in level:
-            block = Platform(platform[0], platform[1])
+            block = Platform(platform[0], platform[1], GREEN)
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
-            
+           
+        wall = Platform(1, 550, SKY)
+        wall.rect.x = 0
+        wall.rect.y = 0
+        wall.player = self.player
+        self.platform_list.add(wall) 
+        
         door = exitDoor(40, 50)
         door.rect.x = 1900
         door.rect.y = 500

@@ -4,21 +4,26 @@ import pygame
 import cPickle as pickle
 from helpers import *
 
-def playGame(done, screen, clock):
+def playGame(done, screen, clock, load):
     mainPlayer = player.Player()
+    transitionScreen = None
+    gameOver = False
     
     level_list = []
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
     
-    #current_level_no = 0
-    current_level_no = pickle.load(open("save.p", "rb"))
+    if load:
+        current_level_no = pickle.load(open("save.p", "rb"))
+    else:
+        current_level_no = 0
     current_level = level_list[current_level_no]
+    currentString = "Level " + str((current_level_no)+1)
     
     active_sprite_list = pygame.sprite.Group()
     mainPlayer.level = current_level
     
-    mainPlayer.rect.x = 340
+    mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
     mainPlayer.rect.y = SCREEN_HEIGHT - 50 - mainPlayer.rect.height
     active_sprite_list.add(mainPlayer)
     
@@ -27,7 +32,11 @@ def playGame(done, screen, clock):
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
                 done = True
-                
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                (mouseX, mouseY) = pygame.mouse.get_pos()
+                if mouseX > 25 and mouseX < 150:
+                    if mouseY > 25 and mouseY < 50:
+                        transitionScreen = "blobScreen"
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     mainPlayer.go_left()
@@ -37,10 +46,12 @@ def playGame(done, screen, clock):
                     mainPlayer.jump()
                 if event.key == pygame.K_1:
                     current_level_no = 0
+                    currentString = "Level " + str((current_level_no)+1)
                     current_level = level_list[current_level_no]
                     mainPlayer.level = current_level
                 if event.key == pygame.K_2:
                     current_level_no = 1
+                    currentString = "Level " + str((current_level_no)+1)
                     current_level = level_list[current_level_no]
                     mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
@@ -72,16 +83,36 @@ def playGame(done, screen, clock):
             mainPlayer.rect.x = 120
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
+                currentString = "Level " + str((current_level_no)+1)
                 current_level = level_list[current_level_no]
                 mainPlayer.level = current_level
+            else:
+                gameOver = True
         
-        #drawing code should go here
-        current_level.draw(screen)
-        active_sprite_list.draw(screen)
-        #end of drawing code section    
-        
+        if not gameOver:
+            #drawing code should go here
+            current_level.draw(screen)
+            active_sprite_list.draw(screen)
+            smallTransitionButton(25,25, "Building Screen", screen)
+            TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
+            TitleText = TitleFont.render(currentString, True, BLACK)
+            screen.blit(TitleText, [(700),(25)])
+            #end of drawing code section    
+        else:
+            screen.fill(BLUE)
+            gameOverFont = pygame.font.SysFont('Calibri', 40, True, False)
+            gameOverText = gameOverFont.render("Congratulations! You now know how to code!", True, BLACK)
+            screen.blit(gameOverText, [(50), (300)])
+            
         clock.tick(60)
         
         pygame.display.flip()
         
+        if transitionScreen != None:
+            #save position
+            pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
+            return "blobScreen"
+    
+    # clear?
+    pickle.dump((340, 50, 0), open( "position.p", "wb" ) )
     return "done"
