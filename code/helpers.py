@@ -26,14 +26,6 @@ size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 
 class TransitionButton():
-    #location
-    locationX = None
-    locationY = None
-    #rectangle/sprite
-    form1 = None
-    form2 = None
-    #text
-    text = None
     def __init__(self, valueX, valueY, string):
         self.locationX = valueX
         self.locationY = valueY
@@ -44,13 +36,6 @@ class TransitionButton():
         screen.blit(self.text, [(valueX+25),(valueY+25)])
 
 class smallTransitionButton():
-    #location
-    locationX = None
-    locationY = None
-    #rectangle/sprite
-    form = None
-    #text
-    text = None
     def __init__(self, valueX, valueY, string):
         self.locationX = valueX
         self.locationY = valueY
@@ -61,24 +46,7 @@ class smallTransitionButton():
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
 class Blob():
-    #location
-    #locationX = None
-    #locationY = None
-    #screen = None
-    #rectangle/sprite
-    #form = None
-    #text
-    #text = None
-
     def __init__(self, valueX, valueY, blobObject):
-        #print "---------------------"
-        #print ""
-        #print ""
-        #print blobObject.name
-        #print ""
-        #print ""
-        #print "---------------------"
-        
         self.locationX = valueX
         self.locationY = valueY
         self.colorFill = BUTTON2
@@ -126,7 +94,12 @@ class Blob():
         self.form2 = pygame.draw.rect(self.screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
         font = pygame.font.SysFont('Calibri', 25, True, False)
         screen = self.screen
-        screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])		
+        screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
+    
+    def returnPosition(self):
+        valueX = self.locationX
+        valueY = self.locationY
+        return (valueX, valueY)
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('resources', 'images')
