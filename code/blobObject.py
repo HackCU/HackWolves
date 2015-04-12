@@ -21,8 +21,28 @@ class blobObject(pygame.sprite.Sprite):
     def collect(self):
         self.collected = True
         
-        blobBlob = Blob(25, 325, self)
-        blobList.append(blobBlob)
+        if self.name == 'if':
+            blobBlob = Blob(25, 250, self)
+            blobList.append(blobBlob)
+            
+        elif self.name == 'rArrow':
+            blobBlob = Blob(25, 325, self)
+            blobList.append(blobBlob)
+        
+        elif self.name == 'lArrow':
+            blobBlob = Blob(25, 400, self)
+            blobList.append(blobBlob)
+            
+        elif self.name == 'upArrow':
+            blobBlob = Blob(25, 475, self)
+            blobList.append(blobBlob)
+            
+        else:
+            blobBlob = Blob(25, 550, self)
+            blobList.append(blobBlob)
+            
+        
+        
         # for x in blobScreen.blobList:
 #             print x
     

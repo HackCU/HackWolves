@@ -16,11 +16,11 @@ def blobScreen(done, clock):
     MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
     MoveLeft = Blob(25, 100, blobObject.blobObject("MoveLeft"))
     Jump = Blob(25, 175, blobObject.blobObject("Jump"))
-    Crouch = Blob(25, 250, blobObject.blobObject("Crouch"))
+    # Crouch = Blob(25, 250, blobObject.blobObject("Crouch"))
     blobList.append(MoveRight)
     blobList.append(MoveLeft)
     blobList.append(Jump)
-    blobList.append(Crouch)
+    # blobList.append(Crouch)
 
     selectedBlob = None
     clicked = False
