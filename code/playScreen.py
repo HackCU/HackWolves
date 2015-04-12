@@ -34,8 +34,8 @@ def playGame(done, screen, clock, load):
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
-                if mouseX > 25 and mouseX < 150:
-                    if mouseY > 25 and mouseY < 50:
+                if mouseX > 25 and mouseX < 135:
+                    if mouseY > 25 and mouseY < 75:
                         transitionScreen = "blobScreen"
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
