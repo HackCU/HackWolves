@@ -3,13 +3,6 @@ from helpers import *
 import player
 import blobObject
 
-#selected_particle = findParticle(my_particles, mouseX, mouseY)
-#if selected_particle:
-#	selected_particle.color = (255,0,0)
-#	(mouseX, mouseY) = pygame.mouse.get_pos()
-#	selected_particle.x = mouseX
-#	selected_particle.y = mouseY
-
 def findBlob(blobList, mouseX, mouseY):
     for blob in blobList:
         (X, Y) = blob.returnPosition()
@@ -49,7 +42,6 @@ def blobScreen(done, clock):
                     clicked = False
                 elif clicked == False:
                     clicked = True
-                # Static object, no need to update
                 if mouseX > 675 and mouseX < 775:
                     if mouseY > 25 and mouseY < 75:
                         # Unimplemented: Saved Fns
