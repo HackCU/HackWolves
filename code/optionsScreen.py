@@ -10,15 +10,18 @@ def options(done, screen, clock):
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
-                print "Mousex:", mouseX, "MouseY:", mouseY
+                print "MouseX:", mouseX, "MouseY:", mouseY
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
                         print "1"
+                        transitionScreen = "unimplemented"
                     elif mouseY > 500 and mouseY < 625:
                         print "2"
+                        transitionScreen = "unimplemented"
                 elif mouseX > 425 and mouseX < 675:
                     if mouseY > 400 and mouseY < 475:
                         print "3"
+                        transitionScreen = "unimplemented"
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "titleScreen"
         if transitionScreen != None:
