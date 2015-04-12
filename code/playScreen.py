@@ -51,10 +51,27 @@ def playGame(done, clock, load):
                     if mouseY > 25 and mouseY < 75:
                         transitionScreen = "blobScreen"
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    mainPlayer.go_left()
-                if event.key == pygame.K_RIGHT:
-                    mainPlayer.go_right()
+                # if event.key == pygame.K_LEFT:
+#                     mainPlayer.go_left()
+                # if event.key == pygame.K_RIGHT:
+#                     mainPlayer.go_right()
+
+                testString01 = "event.key == pygame.K_LEFT"
+                testString00 = "if " + testString01 +": "
+                testString11 = testString00 + "exec('mainPlayer.go_left()')"
+                
+                testString21 = "event.key == pygame.K_RIGHT"
+                testString20 = "if " + testString21 +": "
+                testString31 = testString20 + "exec('mainPlayer.go_right()')"
+                
+                exec(testString11)
+                exec(testString31)
+                
+                
+                # ourString = "if event.key == pygame.K_LEFT: exec('mainPlayer.go_left()')"
+#                 ourString2 = "if event.key == pygame.K_RIGHT: exec('mainPlayer.go_right()')"
+#                 exec(ourString +"\n" + ourString2)
+                
                 if event.key == pygame.K_UP:
                     mainPlayer.jump()
                 if event.key == pygame.K_1:
