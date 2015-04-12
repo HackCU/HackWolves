@@ -9,23 +9,20 @@ def playGame(done, clock, load):
     transitionScreen = None
     gameOver = False
     
-    
     level_list = []
     level_list.append(levels.Level_01(mainPlayer))
     level_list.append(levels.Level_02(mainPlayer))
-    level_list.append(levels.Level_03(mainPlayer))
-
+    #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
         current_level_no = pickle.load(open("save.p", "rb"))
         current_level = level_list[current_level_no]
         mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
-
     else:
         current_level_no = 0
         current_level = level_list[current_level_no]
         mainPlayer.rect.x = 50
-        mainPlayer.rect.y = 450
+        mainPlayer.rect.y = 0
     #current_level = level_list[current_level_no]
     currentString = "Level " + str((current_level_no)+1)
     
@@ -44,8 +41,6 @@ def playGame(done, clock, load):
     current_level.shift_world(temp)
             
     while not done:
-        
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
@@ -79,7 +74,6 @@ def playGame(done, clock, load):
                 exec(commandString2)
                 exec(commandString3)
                 
-                
                 # ourString = "if event.key == pygame.K_LEFT: exec('mainPlayer.go_left()')"
 #                 ourString2 = "if event.key == pygame.K_RIGHT: exec('mainPlayer.go_right()')"
 #                 exec(ourString +"\n" + ourString2)
@@ -92,7 +86,7 @@ def playGame(done, clock, load):
                     current_level = level_list[current_level_no]
                     mainPlayer.level = current_level
                     mainPlayer.rect.x = 120
-                    mainPlayer.rect.y = 450
+                    mainPlayer.rect.y = 0
                 if event.key == pygame.K_2:
                     current_level_no = 1
                     currentString = "Level " + str((current_level_no)+1)
@@ -100,13 +94,13 @@ def playGame(done, clock, load):
                     mainPlayer.level = current_level
                     mainPlayer.rect.x = 120
                     mainPlayer.rect.y = 450
-                if event.key == pygame.K_3:
-                    current_level_no = 2
-                    currentString = "Level " + str((current_level_no)+1)
-                    current_level = level_list[current_level_no]
-                    mainPlayer.level = current_level
-                    mainPlayer.rect.x = 120
-                    mainPlayer.rect.y = 0
+                #if event.key == pygame.K_3:
+                #    current_level_no = 2
+                #    currentString = "Level " + str((current_level_no)+1)
+                #    current_level = level_list[current_level_no]
+                #    mainPlayer.level = current_level
+                #    mainPlayer.rect.x = 120
+                #    mainPlayer.rect.y = 0
 
                 if event.key == pygame.K_ESCAPE:
                     pickle.dump(current_level_no, open("save.p", "wb" ))
@@ -133,7 +127,6 @@ def playGame(done, clock, load):
             mainPlayer.rect.left = 120
             current_level.shift_world(diff)
             
-        
         current_position = mainPlayer.rect.x + current_level.world_shift
         #print "rect ",mainPlayer.rect.x
         #print "worldshift ", current_level.world_shift
@@ -144,9 +137,9 @@ def playGame(done, clock, load):
                 currentString = "Level " + str((current_level_no)+1)
                 current_level = level_list[current_level_no]
                 mainPlayer.level = current_level
-                if current_level_no is 2:
-                    mainPlayer.rect.x = 50
-                    mainPlayer.rect.y = 0
+                #if current_level_no is 2:
+                 #   mainPlayer.rect.x = 50
+                  #  mainPlayer.rect.y = 0
             else:
                 gameOver = True
         

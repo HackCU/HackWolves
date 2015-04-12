@@ -22,6 +22,8 @@ SCREEN_HEIGHT = 600
 
 blobList = []
 
+collected = False
+
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 
@@ -89,17 +91,25 @@ class Blob():
             self.string = "TESTING - Default Generation"
         if self.name == "MoveRight":
             self.string = "MoveRight"
+<<<<<<< HEAD
         if self.string == "MoveLeft":
             self.string = "MoveLeft"
         if self.string == "Jump":
             self.string = "Jump"
         if self.string == "lArrow":
+=======
+        if self.name == "MoveLeft":
+            self.string = "MoveLeft"
+        if self.name == "Jump":
+            self.string = "Jump"
+        if self.name == "lArrow":
+>>>>>>> 2e9c569d6dc1caec7a4aa29cf61b71b8f346025b
             self.string = "lArrow"
-        if self.string == "rArrow":
+        if self.name == "rArrow":
             self.string = "rArrow"
-        if self.string == "upArrow":
+        if self.name == "upArrow":
             self.string = "upArrow"
-        if self.string == "if":
+        if self.name == "if":
             self.string = "if"
         return self.string
         

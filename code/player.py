@@ -1,4 +1,5 @@
 import pygame
+import helpers
 from helpers import *
 import main
 
@@ -12,7 +13,6 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         self.level = None
-        
         self.blobs = []
     
     def update(self):
@@ -25,16 +25,18 @@ class Player(pygame.sprite.Sprite):
         # Collectin' blobs
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
+            if blob.name is "moveLeft":
+                helpers.collected = True
+                #print "collected"
             blob.collect()
-            #self.blobs.append(blob)
-            #for x in self.blobs:
-                #print x.name
+
  
         # See if we hit anything
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         for block in block_hit_list:
             # If we are moving right,
             # set our right side to the left side of the item we hit
+            
             if self.change_x > 0:
                 self.rect.right = block.rect.left
             elif self.change_x < 0:
@@ -48,6 +50,9 @@ class Player(pygame.sprite.Sprite):
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         for block in block_hit_list:
  
+            #print "name ",block.name
+            #if block.name is "trapdoor":
+             #   block1 = pygame.sprite.spritecollide(self,block, True)
             # Reset our position based on the top/bottom of the object.
             if self.change_y > 0:
                 self.rect.bottom = block.rect.top
@@ -57,7 +62,23 @@ class Player(pygame.sprite.Sprite):
             # Stop our vertical movement
             self.change_y = 0
         
-            
+        if helpers.collected:
+            block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
+        else:
+            block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, False)
+        for block in block_hit_list:
+ 
+
+            # Reset our position based on the top/bottom of the object.
+            if self.change_y > 0:
+                self.rect.bottom = block.rect.top
+            elif self.change_y < 0:
+                self.rect.top = block.rect.bottom
+ 
+            # Stop our vertical movement
+            self.change_y = 0
+              
+
     def calc_grav(self):
         if self.change_y == 0:
             self.change_y = 1
@@ -67,7 +88,6 @@ class Player(pygame.sprite.Sprite):
         if self.rect.y >= main.SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
             self.change_y = 0
             self.rect.y = main.SCREEN_HEIGHT - self.rect.height
-                
        
     def go_left(self):
         self.change_x = -10
@@ -79,7 +99,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += 2
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         self.rect.y -= 2
-        
         if len(platform_hit_list) > 0 or self.rect.bottom >= main.SCREEN_HEIGHT:
             self.change_y = -10
          
