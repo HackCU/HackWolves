@@ -11,14 +11,14 @@ def titleScreen(done, screen, clock):
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
-                print "Mousex:", mouseX, "MouseY:", mouseY
+                #print "Mousex:", mouseX, "MouseY:", mouseY
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
                         transitionScreen = "blobScreen"
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "playScreen"
                         load = True
-                        print "Load Save Button"
+                        #print "Load Save Button"
                 elif mouseX > 425 and mouseX < 675:
                     if mouseY > 400 and mouseY < 475:
                         print "Options Button"

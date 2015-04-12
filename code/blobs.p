@@ -1,0 +1,17 @@
+(lp1
+ccopy_reg
+_reconstructor
+p2
+(cblobObject
+blobObject
+p3
+c__builtin__
+object
+p4
+NtRp5
+(dp6
+S'collected'
+p7
+I01
+sS'image'
+p8
