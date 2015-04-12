@@ -7,6 +7,7 @@ from helpers import *
 def playGame(done, screen, clock):
     mainPlayer = player.Player()
     transitionScreen = None
+    gameOver = False
     
     level_list = []
     level_list.append(levels.Level_01(mainPlayer))
@@ -82,17 +83,24 @@ def playGame(done, screen, clock):
                 currentString = "Level " + str((current_level_no)+1)
                 current_level = level_list[current_level_no]
                 mainPlayer.level = current_level
-                
+            else:
+                gameOver = True
         
-        #drawing code should go here
-        current_level.draw(screen)
-        active_sprite_list.draw(screen)
-        smallTransitionButton(25,25, "Building Screen", screen)
-        TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
-        TitleText = TitleFont.render(currentString, True, BLACK)
-        screen.blit(TitleText, [(700),(25)])
-        #end of drawing code section    
-        
+        if not gameOver:
+            #drawing code should go here
+            current_level.draw(screen)
+            active_sprite_list.draw(screen)
+            smallTransitionButton(25,25, "Building Screen", screen)
+            TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
+            TitleText = TitleFont.render(currentString, True, BLACK)
+            screen.blit(TitleText, [(700),(25)])
+            #end of drawing code section    
+        else:
+            screen.fill(BLUE)
+            gameOverFont = pygame.font.SysFont('Calibri', 40, True, False)
+            gameOverText = gameOverFont.render("Congratulations! You now know how to code!", True, BLACK)
+            screen.blit(gameOverText, [(50), (300)])
+            
         clock.tick(60)
         
         pygame.display.flip()
