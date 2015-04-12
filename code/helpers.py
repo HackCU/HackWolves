@@ -49,6 +49,8 @@ class Blob():
     def __init__(self, valueX, valueY, blobObject):
         self.locationX = valueX
         self.locationY = valueY
+        self.originX = valueX
+        self.originY = valueY
         self.colorFill = BUTTON2
         self.colorText = BLACK
         self.screen = screen
@@ -65,7 +67,12 @@ class Blob():
         self.string = ""
     
     def provideName(self):
-        return self.bname
+        return self.name
+    
+    def returnOrigin(self):
+        valueX = self.originX
+        valueY = self.originY
+        return (valueX, valueY)
     
     def __reduce__(self):
         return (self.__class__, (self.locationX, self.locationY, self.blob))

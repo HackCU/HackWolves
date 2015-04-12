@@ -27,6 +27,7 @@ def blobScreen(done, clock):
     clicked = False
     
     workspaceArray = [[0 for x in range(3)] for x in range(6)]
+    recentlySelected = None
     
     while not done:
         for event in pygame.event.get():
@@ -38,26 +39,28 @@ def blobScreen(done, clock):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouseX, mouseY = pygame.mouse.get_pos()
                 selectedBlob = findBlob(blobList, mouseX, mouseY)
+                if selectedBlob != None:
+                    recentlySelected = selectedBlob
                 if clicked == True:
                     clicked = False
-                elif clicked == False:
+                else:
                     clicked = True
                 if mouseX > 675 and mouseX < 775:
                     if mouseY > 25 and mouseY < 75:
                         # Unimplemented: Saved Fns
-                        return "unimplemented"
+                        return "unimplemented", False
                     elif mouseY > 100 and mouseY < 150:
                         # Unimplemented: Save Fn
-                        return "unimplemented"
+                        return "unimplemented", False
                     elif mouseY > 175 and mouseY < 225:
                         # Unimplemented: Clear workspace
-                        return "unimplemented"
+                        return "unimplemented", False
                     elif mouseY > 325 and mouseY < 375:
                         return "playScreen", True
                     elif mouseY > 400 and mouseY < 450:
-                        return "optionsScreen"
+                        return "optionsScreen", False
                     elif mouseY > 475 and mouseY < 525:
-                        return "unimplemented"
+                        return "unimplemented", False
         
         if transitionScreen != None:
             return transitionScreen
@@ -82,10 +85,16 @@ def blobScreen(done, clock):
             (mouseX, mouseY) = pygame.mouse.get_pos()
             selectedBlob.updateColor(True)
             selectedBlob.updatePosition(mouseX, mouseY)
-        elif selectedBlob != None and clicked == False:
-            selectedBlob.updateColor(False)
-            blobList.append(selectedBlob)
-            selectedBlob = None
+        elif recentlySelected != None and clicked == False:
+            (X, Y) = recentlySelected.returnPosition()
+            if 175 > X or X > 625 or 125 > Y or Y > 575:
+            #if (175 > X and 125 > Y) or (175 > X and Y > 575) or (X > 625 and 125 > Y) or (X > 625 and Y > 575):
+                #if 125 > Y or Y > 575:
+                (originX, originY) = recentlySelected.returnOrigin()
+                recentlySelected.updatePosition(originX, originY)
+            recentlySelected.updateColor(False)
+            #blobList.append(selectedBlob)
+            recentlySelected = None
         
         for item in blobList:
             item.refreshPosition()
@@ -99,4 +108,4 @@ def blobScreen(done, clock):
 
         clock.tick(60)
         pygame.display.flip()
-    return "done"
+    return "done", False
