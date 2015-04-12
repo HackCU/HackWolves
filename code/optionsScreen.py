@@ -31,7 +31,7 @@ def options(done, screen, clock):
             StartButton = TransitionButton(100, 400, "BUTTON1", screen)
             LoadButton = TransitionButton(100, 500, "BUTTON2", screen)
             OptionsButton = TransitionButton(425, 400, "BUTTON3", screen)
-            ExitButton = TransitionButton(425, 500, "Return to Title Screen", screen)
+            ExitButton = TransitionButton(425, 500, "Main Menu", screen)
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
             TitleText = TitleFont.render("Options", True, BLACK)

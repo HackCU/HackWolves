@@ -33,6 +33,9 @@ def blobScreen(done, screen, clock):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if clicked == True:
@@ -77,13 +80,13 @@ def blobScreen(done, screen, clock):
         for item in blobList:
             item.refreshPosition()
         
-        # Functions = Blob(675, 25, screen, blobObject.blobObject("Functions"))
-        # BindToKey = Blob(675, 100, "Bind to Key", screen)
-        # Clear = Blob(675, 175, "Clear", screen)
-        # Start = Blob(675, 325, "Start", screen)
-        # Options = Blob(675, 400, "Options", screen)
-        # Help = Blob(675, 475, "Help", screen)
-        #
+        Functions = smallTransitionButton(675, 25, "Saved Functions", screen)
+        BindToKey = smallTransitionButton(675, 100, "Bind to Key", screen)
+        Clear = smallTransitionButton(675, 175, "Clear", screen)
+        Start = smallTransitionButton(675, 325, "Start", screen)
+        Options = smallTransitionButton(675, 400, "Options", screen)
+        Help = smallTransitionButton(675, 475, "Help", screen)
+
         WorkSpace = pygame.draw.rect(screen, BLACK, [175, 125, 450, 400], 2)
         LevelScreen = pygame.draw.rect(screen, BLACK, [200, 25, 400, 75], 2)
 

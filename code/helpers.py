@@ -50,8 +50,8 @@ class smallTransitionButton():
     def __init__(self, valueX, valueY, string, screen):
         self.locationX = valueX
         self.locationY = valueY
-        self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,125,25], 0)
-        self.form2 = pygame.draw.rect(screen, BUTTON2, [valueX,valueY,125,25], 2)
+        self.form1 = pygame.draw.rect(screen, BUTTON1, [valueX,valueY,115,50], 0)
+        self.form2 = pygame.draw.rect(screen, BUTTON2, [valueX,valueY,115,50], 2)
         font = pygame.font.SysFont('Calibri', 20, True, False)
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])

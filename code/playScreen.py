@@ -33,11 +33,12 @@ def playGame(done, screen, clock, load):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
+                #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
-                if mouseX > 25 and mouseX < 150:
-                    if mouseY > 25 and mouseY < 50:
+                if mouseX > 25 and mouseX < 135:
+                    if mouseY > 25 and mouseY < 75:
                         transitionScreen = "blobScreen"
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
@@ -58,6 +59,7 @@ def playGame(done, screen, clock, load):
                     mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
                     pickle.dump(current_level_no, open("save.p", "wb" ))
+                    #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
                     done = True
             
             if event.type == pygame.KEYUP:
@@ -102,7 +104,7 @@ def playGame(done, screen, clock, load):
             screen.blit(TitleText, [(700),(25)])
             #end of drawing code section    
         else:
-            screen.fill(BLUE)
+            screen.fill(SKY)
             gameOverFont = pygame.font.SysFont('Calibri', 40, True, False)
             gameOverText = gameOverFont.render("Congratulations! You now know how to code!", True, BLACK)
             screen.blit(gameOverText, [(50), (300)])
@@ -113,6 +115,7 @@ def playGame(done, screen, clock, load):
         
         if transitionScreen != None:
             #save position
+            #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen"
     
