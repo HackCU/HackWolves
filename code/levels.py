@@ -1,5 +1,6 @@
 import pygame
 import main
+import helpers
 from helpers import *
 from blobObject import *
 
@@ -17,14 +18,22 @@ class Level():
         self.enemy_list = pygame.sprite.Group()
         self.exit_list = pygame.sprite.Group()
         self.blob_list = pygame.sprite.Group()
+        self.trap_list = pygame.sprite.Group()
         self.player = player
         
         
     def update(self):
+        #if not helpers.collected:
+            #print "here2"
+        self.platform_list.update()
+        #else:
+         #   print "here"
+          #  self.platform_list.remove(self.trapDoor)
         self.platform_list.update()
         self.enemy_list.update()
         self.exit_list.update()
         self.blob_list.update()
+        self.trap_list.update()
         
     def draw(self):
         screen.fill(SKY)
@@ -32,6 +41,7 @@ class Level():
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
         self.exit_list.draw(screen)
+        self.trap_list.draw(screen)
         for item in self.blob_list:
             possessed = False
             for item2 in blobList:
@@ -55,13 +65,15 @@ class Level():
         for blob in self.blob_list:
             blob.rect.x += shift_x
             
-            
+        for trap in self.trap_list:
+            trap.rect.x += shift_x
+                
 class Platform(pygame.sprite.Sprite):
     
-    def __init__(self, width, height, color):
+    def __init__(self, width, height, color,name):
         
         super(Platform,self).__init__()
-        
+        self.name = name
         self.image = pygame.Surface([width, height])
         self.image.fill(color)
         
@@ -75,6 +87,17 @@ class exitDoor(pygame.sprite.Sprite):
         
         self.image = pygame.Surface([width, height])
         self.image.fill(RED)
+        
+        self.rect = self.image.get_rect()
+        
+class trapDoor(pygame.sprite.Sprite):
+    
+    def __init__(self, width, height, color):
+        
+        super(trapDoor,self).__init__()
+        
+        self.image = pygame.Surface([width, height])
+        self.image.fill(color)
         
         self.rect = self.image.get_rect()
         
@@ -94,13 +117,13 @@ class Level_01(Level):
               
         
         for platform in level:
-            block = Platform(platform[0], platform[1], GREEN)
+            block = Platform(platform[0], platform[1], GREEN,"platform")
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
             
-        wall = Platform(1, 550, SKY)
+        wall = Platform(1, 550, SKY,"platform")
         wall.rect.x = -50
         wall.rect.y = 0
         wall.player = self.player
@@ -155,13 +178,13 @@ class Level_02(Level):
                  [3500, 50, -1000, 550]]
                  
         for platform in level:
-            block = Platform(platform[0], platform[1], GREEN)
+            block = Platform(platform[0], platform[1], GREEN,"platform")
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
            
-        wall = Platform(1, 550, SKY)
+        wall = Platform(1, 550, SKY,"platform")
         wall.rect.x = 0
         wall.rect.y = 0
         wall.player = self.player
@@ -194,7 +217,7 @@ class Level_03(Level):
                  [3500, 50, -1000, 550]]        
         
         for platform in level:
-            block = Platform(platform[0], platform[1], GREEN)
+            block = Platform(platform[0], platform[1], GREEN,"platform")
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
@@ -206,14 +229,14 @@ class Level_03(Level):
         wall.player = self.player
         self.platform_list.add(wall)    
         '''
-           
-        trapDoor = Platform(100, 1, GREEN)
-        trapDoor.rect.x = 300
-        trapDoor.rect.y = 100
-        trapDoor.player = self.player
-        self.platform_list.add(trapDoor)
         
-        blob1 = blobObject("lArrow")
+        trap = trapDoor(100, 1, GREEN)
+        trap.rect.x = 300
+        trap.rect.y = 100
+        trap.player = self.player
+        self.trap_list.add(trap)
+            
+        blob1 = blobObject("moveLeft")
         blob1.rect.x = 650
         blob1.rect.y = 50
         self.blob_list.add(blob1)

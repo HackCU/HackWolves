@@ -22,6 +22,8 @@ SCREEN_HEIGHT = 600
 
 blobList = []
 
+collected = False
+
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 
