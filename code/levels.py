@@ -26,7 +26,7 @@ class Level():
         self.exit_list.update()
         self.blob_list.update()
         
-    def draw(self, screen):
+    def draw(self):
         screen.fill(SKY)
         
         self.platform_list.draw(screen)

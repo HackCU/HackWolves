@@ -1,7 +1,7 @@
 import pygame
 from helpers import *
 
-def unimplemented(done, screen, clock):
+def unimplemented(done, clock):
     transitionScreen = "titleScreen"
     clicked = False
     while not done:
@@ -12,7 +12,7 @@ def unimplemented(done, screen, clock):
                 clicked = True
         
         screen.fill(BACKGROUND)
-        ExitButton = TransitionButton(425, 500, "Main Menu", screen)
+        ExitButton = TransitionButton(425, 500, "Main Menu")
         
         TitleFont = pygame.font.SysFont('Calibri', 60, True, False)
         TitleText = TitleFont.render("This function isn't implemented yet;", True, BLACK)

@@ -4,7 +4,7 @@ import pygame
 import cPickle as pickle
 from helpers import *
 
-def playGame(done, screen, clock, load):
+def playGame(done, clock, load):
     mainPlayer = player.Player()
     transitionScreen = None
     gameOver = False
@@ -33,7 +33,7 @@ def playGame(done, screen, clock, load):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pickle.dump(current_level_no, open( "save.p", "wb" ) )
-                #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
+                pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
             if event.type == pygame.MOUSEBUTTONDOWN:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
@@ -59,7 +59,7 @@ def playGame(done, screen, clock, load):
                     mainPlayer.level = current_level
                 if event.key == pygame.K_ESCAPE:
                     pickle.dump(current_level_no, open("save.p", "wb" ))
-                    #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
+                    pickle.dump(blobList, open( "blobs.p", "wb" ) )
                     done = True
             
             if event.type == pygame.KEYUP:
@@ -96,9 +96,9 @@ def playGame(done, screen, clock, load):
         
         if not gameOver:
             #drawing code should go here
-            current_level.draw(screen)
+            current_level.draw()
             active_sprite_list.draw(screen)
-            smallTransitionButton(25,25, "Building Screen", screen)
+            smallTransitionButton(25,25, "Building Screen")
             TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
             TitleText = TitleFont.render(currentString, True, BLACK)
             screen.blit(TitleText, [(700),(25)])
@@ -115,7 +115,7 @@ def playGame(done, screen, clock, load):
         
         if transitionScreen != None:
             #save position
-            #pickle.dump(mainPlayer.blobs, open( "blobs.p", "wb" ) )
+            pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen"
     

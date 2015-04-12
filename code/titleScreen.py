@@ -1,7 +1,7 @@
 import pygame
 from helpers import *
 
-def titleScreen(done, screen, clock):
+def titleScreen(done, clock):
     load = False
     while not done:
         (mouseX, mouseY) = (0, 0)
@@ -30,10 +30,10 @@ def titleScreen(done, screen, clock):
                         transitionScreen = "done"
         if transitionScreen == None:
             screen.fill(BACKGROUND)
-            StartButton = TransitionButton(100, 400, "Start Game", screen)
-            LoadButton = TransitionButton(100, 500, "Load Save", screen)
-            OptionsButton = TransitionButton(425, 400, "Options", screen)
-            ExitButton = TransitionButton(425, 500, "Exit", screen)
+            StartButton = TransitionButton(100, 400, "Start Game")
+            LoadButton = TransitionButton(100, 500, "Load Save")
+            OptionsButton = TransitionButton(425, 400, "Options")
+            ExitButton = TransitionButton(425, 500, "Exit")
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
             TitleText = TitleFont.render("HACK_WOLVES", True, BLACK)
