@@ -8,5 +8,11 @@
 
 Codeventures! is an app that will introduce people to the concepts within programming through an enjoyable game. In this game, the user will design action functions and use those functions to navigate their character through side-scrolling levels.
 
-###To run: python main.py
- - Requires pygame libraries
+This is very much a work in progress.
+
+###To use:
+ - Requires pygame libraries; you can get the download information here:
+ - Get the code: $git clone
+ - From the code directory, run $python main.py
+
+Enjoy! Please feel free to contact Kara at kara.james@colorado.edu with any questions or feedback!
