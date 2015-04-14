@@ -20,6 +20,7 @@ This is very much a work in progress; please reference the tutorial below or con
  - This new screen is the Building Screen; the initial function is a move right function. Click to pick up and click to drop the building blocks so the top two lines look like this:
 
 	[if   ][rArrow   ][blank]
+
 	[blank][MoveRight][blank]
 
  - Hit 'Start' again; you can use the function you built to move right with the right arrow key!
