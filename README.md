@@ -11,8 +11,8 @@ Codeventures! is an app that will introduce people to the concepts within progra
 This is very much a work in progress.
 
 ###To use:
- - Requires pygame libraries; you can get the download information here:
- - Get the code: $git clone
- - From the code directory, run $python main.py
+ - Requires pygame libraries; you can get the download information here: http://www.pygame.org/download.shtml
+ - Get the code: $git clone https://github.com/HackCU/HackWolves.git
+ - From the HackWolves/code directory, run $python main.py
 
 Enjoy! Please feel free to contact Kara at kara.james@colorado.edu with any questions or feedback!
