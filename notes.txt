@@ -1,4 +1,31 @@
-Notes & Reminders: **USE STANDARD PYTHON
+#Notes & Reminders & Planning:
+
+Tasks
+	refactor the code
+	fixing up the code we have
+	list of items that we want to teach them; implement that
+	planning levels to make them use those functions
+	saving functions system/scrollbar/revising the function building screen
+	write tutorial, decide on feedback to give to player
+
+
+Want to Teach:
+	High Priority:
+		booleans
+		while loops
+		if else
+		arrays
+		lists
+		comparisons
+	Medium Priority:
+		dictionaries/mapping
+		classes & objects
+	Low Priority:
+		data types
+		print statements
+
+Refactoring Code
+ - Move all 'menu' screen functions into one document
 
 Post-HackCU Stretch Goals:
 - Images
