@@ -1,8 +1,10 @@
-import player
-import levels
 import pygame
 import cPickle as pickle
-from helpers import *
+
+#import player
+from . import *
+from .Levels import *
+#from helpers import *
 
 def playGame(done, clock, load):
     mainPlayer = player.Player()

@@ -1,7 +1,8 @@
 import pygame
-from helpers import *
-import player
-import blobObject
+
+from Helpers import *
+import Player
+import BlobObject
 
 def findBlob(blobList, mouseX, mouseY):
     for blob in blobList:

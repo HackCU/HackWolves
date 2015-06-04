@@ -1,11 +1,9 @@
 import pygame
-import MenuScreens
-import player
-import playScreen
-import blobScreen
-import levels
+from Screens import *
+import Player
+from Levels import *
 import cPickle as pickle
-from helpers import *
+from Helpers import *
 
 def main():
     pygame.display.init()
@@ -18,7 +16,7 @@ def main():
     done = False
     clock = pygame.time.Clock()
 	
-    transitionScreen,load = MenuScreens.titleScreen(done, clock)
+    transitionScreen,load = titleScreen(done, clock)
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

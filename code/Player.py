@@ -1,6 +1,6 @@
 import pygame
-import helpers
-from helpers import *
+import Helpers
+from Helpers import *
 import main
 
 class Player(pygame.sprite.Sprite):

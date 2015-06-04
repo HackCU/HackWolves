@@ -1,6 +1,6 @@
 import pygame
-from helpers import *
-import blobScreen
+from Helpers import *
+from Screens import *
 
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)

@@ -1,6 +1,6 @@
 #File for holding the menu screens:
 import pygame
-from helpers import *
+from Helpers import *
 
 #Title Screen: entry screen for the app
 def titleScreen(done, clock):
