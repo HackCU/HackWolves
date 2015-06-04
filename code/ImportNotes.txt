@@ -1,0 +1,12 @@
+Import notes
+
+to access files from a sub directory:
+    from <folder> import *
+    and in <folder>/__init__.py have from <file> import *
+    
+to access files in super directory:
+    from <folder> import *
+    and in <folder>/__init__.py have from <file> import *
+
+to access files in the same directory:
+    
