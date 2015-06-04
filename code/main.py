@@ -43,7 +43,7 @@ def main():
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    pygame.display.set_caption("THIS GAME IS AWESOME!")
+    pygame.display.set_caption("Codeventures!")
     done = False
     clock = pygame.time.Clock()
 	
