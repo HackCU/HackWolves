@@ -1,40 +1,11 @@
 import pygame
-import unimplementedScreen
-import titleScreen
+import MenuScreens
 import player
 import playScreen
 import blobScreen
 import levels
-import optionsScreen
 import cPickle as pickle
 from helpers import *
-
-def exitScreen(done, clock):
-    clicked = False
-    while not done:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                clicked = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    done = True
-        screen.fill(BACKGROUND)
-        ExitButton = TransitionButton(425, 500, "Exit Game")
-        
-        TitleFont = pygame.font.SysFont('Calibri', 60, True, False)
-        TitleText = TitleFont.render("We hope you had fun :)", True, BLACK)
-        SubtitleText = TitleFont.render("Thanks for playing!", True, BLACK)
-        screen.blit(TitleText, [(50),(100)])
-        screen.blit(SubtitleText, [(50),(200)])
-        
-        if clicked == True:
-            return
-        
-        clock.tick(60)
-        pygame.display.flip()
-    return "done"
 
 def main():
     pygame.display.init()
@@ -47,7 +18,7 @@ def main():
     done = False
     clock = pygame.time.Clock()
 	
-    transitionScreen,load = titleScreen.titleScreen(done, clock)
+    transitionScreen,load = MenuScreens.titleScreen(done, clock)
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -57,13 +28,13 @@ def main():
         elif transitionScreen == "playScreen":
             transitionScreen,load = playScreen.playGame(done, clock, load)
         elif transitionScreen == "titleScreen":
-            transitionScreen, load = titleScreen.titleScreen(done, clock)
+            transitionScreen, load = MenuScreens.titleScreen(done, clock)
         elif transitionScreen == "optionsScreen":
-            transitionScreen = optionsScreen.options(done, clock)
+            transitionScreen = MenuScreens.options(done, clock)
         elif transitionScreen == "unimplemented":
-            transitionScreen = unimplementedScreen.unimplemented(done, clock)
+            transitionScreen = MenuScreens.unimplemented(done, clock)
         elif transitionScreen == "done":
-            exitScreen(done, clock)
+            MenuScreens.exitScreen(done, clock)
             done = True
             
     pygame.quit()

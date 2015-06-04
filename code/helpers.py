@@ -3,8 +3,6 @@ import pygame
 from pygame.locals import *
 
 #Globals
-
-
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (42, 168, 27)
@@ -206,11 +204,3 @@ def buildCommands(array):
 
         
     return (commandString1, commandString2, commandString3)
-    
-    
-    
-    
-    
-    
-    
-    
