@@ -73,9 +73,12 @@ def playGame(done, clock, load):
                 print "cs2 = " + cs2
                 print "cs3 = " + cs3
                 
-                exec(cs1)
-                exec(cs2)
-                exec(cs3)
+                try:
+                    exec(cs1)
+                    exec(cs2)
+                    exec(cs3)
+                except:
+                    print "Whoooops"
                 
                 # ourString = "if event.key == pygame.K_LEFT: exec('mainPlayer.go_left()')"
 #                 ourString2 = "if event.key == pygame.K_RIGHT: exec('mainPlayer.go_right()')"
