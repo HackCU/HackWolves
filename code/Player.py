@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.gameOver = False
         self.current_level_no = 0
         self.current_level = None
-        self.currentString = "Level " + str((self.current_level_no)+1)
+        self.current_string = ""
 
         
     def update(self):
