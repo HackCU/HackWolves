@@ -10,10 +10,10 @@
 import pygame
 import cPickle as pickle
 
-import Levels
 from Helpers import *
-import Player
 import BlobObject
+import Levels
+import Player
 
 """     Title Screen: entry screen for the app      """
 def titleScreen(done, clock):
@@ -31,7 +31,7 @@ def titleScreen(done, clock):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
-                        transitionScreen = "blobScreen"
+                        transitionScreen = "buildingScreen"
                         load = False
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "playScreen"
@@ -164,109 +164,8 @@ def exitScreen(done, clock):
         pygame.display.flip()
     return "done"
 
-def findBlob(blobList, mouseX, mouseY):
-    for blob in blobList:
-        (X, Y) = blob.returnPosition()
-        if X < mouseX and (X+100) > mouseX:
-            if Y < mouseY and (Y+50) > mouseY:
-                return blob
-    return None
-
-"""     Blob Screen: Function building display with helper functions      """
-def findPositionInArray(mouseX, mouseY):
-    if 175 <= mouseX and mouseX < 325:
-        if mouseY < 200:
-            return (0,0)
-        elif 200 <= mouseY < 275:
-            return (1,0)
-        elif 275 <= mouseY < 350:
-            return (2,0)
-        elif 350 <= mouseY < 425:
-            return (3,0)
-        elif 425 <= mouseY < 500:
-            return (4,0)
-        elif 500 <= mouseY < 575:
-            return (5,0)
-    elif 325 <= mouseX and mouseX < 475:
-        if mouseY < 200:
-            return (0,1)
-        elif 200 <= mouseY < 275:
-            return (1,1)
-        elif 275 <= mouseY < 350:
-            return (2,1)
-        elif 350 <= mouseY < 425:
-            return (3,1)
-        elif 425 <= mouseY < 500:
-            return (4,1)
-        elif 500 <= mouseY < 575:
-            return (5,1)
-    elif 475 <= mouseX and mouseX < 625:
-        if mouseY < 200:
-            return (0,2)
-        elif 200 <= mouseY < 275:
-            return (1,2)
-        elif 275 <= mouseY < 350:
-            return (2,2)
-        elif 350 <= mouseY < 425:
-            return (3,2)
-        elif 425 <= mouseY < 500:
-            return (4,2)
-        elif 500 <= mouseY < 575:
-            return (5,2)
-    else:
-        return None
-
-def snapToGrid(stored):
-    if stored != None:
-        X, Y = stored.returnPosition()
-        if 175 <= X and X < 325:
-            X = 190
-            if Y < 200:
-                Y = 140
-            elif 200 <= Y < 275:
-                Y = 215
-            elif 275 <= Y < 350:
-                Y = 290
-            elif 350 <= Y < 425:
-                Y = 365
-            elif 425 <= Y < 500:
-                Y = 440
-            elif 500 <= Y < 575:
-                Y = 515
-        elif 325 <= X and X < 475:
-            X = 340
-            if Y < 200:
-                Y = 140
-            elif 200 <= Y < 275:
-                Y = 215
-            elif 275 <= Y < 350:
-                Y = 290
-            elif 350 <= Y < 425:
-                Y = 365
-            elif 425 <= Y < 500:
-                Y = 440
-            elif 500 <= Y < 575:
-                Y = 515
-        elif 475 <= X and X < 625:
-            X = 490
-            if Y < 200:
-                Y = 140
-            elif 200 <= Y < 275:
-                Y = 215
-            elif 275 <= Y < 350:
-                Y = 290
-            elif 350 <= Y < 425:
-                Y = 365
-            elif 425 <= Y < 500:
-                Y = 440
-            elif 500 <= Y < 575:
-                Y = 515
-        else:
-            return None
-        stored.updatePosition(X,Y)
-        return
-
-def blobScreen(done, clock, load):
+"""     Building Screen: Function building display with helper functions      """
+def buildingScreen(done, clock, load):
     transitionScreen = None
     
     rArrow = Blob(25, 325, BlobObject.blobObject("rArrow"))
@@ -440,7 +339,7 @@ def playGame(done, clock, load):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 25 and mouseX < 135:
                     if mouseY > 25 and mouseY < 75:
-                        transitionScreen = "blobScreen"
+                        transitionScreen = "buildingScreen"
             if event.type == pygame.KEYDOWN:
                 # if event.key == pygame.K_LEFT:
 #                     mainPlayer.go_left()
@@ -560,7 +459,7 @@ def playGame(done, clock, load):
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump(mainPlayer.current_level_no, open( "Saves/save.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/position.p", "wb" ) )
-            return "blobScreen", True
+            return "buildingScreen", True
     
     # clear?
     pickle.dump((340, 50, 0), open( "Saves/position.p", "wb" ) )

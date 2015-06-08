@@ -1,8 +1,7 @@
 import pygame
+#Removing this breaks OpenTrapDoor - dunno why
 import Helpers
-from Helpers import collected, load_image
-import main
-import Screens
+from Helpers import *
 
 class Player(pygame.sprite.Sprite):
     
@@ -34,8 +33,8 @@ class Player(pygame.sprite.Sprite):
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
             if blob.name is "MoveLeft":
-                Helpers.collected = True
-                #print "collected"
+                Helpers.OpenTrapDoor = True
+                #print "OpenTrapDoor"
             blob.collect()
 
  
@@ -85,7 +84,8 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.gameOver = True
         
-        if Helpers.collected is 1:
+
+        if Helpers.OpenTrapDoor:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
         else:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, False)
@@ -108,9 +108,9 @@ class Player(pygame.sprite.Sprite):
         else:
             self.change_y += .35
         
-        if self.rect.y >= main.SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
+        if self.rect.y >= SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
             self.change_y = 0
-            self.rect.y = main.SCREEN_HEIGHT - self.rect.height
+            self.rect.y = SCREEN_HEIGHT - self.rect.height
        
     def go_left(self):
         self.change_x = -10
@@ -122,6 +122,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += 2
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
         self.rect.y -= 2
-        if len(platform_hit_list) > 0 or self.rect.bottom >= main.SCREEN_HEIGHT:
+        if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
             self.change_y = -10
          

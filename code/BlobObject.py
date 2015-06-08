@@ -1,10 +1,6 @@
 import pygame
 from Helpers import *
-from Screens import *
 
-size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-screen = pygame.display.set_mode(size)
- 
 class blobObject(pygame.sprite.Sprite):
     
     def __init__(self, name):
@@ -93,7 +89,3 @@ class blobObject(pygame.sprite.Sprite):
     def __reduce__(self):
         return (self.__class__, (self.name,))
     
-    # def update(self):
-    #     if self.collected:
-    #         self.rect = [0,0]
-        

@@ -10,7 +10,7 @@ import pygame
 from Helpers import *
 import BlobObject
 
-"""'''     Level Helpers       '''"""
+"""'''     Level Helper Functions       '''"""
 class Platform(pygame.sprite.Sprite):
     
     def __init__(self, width, height, color,name):
