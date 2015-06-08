@@ -138,7 +138,7 @@ def playGame(done, clock, load):
         current_position = mainPlayer.rect.x + current_level.world_shift
         #print "rect ",mainPlayer.rect.x
         #print "worldshift ", current_level.world_shift
-        if current_position < current_level.level_limit:
+        '''if current_position < current_level.level_limit:
             mainPlayer.rect.x = 120
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
@@ -150,7 +150,7 @@ def playGame(done, clock, load):
                   #  mainPlayer.rect.y = 0
             else:
                 gameOver = True
-        
+        '''
         if not gameOver:
             #drawing code should go here
             current_level.draw()

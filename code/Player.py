@@ -61,6 +61,21 @@ class Player(pygame.sprite.Sprite):
  
             # Stop our vertical movement
             self.change_y = 0
+            
+        #hopefully exit collision
+        exit_hit_list = pygame.sprite.spritecollide(self, self.level.exit_list, False)
+        for ex in exit_hit_list:
+            mainPlayer.rect.x = 120
+            if playGame.current_level_no < len(playGame.level_list)-1:
+                playGame.current_level_no += 1
+                playGame.currentString = "Level " + str((playGame.current_level_no)+1)
+                playGame.current_level = playGame.level_list[playGame.current_level_no]
+                playGame.mainPlayer.level = playGame.current_level
+                #if current_level_no is 2:
+                 #   mainPlayer.rect.x = 50
+                  #  mainPlayer.rect.y = 0
+            else:
+                playGame.gameOver = True
         
         if helpers.collected:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
