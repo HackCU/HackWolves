@@ -1,9 +1,11 @@
 import pygame
-from Screens import *
-import Player
-from Levels import *
 import cPickle as pickle
+
+from BlobObject import *
 from Helpers import *
+from Levels import *
+from Player import *
+import Screens
 
 def main():
     pygame.display.init()
@@ -22,17 +24,17 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
         if transitionScreen == "blobScreen":
-            transitionScreen, load = BlobScreen.blobScreen(done, clock, load)
+            transitionScreen, load = Screens.blobScreen(done, clock, load)
         elif transitionScreen == "playScreen":
-            transitionScreen,load = PlayScreen.playGame(done, clock, load)
+            transitionScreen,load = Screens.playGame(done, clock, load)
         elif transitionScreen == "titleScreen":
-            transitionScreen, load = MenuScreens.titleScreen(done, clock)
+            transitionScreen, load = Screens.titleScreen(done, clock)
         elif transitionScreen == "optionsScreen":
-            transitionScreen = MenuScreens.options(done, clock)
+            transitionScreen = Screens.options(done, clock)
         elif transitionScreen == "unimplemented":
-            transitionScreen = MenuScreens.unimplemented(done, clock)
+            transitionScreen = Screens.unimplemented(done, clock)
         elif transitionScreen == "done":
-            MenuScreens.exitScreen(done, clock)
+            Screens.exitScreen(done, clock)
             done = True
             
     pygame.quit()

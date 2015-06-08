@@ -2,7 +2,7 @@ import pygame
 import Helpers
 from Helpers import *
 import main
-from Screens import PlayScreen
+import Screens
 
 class Player(pygame.sprite.Sprite):
     
