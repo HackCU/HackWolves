@@ -1,8 +1,14 @@
 #Level Template
 import pygame
 
-#import main, helpers and blobobject
+import main
+from LevelTemplate import *
 from . import *
+from LevelHelpers import *
+from Helpers import *
+from BlobObject import *
+
+#import main, helpers and blobobject
 
 class Level():
     platform_list = None

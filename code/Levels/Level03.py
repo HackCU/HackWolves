@@ -1,7 +1,9 @@
 #Level 03
 import pygame
 import main
-import Helpers
+from LevelTemplate import *
+from LevelHelpers import *
+from . import *
 from Helpers import *
 from BlobObject import *
 

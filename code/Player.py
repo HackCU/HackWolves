@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
         for blob in blob_hit_list:
             if blob.name is "MoveLeft":
-                helpers.collected = True
+                Helpers.collected = True
                 #print "collected"
             blob.collect()
 
@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
             # Stop our vertical movement
             self.change_y = 0
         
-        if helpers.collected:
+        if Helpers.collected:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
         else:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, False)
