@@ -11,24 +11,22 @@ import Player
 def playGame(done, clock, load):
     mainPlayer = Player.Player()
     transitionScreen = None
-    mainPlayer.gameOver = False
     
-    #level_list = []
     mainPlayer.level_list.append(Level01.Level_01(mainPlayer))
     mainPlayer.level_list.append(Level02.Level_02(mainPlayer))
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
         mainPlayer.current_level_no = pickle.load(open("save.p", "rb"))
+        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
         mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift = pickle.load(open("position.p", "rb"))
     else:
-        mainPlayer.current_level_no = 0
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
+        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
         mainPlayer.rect.x = 50
         mainPlayer.rect.y = 0
     #current_level = level_list[current_level_no]
-    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
     
     active_sprite_list = pygame.sprite.Group()
     mainPlayer.level = mainPlayer.current_level
@@ -47,7 +45,7 @@ def playGame(done, clock, load):
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pickle.dump(current_level_no, open( "save.p", "wb" ) )
+                pickle.dump(mainPlayer.current_level_no, open( "save.p", "wb" ) )
                 #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
             if event.type == pygame.KEYDOWN:
@@ -92,14 +90,14 @@ def playGame(done, clock, load):
                 #     mainPlayer.jump()
                 if event.key == pygame.K_1:
                     mainPlayer.current_level_no = 0
-                    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
                     mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
                     mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
                     mainPlayer.rect.y = 0
                 if event.key == pygame.K_2:
                     mainPlayer.current_level_no = 1
-                    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
                     mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
                     mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
@@ -137,7 +135,7 @@ def playGame(done, clock, load):
             mainPlayer.rect.left = 120
             mainPlayer.current_level.shift_world(diff)
             
-        current_position = mainPlayer.rect.x + mainPlayer.current_level.world_shift
+        #current_position = mainPlayer.rect.x + mainPlayer.current_level.world_shift
         #print "rect ",mainPlayer.rect.x
         #print "worldshift ", current_level.world_shift
         '''if current_position < current_level.level_limit:
@@ -159,7 +157,7 @@ def playGame(done, clock, load):
             active_sprite_list.draw(screen)
             smallTransitionButton(25,25, "Building Screen")
             TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
-            TitleText = TitleFont.render(mainPlayer.currentString, True, BLACK)
+            TitleText = TitleFont.render(mainPlayer.current_string, True, BLACK)
             screen.blit(TitleText, [(700),(25)])
             #end of drawing code section    
         else:
