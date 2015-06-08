@@ -1,6 +1,6 @@
 import pygame
 import Helpers
-from Helpers import *
+from Helpers import collected, load_image
 import main
 import Screens
 
@@ -85,7 +85,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.gameOver = True
         
-        if Helpers.collected:
+        if Helpers.collected is 1:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
         else:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, False)
