@@ -18,7 +18,7 @@ WORKSPACE2 = (209, 98, 19)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-blobList = []
+abilityList = []
 
 collected = False
 
@@ -52,8 +52,8 @@ class smallTransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
-class Blob():
-    def __init__(self, valueX, valueY, blobObject):
+class abilityButton():
+    def __init__(self, valueX, valueY, abilityObject):
         self.locationX = valueX
         self.locationY = valueY
         self.originX = valueX
@@ -62,15 +62,15 @@ class Blob():
         self.colorText = BLACK
         self.screen = screen
 
-        self.blob = blobObject
+        self.ability = abilityObject
         self.form1 = pygame.draw.rect(screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
         self.form2 = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
 
         font = pygame.font.SysFont('Calibri', 25, True, False)
-        self.text = font.render(blobObject.name, True, self.colorText)
+        self.text = font.render(abilityObject.name, True, self.colorText)
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
         
-        self.name = blobObject.name
+        self.name = abilityObject.name
         self.string = ""
     
     def provideName(self):
@@ -82,7 +82,7 @@ class Blob():
         return (valueX, valueY)
     
     def __reduce__(self):
-        return (self.__class__, (self.locationX, self.locationY, self.blob))
+        return (self.__class__, (self.locationX, self.locationY, self.ability))
         
     def generateString(self):
         if self.name == "Default":

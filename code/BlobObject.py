@@ -5,7 +5,7 @@ from Screens import *
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
  
-class blobObject(pygame.sprite.Sprite):
+class abilityItem(pygame.sprite.Sprite):
     
     def __init__(self, name):
         pygame.sprite.Sprite.__init__(self)

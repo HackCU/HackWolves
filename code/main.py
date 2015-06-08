@@ -1,7 +1,7 @@
 import pygame
 import cPickle as pickle
 
-from BlobObject import *
+from AbilityObject import *
 from Helpers import *
 from Levels import *
 from Player import *
@@ -23,8 +23,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-        if transitionScreen == "blobScreen":
-            transitionScreen, load = Screens.blobScreen(done, clock, load)
+        if transitionScreen == "buildingScreen":
+            transitionScreen, load = Screens.buildingScreen(done, clock, load)
         elif transitionScreen == "playScreen":
             transitionScreen,load = Screens.playGame(done, clock, load)
         elif transitionScreen == "titleScreen":
