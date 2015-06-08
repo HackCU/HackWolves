@@ -22,9 +22,9 @@ def main():
             if event.type == pygame.QUIT:
                 done = True
         if transitionScreen == "blobScreen":
-            transitionScreen, load = blobScreen.blobScreen(done, clock, load)
+            transitionScreen, load = BlobScreen.blobScreen(done, clock, load)
         elif transitionScreen == "playScreen":
-            transitionScreen,load = playScreen.playGame(done, clock, load)
+            transitionScreen,load = PlayScreen.playGame(done, clock, load)
         elif transitionScreen == "titleScreen":
             transitionScreen, load = MenuScreens.titleScreen(done, clock)
         elif transitionScreen == "optionsScreen":

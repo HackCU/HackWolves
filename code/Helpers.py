@@ -135,7 +135,7 @@ class Blob():
         return (valueX, valueY)
 
 def load_image(name, colorkey=None):
-    fullname = os.path.join('resources', 'images')
+    fullname = os.path.join('Resources', 'Images')
     fullname = os.path.join(fullname, name)
     try:
         image = pygame.image.load(fullname)

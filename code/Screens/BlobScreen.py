@@ -108,12 +108,12 @@ def snapToGrid(stored):
 def blobScreen(done, clock, load):
     transitionScreen = None
     
-    rArrow = Blob(25, 325, blobObject.blobObject("rArrow"))
-    lArrow = Blob(25, 400, blobObject.blobObject("lArrow"))
-    upArrow = Blob(25, 475, blobObject.blobObject("upArrow"))
-    ifBlob = Blob(25, 250, blobObject.blobObject("if"))
+    rArrow = Blob(25, 325, BlobObject.blobObject("rArrow"))
+    lArrow = Blob(25, 400, BlobObject.blobObject("lArrow"))
+    upArrow = Blob(25, 475, BlobObject.blobObject("upArrow"))
+    ifBlob = Blob(25, 250, BlobObject.blobObject("if"))
     
-    MoveRight = Blob(25, 25, blobObject.blobObject("MoveRight"))
+    MoveRight = Blob(25, 25, BlobObject.blobObject("MoveRight"))
     blobList.append(MoveRight)
     
     blobList.append(rArrow)
@@ -121,12 +121,12 @@ def blobScreen(done, clock, load):
     blobList.append(upArrow)
     blobList.append(ifBlob)
     
-    rArrow2 = Blob(25, 325, blobObject.blobObject("rArrow"))
-    lArrow2 = Blob(25, 400, blobObject.blobObject("lArrow"))
-    upArrow2 = Blob(25, 475, blobObject.blobObject("upArrow"))
-    ifBlob2 = Blob(25, 250, blobObject.blobObject("if"))
+    rArrow2 = Blob(25, 325, BlobObject.blobObject("rArrow"))
+    lArrow2 = Blob(25, 400, BlobObject.blobObject("lArrow"))
+    upArrow2 = Blob(25, 475, BlobObject.blobObject("upArrow"))
+    ifBlob2 = Blob(25, 250, BlobObject.blobObject("if"))
     
-    MoveRight2 = Blob(25, 25, blobObject.blobObject("MoveRight"))
+    MoveRight2 = Blob(25, 25, BlobObject.blobObject("MoveRight"))
     blobList.append(MoveRight2)
     
     blobList.append(rArrow2)

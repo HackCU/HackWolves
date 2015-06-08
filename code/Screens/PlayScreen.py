@@ -3,17 +3,17 @@ import cPickle as pickle
 
 #import player
 from . import *
-from .Levels import *
+from Levels import *
 #from helpers import *
 
 def playGame(done, clock, load):
-    mainPlayer = player.Player()
+    mainPlayer = Player.Player()
     transitionScreen = None
     gameOver = False
     
     level_list = []
-    level_list.append(levels.Level_01(mainPlayer))
-    level_list.append(levels.Level_02(mainPlayer))
+    level_list.append(Level01.Level_01(mainPlayer))
+    level_list.append(Level02.Level_02(mainPlayer))
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:

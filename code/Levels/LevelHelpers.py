@@ -1,10 +1,7 @@
 #Level Helpers
 import pygame
 from . import *
-#import main
-#import Helpers
-#from Helpers import *
-#from BlobObject import *
+from Helpers import *
 
 class Platform(pygame.sprite.Sprite):
     
