@@ -5,31 +5,33 @@ import cPickle as pickle
 from . import *
 from Levels import *
 #from helpers import *
+import Player
+
 
 def playGame(done, clock, load):
     mainPlayer = Player.Player()
     transitionScreen = None
-    gameOver = False
+    mainPlayer.gameOver = False
     
-    level_list = []
-    level_list.append(Level01.Level_01(mainPlayer))
-    level_list.append(Level02.Level_02(mainPlayer))
+    #level_list = []
+    mainPlayer.level_list.append(Level01.Level_01(mainPlayer))
+    mainPlayer.level_list.append(Level02.Level_02(mainPlayer))
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
-        current_level_no = pickle.load(open("save.p", "rb"))
-        current_level = level_list[current_level_no]
-        mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
+        mainPlayer.current_level_no = pickle.load(open("save.p", "rb"))
+        mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
+        mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift = pickle.load(open("position.p", "rb"))
     else:
-        current_level_no = 0
-        current_level = level_list[current_level_no]
+        mainPlayer.current_level_no = 0
+        mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
         mainPlayer.rect.x = 50
         mainPlayer.rect.y = 0
     #current_level = level_list[current_level_no]
-    currentString = "Level " + str((current_level_no)+1)
+    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
     
     active_sprite_list = pygame.sprite.Group()
-    mainPlayer.level = current_level
+    mainPlayer.level = mainPlayer.current_level
     
     #mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift = pickle.load(open("position.p", "rb"))
     #mainPlayer.rect.x = 50
@@ -38,9 +40,9 @@ def playGame(done, clock, load):
     
     #current_level.shift_world(-current_level.world_shift)
 
-    temp = current_level.world_shift
-    current_level.world_shift = 0
-    current_level.shift_world(temp)
+    temp = mainPlayer.current_level.world_shift
+    mainPlayer.current_level.world_shift = 0
+    mainPlayer.current_level.shift_world(temp)
             
     while not done:
         for event in pygame.event.get():
@@ -89,17 +91,17 @@ def playGame(done, clock, load):
                 # if event.key == pygame.K_UP:
                 #     mainPlayer.jump()
                 if event.key == pygame.K_1:
-                    current_level_no = 0
-                    currentString = "Level " + str((current_level_no)+1)
-                    current_level = level_list[current_level_no]
-                    mainPlayer.level = current_level
+                    mainPlayer.current_level_no = 0
+                    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
+                    mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
                     mainPlayer.rect.y = 0
                 if event.key == pygame.K_2:
-                    current_level_no = 1
-                    currentString = "Level " + str((current_level_no)+1)
-                    current_level = level_list[current_level_no]
-                    mainPlayer.level = current_level
+                    mainPlayer.current_level_no = 1
+                    mainPlayer.currentString = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
+                    mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
                     mainPlayer.rect.y = 450
                 #if event.key == pygame.K_3:
@@ -111,7 +113,7 @@ def playGame(done, clock, load):
                 #    mainPlayer.rect.y = 0
 
                 if event.key == pygame.K_ESCAPE:
-                    pickle.dump(current_level_no, open("save.p", "wb" ))
+                    pickle.dump(mainPlayer.current_level_no, open("save.p", "wb" ))
                     #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                     done = True
             
@@ -123,19 +125,19 @@ def playGame(done, clock, load):
                     
         active_sprite_list.update()
         
-        current_level.update()
+        mainPlayer.current_level.update()
         
         if mainPlayer.rect.right >= 500:
             diff = mainPlayer.rect.right - 500
             mainPlayer.rect.right = 500
-            current_level.shift_world(-diff)
+            mainPlayer.current_level.shift_world(-diff)
         
         if mainPlayer.rect.left <= 120:
             diff = 120 - mainPlayer.rect.left
             mainPlayer.rect.left = 120
-            current_level.shift_world(diff)
+            mainPlayer.current_level.shift_world(diff)
             
-        current_position = mainPlayer.rect.x + current_level.world_shift
+        current_position = mainPlayer.rect.x + mainPlayer.current_level.world_shift
         #print "rect ",mainPlayer.rect.x
         #print "worldshift ", current_level.world_shift
         '''if current_position < current_level.level_limit:
@@ -151,13 +153,13 @@ def playGame(done, clock, load):
             else:
                 gameOver = True
         '''
-        if not gameOver:
+        if not mainPlayer.gameOver:
             #drawing code should go here
-            current_level.draw()
+            mainPlayer.current_level.draw()
             active_sprite_list.draw(screen)
             smallTransitionButton(25,25, "Building Screen")
             TitleFont = pygame.font.SysFont('Calibri', 25, True, False)
-            TitleText = TitleFont.render(currentString, True, BLACK)
+            TitleText = TitleFont.render(mainPlayer.currentString, True, BLACK)
             screen.blit(TitleText, [(700),(25)])
             #end of drawing code section    
         else:
@@ -173,8 +175,8 @@ def playGame(done, clock, load):
         if transitionScreen != None:
             #save position
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
-            pickle.dump(current_level_no, open( "save.p", "wb" ) )
-            pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, current_level.world_shift), open( "position.p", "wb" ) )
+            pickle.dump(mainPlayer.current_level_no, open( "save.p", "wb" ) )
+            pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "position.p", "wb" ) )
             return "blobScreen", True
     
     # clear?

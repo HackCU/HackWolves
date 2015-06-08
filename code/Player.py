@@ -2,6 +2,7 @@ import pygame
 import Helpers
 from Helpers import *
 import main
+from Screens import PlayScreen
 
 class Player(pygame.sprite.Sprite):
     
@@ -14,7 +15,14 @@ class Player(pygame.sprite.Sprite):
         self.change_y = 0
         self.level = None
         self.blobs = []
-    
+        
+        self.level_list = []
+        self.gameOver = False
+        self.current_level_no = 0
+        self.current_level = None
+        self.currentString = "Level " + str((self.current_level_no)+1)
+
+        
     def update(self):
         # Gravity
         self.calc_grav()
@@ -65,17 +73,17 @@ class Player(pygame.sprite.Sprite):
         #hopefully exit collision
         exit_hit_list = pygame.sprite.spritecollide(self, self.level.exit_list, False)
         for ex in exit_hit_list:
-            mainPlayer.rect.x = 120
-            if playGame.current_level_no < len(playGame.level_list)-1:
-                playGame.current_level_no += 1
-                playGame.currentString = "Level " + str((playGame.current_level_no)+1)
-                playGame.current_level = playGame.level_list[playGame.current_level_no]
-                playGame.mainPlayer.level = playGame.current_level
+            self.rect.x = 120
+            if self.current_level_no < len(self.level_list)-1:
+                self.current_level_no += 1
+                self.currentString = "Level " + str((self.current_level_no)+1)
+                self.current_level = self.level_list[self.current_level_no]
+                self.level = self.current_level
                 #if current_level_no is 2:
                  #   mainPlayer.rect.x = 50
                   #  mainPlayer.rect.y = 0
             else:
-                playGame.gameOver = True
+                self.gameOver = True
         
         if Helpers.collected:
             block_hit_list = pygame.sprite.spritecollide(self, self.level.trap_list, True)
