@@ -31,7 +31,7 @@ def titleScreen(done, clock):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
-                        transitionScreen = "blobScreen"
+                        transitionScreen = "buildingScreen"
                         load = False
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "playScreen"
@@ -164,8 +164,8 @@ def exitScreen(done, clock):
         pygame.display.flip()
     return "done"
 
-"""     Blob Screen: Function building display with helper functions      """
-def blobScreen(done, clock, load):
+"""     Building Screen: Function building display with helper functions      """
+def buildingScreen(done, clock, load):
     transitionScreen = None
     
     rArrow = Blob(25, 325, BlobObject.blobObject("rArrow"))
@@ -339,7 +339,7 @@ def playGame(done, clock, load):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 25 and mouseX < 135:
                     if mouseY > 25 and mouseY < 75:
-                        transitionScreen = "blobScreen"
+                        transitionScreen = "buildingScreen"
             if event.type == pygame.KEYDOWN:
                 # if event.key == pygame.K_LEFT:
 #                     mainPlayer.go_left()
@@ -459,7 +459,7 @@ def playGame(done, clock, load):
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump(mainPlayer.current_level_no, open( "save.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "position.p", "wb" ) )
-            return "blobScreen", True
+            return "buildingScreen", True
     
     # clear?
     pickle.dump((340, 50, 0), open( "position.p", "wb" ) )
