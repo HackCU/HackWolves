@@ -1,9 +1,6 @@
 import pygame
 from Helpers import *
 
-size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-screen = pygame.display.set_mode(size)
- 
 class blobObject(pygame.sprite.Sprite):
     
     def __init__(self, name):
