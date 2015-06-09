@@ -1,3 +1,4 @@
+#main
 import pygame
 import cPickle as pickle
 
