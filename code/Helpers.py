@@ -2,12 +2,12 @@
 #Table of Contents:
 #   Global Constants
 #   Variables and Lists
-#   WOO
+#   Find Ability Button
 #   Find Position
 #   Snap to Grid
 #   Transition Button
 #   Small Transition Button
-#   YAY
+#   Ability Button
 #   Load Image Function
 #   Create String Function
 #   Build Commands Function
@@ -48,7 +48,7 @@ commandString1 = ""
 commandString2 = ""
 commandString3 = ""
 
-"""     WOO     """
+"""     Find Ability Button     """
 def findAbilityButton(abilityList, mouseX, mouseY):
     for ability in abilityList:
         (X, Y) = ability.returnPosition()
@@ -174,7 +174,7 @@ class smallTransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
-"""     YAY     """
+"""     Ability Button     """
 class abilityButton():
     def __init__(self, valueX, valueY, abilityObject):
         self.locationX = valueX
