@@ -20,7 +20,7 @@ SCREEN_HEIGHT = 600
 
 abilityList = []
 
-collected = False
+OpenTrapDoor = False
 
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
@@ -31,6 +31,107 @@ workspaceArray = [["" for x in range(3)] for x in range(6)]
 commandString1 = ""
 commandString2 = ""
 commandString3 = ""
+
+def findAbilityButton(abilityList, mouseX, mouseY):
+    for ability in abilityList:
+        (X, Y) = ability.returnPosition()
+        if X < mouseX and (X+100) > mouseX:
+            if Y < mouseY and (Y+50) > mouseY:
+                return ability
+    return None
+
+def findPositionInArray(mouseX, mouseY):
+    if 175 <= mouseX and mouseX < 325:
+        if mouseY < 200:
+            return (0,0)
+        elif 200 <= mouseY < 275:
+            return (1,0)
+        elif 275 <= mouseY < 350:
+            return (2,0)
+        elif 350 <= mouseY < 425:
+            return (3,0)
+        elif 425 <= mouseY < 500:
+            return (4,0)
+        elif 500 <= mouseY < 575:
+            return (5,0)
+    elif 325 <= mouseX and mouseX < 475:
+        if mouseY < 200:
+            return (0,1)
+        elif 200 <= mouseY < 275:
+            return (1,1)
+        elif 275 <= mouseY < 350:
+            return (2,1)
+        elif 350 <= mouseY < 425:
+            return (3,1)
+        elif 425 <= mouseY < 500:
+            return (4,1)
+        elif 500 <= mouseY < 575:
+            return (5,1)
+    elif 475 <= mouseX and mouseX < 625:
+        if mouseY < 200:
+            return (0,2)
+        elif 200 <= mouseY < 275:
+            return (1,2)
+        elif 275 <= mouseY < 350:
+            return (2,2)
+        elif 350 <= mouseY < 425:
+            return (3,2)
+        elif 425 <= mouseY < 500:
+            return (4,2)
+        elif 500 <= mouseY < 575:
+            return (5,2)
+    else:
+        return None
+
+def snapToGrid(stored):
+    if stored != None:
+        X, Y = stored.returnPosition()
+        if 175 <= X and X < 325:
+            X = 190
+            if Y < 200:
+                Y = 140
+            elif 200 <= Y < 275:
+                Y = 215
+            elif 275 <= Y < 350:
+                Y = 290
+            elif 350 <= Y < 425:
+                Y = 365
+            elif 425 <= Y < 500:
+                Y = 440
+            elif 500 <= Y < 575:
+                Y = 515
+        elif 325 <= X and X < 475:
+            X = 340
+            if Y < 200:
+                Y = 140
+            elif 200 <= Y < 275:
+                Y = 215
+            elif 275 <= Y < 350:
+                Y = 290
+            elif 350 <= Y < 425:
+                Y = 365
+            elif 425 <= Y < 500:
+                Y = 440
+            elif 500 <= Y < 575:
+                Y = 515
+        elif 475 <= X and X < 625:
+            X = 490
+            if Y < 200:
+                Y = 140
+            elif 200 <= Y < 275:
+                Y = 215
+            elif 275 <= Y < 350:
+                Y = 290
+            elif 350 <= Y < 425:
+                Y = 365
+            elif 425 <= Y < 500:
+                Y = 440
+            elif 500 <= Y < 575:
+                Y = 515
+        else:
+            return None
+        stored.updatePosition(X,Y)
+        return
 
 class TransitionButton():
     def __init__(self, valueX, valueY, string):
