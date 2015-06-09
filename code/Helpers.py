@@ -48,16 +48,10 @@ commandString1 = ""
 commandString2 = ""
 commandString3 = ""
 
-<<<<<<< HEAD
 """     WOO     """
-def findBlob(blobList, mouseX, mouseY):
-    for blob in blobList:
-        (X, Y) = blob.returnPosition()
-=======
 def findAbilityButton(abilityList, mouseX, mouseY):
     for ability in abilityList:
         (X, Y) = ability.returnPosition()
->>>>>>> 5d660ddb437a555169b5fd0579ec66c0f3f69a82
         if X < mouseX and (X+100) > mouseX:
             if Y < mouseY and (Y+50) > mouseY:
                 return ability
@@ -180,14 +174,9 @@ class smallTransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
-<<<<<<< HEAD
 """     YAY     """
-class Blob():
-    def __init__(self, valueX, valueY, blobObject):
-=======
 class abilityButton():
     def __init__(self, valueX, valueY, abilityObject):
->>>>>>> 5d660ddb437a555169b5fd0579ec66c0f3f69a82
         self.locationX = valueX
         self.locationY = valueY
         self.originX = valueX
