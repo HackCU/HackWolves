@@ -8,7 +8,7 @@
 
 import pygame
 from Helpers import *
-import BlobObject
+import AbilityObject
 
 """'''     Level Helper Functions       '''"""
 class Platform(pygame.sprite.Sprite):
@@ -49,7 +49,7 @@ class Level():
     platform_list = None
     enemy_list = None
     exit_list = None
-    blob_list = None
+    ability_list = None
     
     #how far the world has been scrolled left/right
     world_shift = 0
@@ -58,7 +58,7 @@ class Level():
         self.platform_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.exit_list = pygame.sprite.Group()
-        self.blob_list = pygame.sprite.Group()
+        self.ability_list = pygame.sprite.Group()
         self.trap_list = pygame.sprite.Group()
         self.player = player
         
@@ -73,7 +73,7 @@ class Level():
         self.platform_list.update()
         self.enemy_list.update()
         self.exit_list.update()
-        self.blob_list.update()
+        self.ability_list.update()
         self.trap_list.update()
         
     def draw(self):
@@ -83,9 +83,9 @@ class Level():
         self.enemy_list.draw(screen)
         self.exit_list.draw(screen)
         self.trap_list.draw(screen)
-        for item in self.blob_list:
+        for item in self.ability_list:
             possessed = False
-            for item2 in blobList:
+            for item2 in abilityList:
                 if item.name is item2.name:
                     possessed = True
             if not possessed:
@@ -103,8 +103,8 @@ class Level():
         for door in self.exit_list:
             door.rect.x += shift_x
             
-        for blob in self.blob_list:
-            blob.rect.x += shift_x
+        for ability in self.ability_list:
+            ability.rect.x += shift_x
             
         for trap in self.trap_list:
             trap.rect.x += shift_x
@@ -149,25 +149,25 @@ class Level_01(Level):
         trap.player = self.player
         self.trap_list.add(trap)
             
-        blob1 = BlobObject.blobObject("MoveLeft")
-        blob1.rect.x = 650
-        blob1.rect.y = 50
-        self.blob_list.add(blob1)
+        ability1 = AbilityObject.abilityItem("MoveLeft")
+        ability1.rect.x = 650
+        ability1.rect.y = 50
+        self.ability_list.add(ability1)
         
-        '''blob2 = blobObject("rArrow")
-        blob2.rect.x = 1300
-        blob2.rect.y = 500
-        self.blob_list.add(blob2)
+        '''ability2 = abilityItem("rArrow")
+        ability2.rect.x = 1300
+        ability2.rect.y = 500
+        self.ability_list.add(ability2)
         
-        blob3 = blobObject("lArrow")
-        blob3.rect.x = 1500
-        blob3.rect.y = 400
-        self.blob_list.add(blob3)
+        ability3 = abilityItem("lArrow")
+        ability3.rect.x = 1500
+        ability3.rect.y = 400
+        self.ability_list.add(ability3)
         
-        blob4 = blobObject("upArrow")
-        blob4.rect.x = 900
-        blob4.rect.y = 400
-        self.blob_list.add(blob4)
+        ability4 = abilityItem("upArrow")
+        ability4.rect.x = 900
+        ability4.rect.y = 400
+        self.ability_list.add(ability4)
         '''
         
         
@@ -206,10 +206,10 @@ class Level_02(Level):
         self.platform_list.add(wall)    
         
           
-        blob1 = BlobObject.blobObject("Jump")
-        blob1.rect.x = 400
-        blob1.rect.y = 500
-        self.blob_list.add(blob1)
+        ability1 = AbilityObject.abilityItem("Jump")
+        ability1.rect.x = 400
+        ability1.rect.y = 500
+        self.ability_list.add(ability1)
         
         '''trapDoor = Platform(100, 1, GREEN)
         trapDoor.rect.x = 300
@@ -217,25 +217,25 @@ class Level_02(Level):
         trapDoor.player = self.player
         self.platform_list.add(trapDoor)
         
-        blob1 = blobObject("lArrow")
-        blob1.rect.x = 650
-        blob1.rect.y = 50
-        self.blob_list.add(blob1)
+        ability1 = abilityItem("lArrow")
+        ability1.rect.x = 650
+        ability1.rect.y = 50
+        self.ability_list.add(ability1)
         
-        blob2 = blobObject("rArrow")
-        blob2.rect.x = 1300
-        blob2.rect.y = 500
-        self.blob_list.add(blob2)
+        ability2 = abilityItem("rArrow")
+        ability2.rect.x = 1300
+        ability2.rect.y = 500
+        self.ability_list.add(ability2)
         
-        blob3 = blobObject("lArrow")
-        blob3.rect.x = 1500
-        blob3.rect.y = 400
-        self.blob_list.add(blob3)
+        ability3 = abilityItem("lArrow")
+        ability3.rect.x = 1500
+        ability3.rect.y = 400
+        self.ability_list.add(ability3)
         
-        blob4 = blobObject("upArrow")
-        blob4.rect.x = 900
-        blob4.rect.y = 400
-        self.blob_list.add(blob4)
+        ability4 = abilityItem("upArrow")
+        ability4.rect.x = 900
+        ability4.rect.y = 400
+        self.ability_list.add(ability4)
         '''
         
         
@@ -282,10 +282,10 @@ class Level_03(Level):
         trap.player = self.player
         self.trap_list.add(trap)
             
-        blob1 = blobObject("MoveLeft")
-        blob1.rect.x = 650
-        blob1.rect.y = 50
-        self.blob_list.add(blob1)
+        ability1 = abilityItem("MoveLeft")
+        ability1.rect.x = 650
+        ability1.rect.y = 50
+        self.ability_list.add(ability1)
         
         door = exitDoor(40, 50)
         door.rect.x = 750

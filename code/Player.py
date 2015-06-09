@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         self.level = None
-        self.blobs = []
+        self.abilitys = []
         
         self.level_list = []
         self.gameOver = False
@@ -31,13 +31,13 @@ class Player(pygame.sprite.Sprite):
         # Move left/right
         self.rect.x += self.change_x
         
-        # Collectin' blobs
-        blob_hit_list = pygame.sprite.spritecollide(self, self.level.blob_list, True)
-        for blob in blob_hit_list:
-            if blob.name is "MoveLeft":
+        # Collectin' abilitys
+        ability_hit_list = pygame.sprite.spritecollide(self, self.level.ability_list, True)
+        for ability in ability_hit_list:
+            if ability.name is "MoveLeft":
                 Helpers.OpenTrapDoor = True
                 #print "OpenTrapDoor"
-            blob.collect()
+            ability.collect()
 
  
         # See if we hit anything

@@ -36,7 +36,8 @@ size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 
 """     Variables and Lists       """
-blobList = []
+
+abilityList = []
 
 OpenTrapDoor = False
 
@@ -47,13 +48,19 @@ commandString1 = ""
 commandString2 = ""
 commandString3 = ""
 
+<<<<<<< HEAD
 """     WOO     """
 def findBlob(blobList, mouseX, mouseY):
     for blob in blobList:
         (X, Y) = blob.returnPosition()
+=======
+def findAbilityButton(abilityList, mouseX, mouseY):
+    for ability in abilityList:
+        (X, Y) = ability.returnPosition()
+>>>>>>> 5d660ddb437a555169b5fd0579ec66c0f3f69a82
         if X < mouseX and (X+100) > mouseX:
             if Y < mouseY and (Y+50) > mouseY:
-                return blob
+                return ability
     return None
 
 """     Find Position       """
@@ -173,9 +180,14 @@ class smallTransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
+<<<<<<< HEAD
 """     YAY     """
 class Blob():
     def __init__(self, valueX, valueY, blobObject):
+=======
+class abilityButton():
+    def __init__(self, valueX, valueY, abilityObject):
+>>>>>>> 5d660ddb437a555169b5fd0579ec66c0f3f69a82
         self.locationX = valueX
         self.locationY = valueY
         self.originX = valueX
@@ -184,15 +196,15 @@ class Blob():
         self.colorText = BLACK
         self.screen = screen
 
-        self.blob = blobObject
+        self.ability = abilityObject
         self.form1 = pygame.draw.rect(screen, BUTTON1, [self.locationX,self.locationY,100,50], 0)
         self.form2 = pygame.draw.rect(screen, self.colorFill, [self.locationX,self.locationY,100,50], 2)
 
         font = pygame.font.SysFont('Calibri', 25, True, False)
-        self.text = font.render(blobObject.name, True, self.colorText)
+        self.text = font.render(abilityObject.name, True, self.colorText)
         screen.blit(self.text, [(self.locationX+5),(self.locationY+10)])
         
-        self.name = blobObject.name
+        self.name = abilityObject.name
         self.string = ""
     
     def provideName(self):
@@ -204,7 +216,7 @@ class Blob():
         return (valueX, valueY)
     
     def __reduce__(self):
-        return (self.__class__, (self.locationX, self.locationY, self.blob))
+        return (self.__class__, (self.locationX, self.locationY, self.ability))
         
     def generateString(self):
         if self.name == "Default":

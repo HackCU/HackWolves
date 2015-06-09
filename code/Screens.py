@@ -4,16 +4,18 @@
 #   Unimplemented Screen
 #   Options Screen
 #   Exit Screen
-#   Blob Screen
+#   Ability Screen
 #   Play Screen
 
 import pygame
 import cPickle as pickle
 
 from Helpers import *
-import BlobObject
+
 import Levels
 import Player
+import AbilityObject
+
 
 """     Title Screen: entry screen for the app      """
 def titleScreen(done, clock):
@@ -166,35 +168,36 @@ def exitScreen(done, clock):
 
 """     Building Screen: Function building display with helper functions      """
 def buildingScreen(done, clock, load):
+
     transitionScreen = None
     
-    rArrow = Blob(25, 325, BlobObject.blobObject("rArrow"))
-    lArrow = Blob(25, 400, BlobObject.blobObject("lArrow"))
-    upArrow = Blob(25, 475, BlobObject.blobObject("upArrow"))
-    ifBlob = Blob(25, 250, BlobObject.blobObject("if"))
+    rArrow = abilityButton(25, 325, AbilityObject.abilityItem("rArrow"))
+    lArrow = abilityButton(25, 400, AbilityObject.abilityItem("lArrow"))
+    upArrow = abilityButton(25, 475, AbilityObject.abilityItem("upArrow"))
+    ifAbility = abilityButton(25, 250, AbilityObject.abilityItem("if"))
     
-    MoveRight = Blob(25, 25, BlobObject.blobObject("MoveRight"))
-    blobList.append(MoveRight)
+    MoveRight = abilityButton(25, 25, AbilityObject.abilityItem("MoveRight"))
+    abilityList.append(MoveRight)
     
-    blobList.append(rArrow)
-    blobList.append(lArrow)
-    blobList.append(upArrow)
-    blobList.append(ifBlob)
+    abilityList.append(rArrow)
+    abilityList.append(lArrow)
+    abilityList.append(upArrow)
+    abilityList.append(ifAbility)
     
-    rArrow2 = Blob(25, 325, BlobObject.blobObject("rArrow"))
-    lArrow2 = Blob(25, 400, BlobObject.blobObject("lArrow"))
-    upArrow2 = Blob(25, 475, BlobObject.blobObject("upArrow"))
-    ifBlob2 = Blob(25, 250, BlobObject.blobObject("if"))
+    rArrow2 = abilityButton(25, 325, AbilityObject.abilityItem("rArrow"))
+    lArrow2 = abilityButton(25, 400, AbilityObject.abilityItem("lArrow"))
+    upArrow2 = abilityButton(25, 475, AbilityObject.abilityItem("upArrow"))
+    ifAbility2 = abilityButton(25, 250, AbilityObject.abilityItem("if"))
     
-    MoveRight2 = Blob(25, 25, BlobObject.blobObject("MoveRight"))
-    blobList.append(MoveRight2)
+    MoveRight2 = abilityButton(25, 25, AbilityObject.abilityItem("MoveRight"))
+    abilityList.append(MoveRight2)
     
-    blobList.append(rArrow2)
-    blobList.append(lArrow2)
-    blobList.append(upArrow2)
-    blobList.append(ifBlob2)
+    abilityList.append(rArrow2)
+    abilityList.append(lArrow2)
+    abilityList.append(upArrow2)
+    abilityList.append(ifAbility2)
     
-    selectedBlob = None
+    selectedAbility = None
     clicked = False
     
     
@@ -213,9 +216,9 @@ def buildingScreen(done, clock, load):
                     (positionX, positionY) = findPositionInArray(mouseX, mouseY)
                     if workspaceArray[positionX][positionY] != "":
                         workspaceArray[positionX][positionY] = ""
-                selectedBlob = findBlob(blobList, mouseX, mouseY)
-                if selectedBlob != None:
-                    recentlySelected = selectedBlob
+                selectedAbility = findAbilityButton(abilityList, mouseX, mouseY)
+                if selectedAbility != None:
+                    recentlySelected = selectedAbility
                 if clicked == True:
                     clicked = False
                 else:
@@ -256,10 +259,10 @@ def buildingScreen(done, clock, load):
             pygame.draw.line(screen, BUTTON1, [verticalStart, 125], [verticalStart, 575], 4)
             verticalStart = verticalStart + 150
         
-        if selectedBlob != None and clicked == True:
+        if selectedAbility != None and clicked == True:
             (mouseX, mouseY) = pygame.mouse.get_pos()
-            selectedBlob.updateColor(True)
-            selectedBlob.updatePosition(mouseX, mouseY)
+            selectedAbility.updateColor(True)
+            selectedAbility.updatePosition(mouseX, mouseY)
         elif recentlySelected != None and clicked == False:
             (X, Y) = recentlySelected.returnPosition()
             (mouseX, mouseY) = pygame.mouse.get_pos()
@@ -277,7 +280,7 @@ def buildingScreen(done, clock, load):
             recentlySelected.updateColor(False)
             recentlySelected = None
         
-        for item in blobList:
+        for item in abilityList:
             item.refreshPosition()
         
         Functions = smallTransitionButton(675, 25, "Open Functions")
@@ -329,6 +332,7 @@ def playGame(done, clock, load):
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+
                 pickle.dump(mainPlayer.current_level_no, open( "Saves/save.p", "wb" ) )
                 #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
@@ -395,8 +399,10 @@ def playGame(done, clock, load):
                 #    mainPlayer.rect.y = 0
 
                 if event.key == pygame.K_ESCAPE:
+
                     pickle.dump(mainPlayer.current_level_no, open("Saves/save.p", "wb" ))
                     #pickle.dump(blobList, open( "blobs.p", "wb" ) )
+
                     done = True
             
             if event.type == pygame.KEYUP:
@@ -456,10 +462,12 @@ def playGame(done, clock, load):
         
         if transitionScreen != None:
             #save position
+
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
             pickle.dump(mainPlayer.current_level_no, open( "Saves/save.p", "wb" ) )
             pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/position.p", "wb" ) )
             return "buildingScreen", True
+
     
     # clear?
     pickle.dump((340, 50, 0), open( "Saves/position.p", "wb" ) )
