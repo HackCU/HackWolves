@@ -9,7 +9,7 @@
 
 import pygame
 import cPickle as pickle
-
+import Helpers
 from Helpers import *
 
 import Levels
@@ -397,7 +397,17 @@ def playGame(done, clock, load):
                 #    mainPlayer.level = current_level
                 #    mainPlayer.rect.x = 120
                 #    mainPlayer.rect.y = 0
-
+                
+                if Helpers.Test is True:
+                    print "testing"
+                    if event.key == pygame.K_LEFT:
+                        mainPlayer.go_left()
+                    if event.key == pygame.K_RIGHT:
+                        mainPlayer.go_right()
+                    if event.key == pygame.K_UP:
+                        mainPlayer.jump()
+                        
+                        
                 if event.key == pygame.K_ESCAPE:
 
                     pickle.dump(mainPlayer.current_level_no, open("Saves/save.p", "wb" ))

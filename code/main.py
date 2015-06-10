@@ -1,10 +1,16 @@
 import pygame
 import cPickle as pickle
-
+import sys
+import Helpers
 from Helpers import *
 import Screens
 
 def main():
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'test':
+            Helpers.Test = True
+            print "testing"
+            
     pygame.display.init()
     pygame.font.init()
     

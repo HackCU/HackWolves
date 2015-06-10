@@ -32,6 +32,9 @@ commandString1 = ""
 commandString2 = ""
 commandString3 = ""
 
+Test = False
+
+
 def findAbilityButton(abilityList, mouseX, mouseY):
     for ability in abilityList:
         (X, Y) = ability.returnPosition()
