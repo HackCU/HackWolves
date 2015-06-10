@@ -171,9 +171,9 @@ class Level_01(Level):
         '''
         
         
-        door = exitDoor(40, 50)
+        door = exitDoor(40, 100)
         door.rect.x = 750
-        door.rect.y = 500
+        door.rect.y = 450
         door.player = self.player
         self.exit_list.add(door)
 
@@ -239,9 +239,9 @@ class Level_02(Level):
         '''
         
         
-        door = exitDoor(40, 50)
+        door = exitDoor(40, 550)
         door.rect.x = 1900
-        door.rect.y = 500
+        door.rect.y = 0
         door.player = self.player
         self.exit_list.add(door)
         
