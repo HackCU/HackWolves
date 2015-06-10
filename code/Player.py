@@ -1,4 +1,6 @@
+#Player
 import pygame
+
 #Removing this breaks OpenTrapDoor - dunno why
 import Helpers
 from Helpers import *

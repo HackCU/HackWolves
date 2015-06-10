@@ -1,8 +1,22 @@
+#Helpers
+#Table of Contents:
+#   Global Constants
+#   Variables and Lists
+#   Find Ability Button
+#   Find Position
+#   Snap to Grid
+#   Transition Button
+#   Small Transition Button
+#   Ability Button
+#   Load Image Function
+#   Create String Function
+#   Build Commands Function
+
 import os, sys
 import pygame
 from pygame.locals import *
 
-#Globals
+"""     Global Constants        """
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (42, 168, 27)
@@ -18,12 +32,14 @@ WORKSPACE2 = (209, 98, 19)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+screen = pygame.display.set_mode(size)
+
+"""     Variables and Lists       """
+
 abilityList = []
 
 OpenTrapDoor = False
-
-size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-screen = pygame.display.set_mode(size)
 
 workspaceArray = [["" for x in range(3)] for x in range(6)]
 
@@ -34,7 +50,7 @@ commandString3 = ""
 
 Test = False
 
-
+"""     Find Ability Button     """
 def findAbilityButton(abilityList, mouseX, mouseY):
     for ability in abilityList:
         (X, Y) = ability.returnPosition()
@@ -43,6 +59,7 @@ def findAbilityButton(abilityList, mouseX, mouseY):
                 return ability
     return None
 
+"""     Find Position       """
 def findPositionInArray(mouseX, mouseY):
     if 175 <= mouseX and mouseX < 325:
         if mouseY < 200:
@@ -86,6 +103,7 @@ def findPositionInArray(mouseX, mouseY):
     else:
         return None
 
+"""     Snap to Grid        """
 def snapToGrid(stored):
     if stored != None:
         X, Y = stored.returnPosition()
@@ -136,6 +154,7 @@ def snapToGrid(stored):
         stored.updatePosition(X,Y)
         return
 
+"""     Transition Button       """
 class TransitionButton():
     def __init__(self, valueX, valueY, string):
         self.locationX = valueX
@@ -146,6 +165,7 @@ class TransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+25),(valueY+25)])
 
+"""     Small Transition Button     """
 class smallTransitionButton():
     def __init__(self, valueX, valueY, string):
         self.locationX = valueX
@@ -156,6 +176,7 @@ class smallTransitionButton():
         self.text = font.render(string, True, BLACK)
         screen.blit(self.text, [(valueX+5),(valueY+10)])
 
+"""     Ability Button     """
 class abilityButton():
     def __init__(self, valueX, valueY, abilityObject):
         self.locationX = valueX
@@ -238,6 +259,7 @@ class abilityButton():
         valueY = self.locationY
         return (valueX, valueY)
 
+"""     Load Image Function     """
 def load_image(name, colorkey=None):
     fullname = os.path.join('Resources', 'Images')
     fullname = os.path.join(fullname, name)
@@ -253,7 +275,7 @@ def load_image(name, colorkey=None):
         image.set_colorkey(colorkey,RLEACCEL)
     return image, image.get_rect()
     
-    
+"""     Create String Function     """
 def createString(name, array, i, j):
     
     string = ""
@@ -279,7 +301,8 @@ def createString(name, array, i, j):
         string = "event.key == pygame.K_UP"
         
     return string
-    
+
+"""     Build Commands Function     """
 def buildCommands(array):
     
     commandString1 = ""
