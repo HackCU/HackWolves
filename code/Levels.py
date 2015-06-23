@@ -83,13 +83,13 @@ class Level():
         self.enemy_list.draw(screen)
         self.exit_list.draw(screen)
         self.trap_list.draw(screen)
-        for item in self.ability_list:
+        for ability in self.ability_list:
             possessed = False
-            for item2 in abilityList:
-                if item.name is item2.name:
+            for ability2 in abilityList:
+                if ability.name is ability2.name:
                     possessed = True
             if not possessed:
-                item.draw(screen)
+                ability.draw(screen)
     
     def shift_world(self, shift_x):
         self.world_shift += shift_x

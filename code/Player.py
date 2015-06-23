@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         
         self.level_list = []
         self.gameOver = False
-        self.current_level_no = 0
+        self.current_level_no = 1
         self.current_level = None
         self.current_string = ""
 
@@ -77,7 +77,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.x = 120
             if self.current_level_no < len(self.level_list)-1:
                 self.current_level_no += 1
-                self.currentString = "Level " + str((self.current_level_no)+1)
+                self.current_string = "Level " + str((self.current_level_no))
                 self.current_level = self.level_list[self.current_level_no]
                 self.level = self.current_level
                 #if current_level_no is 2:

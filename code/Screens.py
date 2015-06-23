@@ -348,8 +348,8 @@ def buildingScreen(done, clock, load):
             recentlySelected.updateColor(False)
             recentlySelected = None
         
-        for item in abilityList:
-            item.refreshPosition()
+        for ability in abilityList:
+            ability.refreshPosition()
         
         Functions = smallTransitionButton(675, 25, "Open Functions")
         BindToKey = smallTransitionButton(675, 100, "Save Function")
@@ -367,20 +367,20 @@ def playGame(done, clock, load):
     mainPlayer = Player.Player()
     transitionScreen = None
     
+    mainPlayer.level_list.append(Levels.Level_00(mainPlayer))
     mainPlayer.level_list.append(Levels.Level_01(mainPlayer))
     mainPlayer.level_list.append(Levels.Level_02(mainPlayer))
-    mainPlayer.level_list.append(Levels.Level_00(mainPlayer))
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
         mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, temp_world_shift = pickle.load(open("Saves/save.p", "rb"))
-        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
+        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no))
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
         mainPlayer.current_level.world_shift = temp_world_shift
        # mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift = pickle.load(open("Saves/position.p", "rb"))
     else:
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
-        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
+        mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no))
         mainPlayer.rect.x = 50
         mainPlayer.rect.y = 0
     #current_level = level_list[current_level_no]
@@ -447,23 +447,23 @@ def playGame(done, clock, load):
                 # if event.key == pygame.K_UP:
                 #     mainPlayer.jump()
                 if event.key == pygame.K_0:
-                    mainPlayer.current_level_no = 2
-                    mainPlayer.current_string = "Level 0"
+                    mainPlayer.current_level_no = 0
+                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no))
                     mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
                     mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 80
                     mainPlayer.rect.y = 450
                     
                 if event.key == pygame.K_1:
-                    mainPlayer.current_level_no = 0
-                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_level_no = 1
+                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no))
                     mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
                     mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
                     mainPlayer.rect.y = 0
                 if event.key == pygame.K_2:
-                    mainPlayer.current_level_no = 1
-                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
+                    mainPlayer.current_level_no = 2
+                    mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no))
                     mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
                     mainPlayer.level = mainPlayer.current_level
                     mainPlayer.rect.x = 120
