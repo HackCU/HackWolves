@@ -17,8 +17,10 @@ import Player
 import AbilityObject
 
 
+
 """     Title Screen: entry screen for the app      """
 def titleScreen(done, clock):
+    
     load = False
     while not done:
         (mouseX, mouseY) = (0, 0)
@@ -333,7 +335,7 @@ def playGame(done, clock, load):
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-
+                
                 pickle.dump((mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/save.p", "wb" ) )
                 #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
@@ -410,7 +412,7 @@ def playGame(done, clock, load):
                         
                         
                 if event.key == pygame.K_ESCAPE:
-
+                    
                     pickle.dump((mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open("Saves/save.p", "wb" ))
                     #pickle.dump(blobList, open( "blobs.p", "wb" ) )
 
@@ -481,5 +483,5 @@ def playGame(done, clock, load):
 
     
     # clear?
-    pickle.dump((mainPlayer.current_level_no, 340, 50, 0), open( "Saves/save.p", "wb" ) )
+    #pickle.dump((mainPlayer.current_level_no, 340, 50, 0), open( "Saves/save.p", "wb" ) )
     return "done", False
