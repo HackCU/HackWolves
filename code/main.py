@@ -16,7 +16,7 @@ def main():
     pygame.font.init()
     
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-    screen = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 
     pygame.display.set_caption("Codeventures!")
     done = False
@@ -37,6 +37,8 @@ def main():
             transitionScreen = Screens.options(done, clock)
         elif transitionScreen == "unimplemented":
             transitionScreen = Screens.unimplemented(done, clock)
+        elif transitionScreen == "changeScreenSize":
+            transitionScreen = Screens.changeResolution(done, clock)
         elif transitionScreen == "done":
             Screens.exitScreen(done, clock)
             done = True

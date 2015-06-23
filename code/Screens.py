@@ -116,7 +116,10 @@ def options(done, clock):
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if mouseX > 100 and mouseX < 350:
                     if mouseY > 400 and mouseY < 475:
-                        transitionScreen = "unimplemented"
+                        # Fullscreen <-> windowed toggle
+                        #transitionScreen = "unimplemented"
+                        #toggleFullscreen(isFullscreen)
+                        transitionScreen = "changeScreenSize"
                     elif mouseY > 500 and mouseY < 625:
                         transitionScreen = "unimplemented"
                 elif mouseX > 425 and mouseX < 675:
@@ -128,13 +131,76 @@ def options(done, clock):
             return transitionScreen
         else:
             screen.fill(BACKGROUND)
-            StartButton = TransitionButton(100, 400, "Button 1")
+            ChangeScreenSizeButton = TransitionButton(100, 400, "Change Resolution")
             LoadButton = TransitionButton(100, 500, "Button 2")
             OptionsButton = TransitionButton(425, 400, "Button 3")
             ExitButton = TransitionButton(425, 500, "Main Menu")
             
             TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
             TitleText = TitleFont.render("Options", True, BLACK)
+            screen.blit(TitleText, [(150),(100)])
+        clock.tick(60)
+        pygame.display.flip()
+    return "done"
+    
+"""     Change Resolution: allows the player to change the screen size     """
+def changeResolution(done, clock):
+    transitionScreen = None
+    clicked = False
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                (mouseX, mouseY) = pygame.mouse.get_pos()
+                print "mouseY:", mouseY, "mouseX:", mouseX
+                if mouseX > 100 and mouseX < 350:
+                    if mouseY > 300 and mouseY < 375:
+                        #upper left button
+                        print "upper left!"
+                        changeScreenSize(1600, 900)
+                    elif mouseY > 400 and mouseY < 475:
+                        #middle left button
+                        print "middle left!"
+                        changeScreenSize(1920, 1080)
+                    elif mouseY > 500 and mouseY < 575:
+                        #lower left button
+                        print "lower left!"
+                        changeScreenSize(1280, 800)
+                elif mouseX > 425 and mouseX < 675:
+                    if mouseY > 300 and mouseY < 375:
+                        #upper right button
+                        print "upper right!"
+                        changeScreenSize(1024,768)
+                    elif mouseY > 400 and mouseY < 475:
+                        #middle right button
+                        print "middle right!"
+                        changeScreenSize(1280,1024)
+                    elif mouseY > 500 and mouseY < 575:
+                        #back button
+                        transitionScreen = "optionsScreen"
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
+        if transitionScreen != None:
+            return transitionScreen
+        else:
+            screen.fill(BACKGROUND)
+            #upper left button
+            Screen1 = TransitionButton(100, 300, "1600x900")
+            #middle left button
+            ChangeScreenSizeButton = TransitionButton(100, 400, "1920x1080")
+            #lower left button
+            LoadButton = TransitionButton(100, 500, "1280x800")
+            #upper right button
+            Screen4 = TransitionButton(425, 300, "1024x768")
+            #middle right button
+            OptionsButton = TransitionButton(425, 400, "1280x1024")
+            #lower right button
+            ExitButton = TransitionButton(425, 500, "Main Menu")
+            
+            TitleFont = pygame.font.SysFont('Calibri', 100, True, False)
+            TitleText = TitleFont.render("Select a size", True, BLACK)
             screen.blit(TitleText, [(150),(100)])
         clock.tick(60)
         pygame.display.flip()
