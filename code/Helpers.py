@@ -2,6 +2,8 @@
 #Table of Contents:
 #   Global Constants
 #   Variables and Lists
+#   Making Listbox          (RELIC)
+#   Change Screen Size
 #   Find Ability Button
 #   Find Position
 #   Snap to Grid
@@ -34,6 +36,7 @@ SCREEN_HEIGHT = 600
 
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
+isFullscreen = False
 
 """     Variables and Lists       """
 
@@ -49,6 +52,45 @@ commandString2 = ""
 commandString3 = ""
 
 Test = False
+
+"""     Making Listbox       """
+class Listbox():
+    locationListboxUpArrow = None
+    locationListboxDownArrow = None
+    listboxList = None
+    locationX = None
+    locationY = None
+    
+    def __init__(self, incomingList, xPos, yPos, width, height):
+        self.locationX = xPos
+        self.locationY = yPos
+        # set list for listbox
+        listboxList = incominglist
+        # draw listbox itself
+        self.abilityButtonFill = pygame.draw.rect(screen, BUTTON1, [xPos, yPos, width, height], 0)
+        self.abilityButtonOutline = pygame.draw.rect(screen, BUTTON2, [xPos, yPos, width, height], 4)
+        # draw arrows
+        
+        # populate listbox
+        # font = pygame.font.SysFont('Calibri', 40, True, False)
+        # self.text = font.render(string, True, BLACK)
+        # screen.blit(self.text, [(locationX+25), (locationY+25)])
+    
+    def updateList(self):
+        # adds new item to the listboxList
+        
+        self.updateDisplay()
+        
+    def updateDisplay(self):
+        # check which arrow was pressed
+        print "hi!"
+        # repopulate listbox
+        
+"""     Change Screen Size       """
+def changeScreenSize(width, height):
+    SCREEN_WIDTH = width
+    SCREEN_HEIGHT = height
+    pygame.display.set_mode((NewWidth,NewHeight), RESIZABLE)
 
 """     Find Ability Button     """
 def findAbilityButton(abilityList, mouseX, mouseY):
