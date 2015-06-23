@@ -370,10 +370,11 @@ def playGame(done, clock, load):
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
-        mainPlayer.current_level_no = pickle.load(open("Saves/save.p", "rb"))
+        mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, temp_world_shift = pickle.load(open("Saves/save.p", "rb"))
         mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
-        mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift = pickle.load(open("Saves/position.p", "rb"))
+        mainPlayer.current_level.world_shift = temp_world_shift
+       # mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift = pickle.load(open("Saves/position.p", "rb"))
     else:
         mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
         mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)
@@ -399,7 +400,7 @@ def playGame(done, clock, load):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
 
-                pickle.dump(mainPlayer.current_level_no, open( "Saves/save.p", "wb" ) )
+                pickle.dump((mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/save.p", "wb" ) )
                 #pickle.dump(blobList, open( "blobs.p", "wb" ) )
                 done = True
             if event.type == pygame.KEYDOWN:
@@ -476,7 +477,7 @@ def playGame(done, clock, load):
                         
                 if event.key == pygame.K_ESCAPE:
 
-                    pickle.dump(mainPlayer.current_level_no, open("Saves/save.p", "wb" ))
+                    pickle.dump((mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open("Saves/save.p", "wb" ))
                     #pickle.dump(blobList, open( "blobs.p", "wb" ) )
 
                     done = True
@@ -540,11 +541,11 @@ def playGame(done, clock, load):
             #save position
 
             #pickle.dump(blobList, open( "blobs.p", "wb" ) )
-            pickle.dump(mainPlayer.current_level_no, open( "Saves/save.p", "wb" ) )
-            pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/position.p", "wb" ) )
+            pickle.dump((mainPlayer.current_level_no, mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/save.p", "wb" ) )
+            #pickle.dump((mainPlayer.rect.x, mainPlayer.rect.y, mainPlayer.current_level.world_shift), open( "Saves/position.p", "wb" ) )
             return "buildingScreen", True
 
     
     # clear?
-    pickle.dump((340, 50, 0), open( "Saves/position.p", "wb" ) )
+    pickle.dump((mainPlayer.current_level_no, 340, 50, 0), open( "Saves/save.p", "wb" ) )
     return "done", False

@@ -1,6 +1,6 @@
 #main
 import pygame
-import cPickle as pickle
+#import cPickle as pickle
 import sys
 import Helpers
 from Helpers import *

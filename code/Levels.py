@@ -124,7 +124,7 @@ class Level_01(Level):
         
         level = [[300, 100, 0, 100],
                  [300, 350, 400, 100],
-                 [200, 600, -150, 0],
+                 [200, 700, -150, -100],
                  [200, 100, 200, 350],
                  [100, 500, 700, -50],
                  [3500, 50, -1000, 550]]        
@@ -171,9 +171,9 @@ class Level_01(Level):
         '''
         
         
-        door = exitDoor(40, 50)
+        door = exitDoor(40, 100)
         door.rect.x = 750
-        door.rect.y = 500
+        door.rect.y = 450
         door.player = self.player
         self.exit_list.add(door)
 
@@ -239,9 +239,9 @@ class Level_02(Level):
         '''
         
         
-        door = exitDoor(40, 50)
+        door = exitDoor(40, 550)
         door.rect.x = 1900
-        door.rect.y = 500
+        door.rect.y = 0
         door.player = self.player
         self.exit_list.add(door)
         
