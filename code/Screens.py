@@ -369,6 +369,7 @@ def playGame(done, clock, load):
     
     mainPlayer.level_list.append(Levels.Level_01(mainPlayer))
     mainPlayer.level_list.append(Levels.Level_02(mainPlayer))
+    mainPlayer.level_list.append(Levels.Level_00(mainPlayer))
     #level_list.append(levels.Level_03(mainPlayer))
     
     if load:
@@ -445,6 +446,14 @@ def playGame(done, clock, load):
                 
                 # if event.key == pygame.K_UP:
                 #     mainPlayer.jump()
+                if event.key == pygame.K_0:
+                    mainPlayer.current_level_no = 2
+                    mainPlayer.current_string = "Level 0"
+                    mainPlayer.current_level = mainPlayer.level_list[mainPlayer.current_level_no]
+                    mainPlayer.level = mainPlayer.current_level
+                    mainPlayer.rect.x = 80
+                    mainPlayer.rect.y = 450
+                    
                 if event.key == pygame.K_1:
                     mainPlayer.current_level_no = 0
                     mainPlayer.current_string = "Level " + str((mainPlayer.current_level_no)+1)

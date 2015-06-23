@@ -109,6 +109,50 @@ class Level():
         for trap in self.trap_list:
             trap.rect.x += shift_x
             
+            
+"""'''     Level 00 - TEST LEVEL       '''"""
+class Level_00(Level):
+    def __init__(self,player):
+        Level.__init__(self, player)
+        
+        self.level_limit = -1000
+        
+        level = [[3500, 50, -1000, 550]]
+        
+              
+        for platform in level:
+            block = Platform(platform[0], platform[1], GREEN,"platform")
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block)
+            
+        wall = Platform(1, 550, SKY,"platform")
+        wall.rect.x = -50
+        wall.rect.y = 0
+        wall.player = self.player
+        self.platform_list.add(wall)    
+        
+        
+        #Populate level with all abilities to test
+        ability1 = AbilityObject.abilityItem("MoveLeft")
+        ability1.rect.x = 150
+        ability1.rect.y = 500
+        self.ability_list.add(ability1)
+        
+        ability2 = AbilityObject.abilityItem("Jump")
+        ability2.rect.x = 250
+        ability2.rect.y = 500
+        self.ability_list.add(ability2)
+        
+        
+        door = exitDoor(40, 550)
+        door.rect.x = 700
+        door.rect.y = 0
+        door.player = self.player
+        self.exit_list.add(door)
+        
+        
 """'''     Level 01       '''"""
 class Level_01(Level):
     def __init__(self,player):
